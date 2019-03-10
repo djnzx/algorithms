@@ -1,4 +1,4 @@
 package algorithms.graphs;
 
-public class Djikstra {
+public class Dijkstra {
 }
