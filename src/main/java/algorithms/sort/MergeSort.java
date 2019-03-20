@@ -1,5 +1,7 @@
 package algorithms.sort;
 
+import java.util.StringJoiner;
+
 public class MergeSort {
   private static int counter_check = 0;
   private static int counter_permutation = 0;
@@ -26,24 +28,19 @@ public class MergeSort {
     // Initial index of merged sub-array
     int k = l;
     while (i < size_l && j < size_r) {
-      counter_check++;
       if (left[i] <= right[j]) {
-        counter_check++;
         arr[k] = left[i++];
       } else {
-        counter_check++;
         arr[k] = right[j++];
       }
       k++;
     }
 
     while (i < size_l) {
-      counter_check++;
       arr[k++] = left[i++];
     }
 
     while (j < size_r) {
-      counter_check++;
       arr[k++] = right[j++];
     }
   }

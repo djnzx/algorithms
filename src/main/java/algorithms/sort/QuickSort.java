@@ -1,8 +1,13 @@
 package algorithms.sort;
 
+import java.util.Scanner;
+
 public class QuickSort {
   private static int counter_check = 0;
   private static int counter_permutation = 0;
+  private static int counter = 0;
+
+  private static Scanner in = new Scanner(System.in);
 
   // mutate the array
   private static void doSort(final int[] data, final int start, final int end) {
@@ -27,6 +32,7 @@ public class QuickSort {
         int tmp = data[left];
         data[left] = data[right];
         data[right] = tmp;
+        counter++;
         counter_permutation++;
         if (cur == left) { cur = right; }
         else if (cur == right) { cur = left; }
@@ -44,11 +50,12 @@ public class QuickSort {
   }
 
   public static void main(String[] args) {
-    int[] origin = Utils.create_random_data(30);
+    int[] origin = Utils.create_random_data(100);
     Utils.printArray("Source array:", origin);
     int[] sorted = sort(origin);
     Utils.printArray("Sorted array:", sorted);
     System.out.printf("Checks count: %d\nPermutations count: %d\n", counter_check, counter_permutation);
     System.out.printf("Total: %d\n", counter_check * 2 + counter_permutation * 4);
+    System.out.println(counter);
   }
 }
