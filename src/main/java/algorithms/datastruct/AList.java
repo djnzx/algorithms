@@ -63,11 +63,7 @@ public class AList implements IList {
     }
 
     @Override
-    public void remove() {
-        remove(this.position);
-    }
-
-    void print() {
+    public void print() {
         StringBuilder sb = new StringBuilder("[");
         boolean first = true;
         for (int i = 0; i < this.position; i++) {
@@ -79,6 +75,12 @@ public class AList implements IList {
             sb.append(data[i]);
         }
         System.out.println(sb.append("]"));
+    }
+
+
+    @Override
+    public void remove() {
+        remove(this.position);
     }
 
     public static void main1(String[] args) {

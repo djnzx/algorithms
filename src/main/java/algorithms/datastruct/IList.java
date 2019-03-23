@@ -6,4 +6,5 @@ public interface IList {
     int size();
     void remove(int index);
     void remove();
+    void print();
 }
