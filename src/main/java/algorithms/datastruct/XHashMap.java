@@ -24,7 +24,11 @@ public class XHashMap implements IMap<Integer, String> {
     private final static int LEN = 16;
 
     public XHashMap() {
-        this.entries = new Entry[LEN];
+        this(LEN);
+    }
+
+    public XHashMap(int len) {
+        this.entries = new Entry[len];
     }
 
     private int hash(int object) {
@@ -73,7 +77,7 @@ public class XHashMap implements IMap<Integer, String> {
     }
 
     public static void main(String[] args) {
-        XHashMap map = new XHashMap();
+        XHashMap map = new XHashMap(100);
         map.put(1, "Dima");
         map.put(17, "Lena");
         map.put(33, "Ira");
