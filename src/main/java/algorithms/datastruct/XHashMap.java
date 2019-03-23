@@ -1,7 +1,5 @@
 package algorithms.datastruct;
 
-import java.util.Arrays;
-
 public class XHashMap implements IMap<Integer, String> {
 
     class Entry {
