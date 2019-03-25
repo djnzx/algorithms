@@ -29,7 +29,7 @@ public class PriorityQueue_ {
     void print() {
         StringBuilder sb = new StringBuilder("[");
         boolean first = true;
-        for (int i = 0; i < this.data.length; i++) {
+        for (int i = 0; i < count; i++) {
             if (first) {
                 first = false;
             } else {
@@ -56,32 +56,28 @@ public class PriorityQueue_ {
 
     int find_pos(int val) {
         int left = 0;
-        int index = 0;
-        int right = count - 1;
-        while (left < right) {
+        int right = count-1;
+        while (left <= right) {
             int middle = (right + left) / 2;
-            if(val > data[middle]){
-                left = middle+1;
-                index = right;
-            } else if(val < data[middle]){
-                right = middle-1;
-                index = left;
+            if (val > data[middle]) {
+                left = middle + 1;
+            } else if (val < data[middle]) {
+                right = middle -1;
             } else {
-                index = middle;
-                break;
+                return middle;
             }
         }
-        if (left>=count-1) return count;
-        if (right==0) return 0;
-        return index;
+        return left;
+
     }
 
 
     public static void main(String[] args) {
         PriorityQueue_ pq = new PriorityQueue_(20);
         for (int i = 1; i <= 20; i++) {
-            int val = (int) (Math.random()*50);
+            int val = (int) (Math.random()*99);
             pq.add(val);
+            pq.print();
         }
         pq.print();
     }
