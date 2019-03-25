@@ -20,8 +20,10 @@ public class PriorityQueue_ {
         count++;
     }
 
-    private void add(int v) {
-        this.data[count++] = v;
+    private void add(int newVal) {
+        int pos = find_pos(newVal);
+        shift(pos);
+        insert(pos, newVal);
     }
 
     void print() {
@@ -42,7 +44,7 @@ public class PriorityQueue_ {
         this.data[pos] = val;
     }
 
-    int find_pos(int val) {
+    int find_pos2(int val) {
         // this.data[0..count-1]
         for (int i = 0; i < count ; i++) {
             if (data[i] >= val) {
@@ -52,24 +54,35 @@ public class PriorityQueue_ {
         return count;
     }
 
+    int find_pos(int val) {
+        int left = 0;
+        int index = 0;
+        int right = count - 1;
+        while (left < right) {
+            int middle = (right + left) / 2;
+            if(val > data[middle]){
+                left = middle+1;
+                index = right;
+            } else if(val < data[middle]){
+                right = middle-1;
+                index = left;
+            } else {
+                index = middle;
+                break;
+            }
+        }
+        if (left>=count-1) return count;
+        if (right==0) return 0;
+        return index;
+    }
+
 
     public static void main(String[] args) {
         PriorityQueue_ pq = new PriorityQueue_(20);
-        for (int i = 30; i < 40; i++) {
-//            int val = (int) (Math.random()*50);
-            int val = i;
-            System.out.println(val);
+        for (int i = 1; i <= 20; i++) {
+            int val = (int) (Math.random()*50);
             pq.add(val);
         }
         pq.print();
-
-        int newVal = 33;
-        int pos = pq.find_pos(newVal);
-        pq.shift(pos);
-        pq.insert(pos, newVal);
-
-        pq.print();
-//        System.out.println();
-//        System.out.println(pq.poll());
     }
 }
