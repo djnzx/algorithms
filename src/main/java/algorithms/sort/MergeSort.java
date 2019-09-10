@@ -1,6 +1,8 @@
 package algorithms.sort;
 
-import java.util.StringJoiner;
+/**
+ * https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Merge_sort_algorithm_diagram.svg/300px-Merge_sort_algorithm_diagram.svg.png
+ */
 
 public class MergeSort {
   private static int counter_check = 0;
@@ -34,6 +36,7 @@ public class MergeSort {
         arr[k] = right[j++];
       }
       k++;
+      counter_permutation++;
     }
 
     while (i < size_l) {
@@ -47,18 +50,22 @@ public class MergeSort {
 
   void sort(int[] arr, int l, int r) {
     if (l < r) {
-      int m = (l+r)/2;
+      int m = (l + r) / 2;
       sort(arr, l, m);
-      sort(arr, m+1, r);
+      sort(arr, m + 1, r);
       merge(arr, l, m, r);
     }
   }
 
   public static void main(String[] args) {
-    int[] arr = Utils.create_random_data(30);
-    Utils.printArray("Source array", arr);
-    new MergeSort().sort(arr, 0, arr.length-1);
-    Utils.printArray("Sorted array", arr);
+    int[] data = Utils.create_random_data(30);
+    Utils.printArray("Source array", data);
+
+    MergeSort ms = new MergeSort();
+    ms.sort(data, 0, data.length-1);
+
+    Utils.printArray("Sorted array", data);
+
     System.out.printf("Checks count: %d\nPermutations count: %d\n", counter_check, counter_permutation);
     System.out.printf("Total: %d\n", counter_check * 2 + counter_permutation * 4);
   }

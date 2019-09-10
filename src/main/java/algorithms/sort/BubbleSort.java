@@ -11,6 +11,9 @@ public class BubbleSort {
 
     public static int[] sort(int[] origin) {
         int[] process = origin.clone();
+        /**
+         * complexity: O(n^2)
+         */
         for (int i = 0; i < process.length; i++) {
             for (int j = 0; j < process.length; j++) {
                 if (process[i] < process[j]) {
