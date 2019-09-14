@@ -1,34 +1,8 @@
 package algorithms.linkedlist;
 
 public class LList {
-
     private Node head = null;
     private Node tail = null;
-
-    class Node {
-        private final int val;
-        private Node next = null;
-
-        Node(int val) {
-            this.val = val;
-        }
-
-        public int getVal() {
-            return val;
-        }
-
-        public Node getNext() {
-            return next;
-        }
-
-        public boolean hasNext() {
-            return next != null;
-        }
-
-        public void setNext(Node next) {
-            this.next = next;
-        }
-    }
 
     private void add(int val) {
         Node node = new Node(val);
@@ -55,7 +29,32 @@ public class LList {
     }
 
     private void remove(int val) {
+        Node current = head;
+        // empty list
+        if (current == null) return;
 
+        // fist match
+        if (current.getVal() == val) {
+            head = current.getNext();
+            // only one element
+            if (tail == head) {
+                tail = null;
+            }
+            return;
+        }
+
+        // all other cases
+        while (current.hasNext()) {
+            if (current.getNext().getVal() == val) {
+                // check whether the last element
+                if (tail == current.getNext()) {
+                    tail = current;
+                }
+                current.setNext(current.getNext().getNext());
+                return;
+            }
+            current = current.getNext();
+        }
     }
 
     private void print_separator() {
@@ -103,6 +102,9 @@ public class LList {
         ll.print(); // <5>
         ll.remove(5);
         ll.print(); // <>
+        ll.add(77);
+        ll.add(88);
+        ll.print(); // <77, 88>
     }
 
 }
