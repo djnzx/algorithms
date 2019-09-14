@@ -17,6 +17,8 @@ public class LLUsage02 {
         ll1.print();
         ll2.print();
         // ========
+        Node head1 = ll1.getHead();
+        Node head2 = ll2.getHead();
 
         // ========
         ll3.print(); // <1, 3, 5, 6, 7, 10>
