@@ -8,27 +8,27 @@ public class MergeSort {
   private static int counter_check = 0;
   private static int counter_permutation = 0;
 
-  void merge(int[] arr, int l, int m, int r) {
-    int size_l = m - l + 1;
-    int size_r = r - m;
+  void merge(int[] arr, int l_index, int middle_index, int r_index) {
+    int size_l = middle_index - l_index + 1;
+    int size_r = r_index - middle_index;
 
     int[] left = new int[size_l];
     int[] right = new int[size_r];
 
     // Copy
     for (int i=0; i < size_l; ++i) {
-      left[i] = arr[l + i];
+      left[i] = arr[l_index + i];
       counter_check++;
     }
     for (int j=0; j < size_r; ++j) {
-      right[j] = arr[m + 1 + j];
+      right[j] = arr[middle_index + 1 + j];
       counter_check++;
     }
 
     // Merge
     int i = 0, j = 0;
     // Initial index of merged sub-array
-    int k = l;
+    int k = l_index;
     while (i < size_l && j < size_r) {
       if (left[i] <= right[j]) {
         arr[k] = left[i++];
