@@ -30,6 +30,6 @@ public class LLUsage01 {
         ll.print(); // <>
         ll.add(77);
         ll.add(88);
-        ll.print(); // <77, 88>
+        ll.print_recursive(); // <77, 88>
     }
 }

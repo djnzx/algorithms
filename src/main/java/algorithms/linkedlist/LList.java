@@ -79,4 +79,34 @@ public class LList {
         System.out.println(">");
     }
 
+    private void print_el(Node node) {
+        if (node == null) return;
+        System.out.printf("%d ", node.getVal());
+        print_el(node.getNext());
+    }
+
+    public void print_recursive() {
+        System.out.print("<");
+        print_el(head);
+        System.out.print(">");
+    }
+
+    private Node invert(Node item) {
+        Node prev = null;
+        Node current = item;
+
+        while (current != null) {
+            Node saved = current.getNext();
+            current.setNext(prev);
+            prev = current;
+            current = saved;
+        }
+
+        return prev;
+    }
+
+    public void invert() {
+        Node new_head = invert(head);
+        head = new_head;
+    }
 }

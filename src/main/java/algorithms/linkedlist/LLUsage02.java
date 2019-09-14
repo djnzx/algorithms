@@ -17,8 +17,31 @@ public class LLUsage02 {
         ll1.print();
         ll2.print();
         // ========
-        Node head1 = ll1.getHead();
-        Node head2 = ll2.getHead();
+        Node one = ll1.getHead();
+        Node two = ll2.getHead();
+
+        while (one !=null && two !=null) {
+            int v1 = one.getVal();
+            int v2 = two.getVal();
+
+            if (v1 <= v2) {
+                ll3.add(v1);
+                one = one.getNext();
+            } else {
+                ll3.add(v2);
+                two = two.getNext();
+            }
+        }
+
+        while (one != null) {
+            ll3.add(one.getVal());
+            one = one.getNext();
+        }
+
+        while (two != null) {
+            ll3.add(two.getVal());
+            two = two.getNext();
+        }
 
         // ========
         ll3.print(); // <1, 3, 5, 6, 7, 10>
