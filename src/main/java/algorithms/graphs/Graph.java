@@ -17,11 +17,11 @@ public class Graph {
         }
     }
 
-    public void addEdge(int from, int to) {
-        if (from >= edge_count || to >= edge_count) {
+    public void addEdge(int src, int dst) {
+        if (src >= edge_count || dst >= edge_count) {
             throw new IllegalArgumentException("invalid vertice number");
         }
-        edges[from - 1].add(to - 1);
+        edges[src - 1].add(dst - 1);
     }
 
     private static String list_to_string(List<Integer> vertices) {
@@ -76,15 +76,17 @@ public class Graph {
 
     // BFS from the specified vertice
     public List<Integer> bfs(int source) {
-        final List<Integer> path_ = new LinkedList<>();
+        final List<Integer> result = new LinkedList<>();
         final boolean[] visited = new boolean[edge_count]; // false by default, thankful to Java
         final LinkedList<Integer> process = new LinkedList<>();
+
         visited[source] = true;
+
         process.add(source); // add to END
         while (!process.isEmpty()) {
             int current = process.poll(); // pull from START, or pop
             // we need vertice number instead of it index
-            path_.add(current + 1);
+            result.add(current + 1);
             for (int dst: edges[current]) {
                 if (!visited[dst]) {
                     visited[dst] = true;
@@ -92,7 +94,7 @@ public class Graph {
                 }
             }
         }
-        return path_;
+        return result;
     }
 
     public List<Integer> dfs_recursive(int source) {
