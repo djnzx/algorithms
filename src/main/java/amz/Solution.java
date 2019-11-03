@@ -10,10 +10,6 @@ public class Solution {
         int idx;
         int sum;
 
-        ZPair() {
-            this(0, 0);
-        }
-
         ZPair(int idx, int sum) {
             this.idx = idx;
             this.sum = sum;
@@ -30,7 +26,7 @@ public class Solution {
                 .range(0, parts.size() - 1)
                 .mapToObj(idx -> new ZPair(idx, sum_at(idx, parts)))
                 .min((p1, p2) -> p1.sum - p2.sum)
-                .orElseGet(ZPair::new)
+                .orElseThrow(() -> new IllegalArgumentException("list size expected to be > 0"))
                 .idx;
     }
 
