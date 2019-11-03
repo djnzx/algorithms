@@ -1,7 +1,8 @@
 package brackets;
 
-public class BracketsNestingLevel {
-  private int calc(String origin) {
+class BracketsNestingLevel {
+
+  int calc(String origin) {
     int depth = 0;
     int max_depth = 0;
     for (int i = 0; i < origin.length(); i++) {
@@ -16,13 +17,4 @@ public class BracketsNestingLevel {
     return max_depth;
   }
 
-  public static void main(String[] args) {
-    BracketsNestingLevel app = new BracketsNestingLevel();
-    int depth = app.calc("((()))"); // 3
-    System.out.println(depth);
-    depth = app.calc("(()()()())"); // 2
-    System.out.println(depth);
-    depth = app.calc("()()()");     // 1
-    System.out.println(depth);
-  }
 }
