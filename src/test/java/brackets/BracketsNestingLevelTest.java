@@ -27,7 +27,7 @@ class BracketsNestingLevelTest {
 
   @Test
   void calc3_should_ok() {
-    assertEquals(3, app.calc("((()))"));
+    assertEquals(3, app.calc("()((()))()(())"));
   }
 
   @Test
