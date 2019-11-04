@@ -1,6 +1,7 @@
 package algorithms.bitwise;
 
-public class Bitwise4 {
+public class RealExampleShop {
+
     final static int MASK_INSTOCK = 0b000001;
     final static int MASK_VIP =     0b000010;
     final static int MASK_OPTION3 = 0b000100;
