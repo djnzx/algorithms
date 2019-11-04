@@ -1,4 +1,4 @@
-package amz;
+package amazon;
 
 public class GFG {
     static int minCoins(int coins[], int m, int V) {

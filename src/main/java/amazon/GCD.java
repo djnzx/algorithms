@@ -1,4 +1,4 @@
-package amz;
+package amazon;
 
 public class GCD {
     public int generalizedGCD(int num, int[] arr) {

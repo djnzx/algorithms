@@ -7,12 +7,12 @@ public class Bitwise2convertor {
         int val = new Scanner(System.in).nextInt();
 
         for (int index = 15; index >= 0; index--) {
-            int shifted = val >> index;
+            int val_shifted = val >> index;
 
             int MASK = 0b0000000000000001;
-            int bit = shifted & MASK;
+            int one_bit = val_shifted & MASK; // 0 or 1 only !
 
-            System.out.print(bit);
+            System.out.print(one_bit);
         }
 
         System.out.println();

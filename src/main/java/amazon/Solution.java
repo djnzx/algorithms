@@ -1,4 +1,4 @@
-package amz;
+package amazon;
 
 import java.util.*;
 import java.util.stream.IntStream;
