@@ -50,10 +50,12 @@ public class QuickSort {
   }
 
   public static void main(String[] args) {
-    int[] origin = Utils.create_random_data(100);
-    Utils.printArray("Source array:", origin);
-    int[] sorted = sort(origin);
-    Utils.printArray("Sorted array:", sorted);
+    int[] data = Utils.create_random_data(100);
+
+    System.out.printf("Source array: %s", Utils.arrToString(data));
+    int[] sorted = sort(data);
+    System.out.printf("Sorted array: %s", Utils.arrToString(sorted));
+
     System.out.printf("Checks count: %d\nPermutations count: %d\n", counter_check, counter_permutation);
     System.out.printf("Total: %d\n", counter_check * 2 + counter_permutation * 4);
     System.out.println(counter);

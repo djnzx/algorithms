@@ -1,14 +1,14 @@
 package algorithms.sort;
 
 /**
- * Merge sort implementation
- * complexity: O(n * log(N))
- *
  * https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Merge_sort_algorithm_diagram.svg/300px-Merge_sort_algorithm_diagram.svg.png
  */
-public class MergeSortClean {
+public class MergeSortExplained {
 
   void merge(int[] part, int idx_l, int idx_m, int idx_r) {
+    System.out.printf("MERGE: two arrays: %s and %s",
+        Utils.arrToString(part, idx_l, idx_m),
+        Utils.arrToString(part, idx_m + 1, idx_r));
     // calculating lengths
     int size_l = idx_m - idx_l + 1;
     int size_r = idx_r - idx_m;
@@ -46,11 +46,15 @@ public class MergeSortClean {
     while (j < size_r) {
       part[k++] = right[j++];
     }
+    System.out.printf(" merged into: %s\n", Utils.arrToString(part, idx_l, idx_r));
   }
 
   void sort(int[] data, int left, int right) {
     // left  - means index of the left part of array
     // right - means index of the right part of array
+    System.out.printf("SORT: within indexes: %d..%d, sub-array:%s\n", left, right,
+        Utils.arrToString(data, left, right));
+
     if (left < right) {
       int mid = (left + right) / 2;
       sort(data, left, mid);
@@ -65,11 +69,10 @@ public class MergeSortClean {
     // make a copy not to mutate original data
     int[] sorted = data.clone();
     // create the new instance of our class
-    MergeSortClean app = new MergeSortClean();
+    MergeSortExplained app = new MergeSortExplained();
     // running sort
     app.sort(sorted, 0, data.length - 1);
 
-    // print
     System.out.println("Merge sort: complexity: O(n*log(N))");
     System.out.printf("Source array: %s\n", Utils.arrToString(data));
     System.out.printf("Sorted array: %s\n", Utils.arrToString(sorted));

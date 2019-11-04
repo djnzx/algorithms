@@ -14,7 +14,16 @@ public class Utils {
         .mapToInt(i -> i)
         .toArray();
   }
-  public static void printArray(String msg, int[] data) {
-    System.out.printf("%s %s\n", msg, Arrays.toString(data));
+
+  public static String arrToString(int[] data) {
+    return arrToString(data, 0, data.length - 1);
+  }
+
+  public static String arrToString(int[] data, int l, int r) {
+    int len = r - l + 1;
+    if (data.length == len) return Arrays.toString(data);
+    int[] slice = new int[len];
+    System.arraycopy(data, l, slice, 0, len);
+    return Arrays.toString(slice);
   }
 }
