@@ -1,5 +1,7 @@
 package algorithms.linkedlist.scratch;
 
+import java.util.StringJoiner;
+
 public class XLinkedList {
 
   class XItem {
@@ -32,7 +34,9 @@ public class XLinkedList {
   }
 
   public String toString() {
-    return "";
+    StringJoiner sj = new StringJoiner(",");
+    sj.add();
+    return sj.toString();
   }
 
 }
