@@ -11,9 +11,10 @@ class BracketsNestingLevel {
         case ')': depth--; break;
         default : throw new IllegalArgumentException(String.format("Unexpected symbol: %s", origin.charAt(i)));
       }
+      if (depth < 0) throw new IllegalArgumentException("Opening and closing parenthesis aren't corresponding to each other");
       max_depth = Math.max(depth, max_depth);
     }
-    if (depth != 0) throw new IllegalArgumentException("Opening and closing parenthesis aren't corresponding to each other");
+    if (depth > 0) throw new IllegalArgumentException("Opening and closing parenthesis aren't corresponding to each other");
     return max_depth;
   }
 
