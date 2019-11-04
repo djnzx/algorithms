@@ -31,4 +31,8 @@ public class XLinkedList {
     return false;
   }
 
+  public String toString() {
+    return "";
+  }
+
 }
