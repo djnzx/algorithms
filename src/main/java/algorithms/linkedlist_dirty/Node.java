@@ -1,4 +1,4 @@
-package algorithms.linkedlist;
+package algorithms.linkedlist_dirty;
 
 public class Node {
     private final int val;

@@ -1,4 +1,4 @@
-package algorithms.linkedlist;
+package algorithms.linkedlist_dirty;
 
 import java.util.Arrays;
 import java.util.Deque;

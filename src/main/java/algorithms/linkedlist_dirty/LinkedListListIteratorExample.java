@@ -1,9 +1,7 @@
-package algorithms.linkedlist;
+package algorithms.linkedlist_dirty;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.ListIterator;
 
 public class LinkedListListIteratorExample {
     public static void main(String[] args) {

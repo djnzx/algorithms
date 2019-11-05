@@ -1,4 +1,4 @@
-package algorithms.linkedlist;
+package algorithms.linkedlist_dirty;
 
 public class LLUsage04 {
     public static void main(String[] args) {
