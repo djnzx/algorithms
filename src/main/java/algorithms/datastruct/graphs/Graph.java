@@ -1,4 +1,4 @@
-package algorithms.graphs;
+package algorithms.datastruct.graphs;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -79,9 +79,7 @@ public class Graph {
         final List<Integer> result = new LinkedList<>();
         final boolean[] visited = new boolean[edge_count]; // false by default, thankful to Java
         final LinkedList<Integer> process = new LinkedList<>();
-
         visited[source] = true;
-
         process.add(source); // add to END
         while (!process.isEmpty()) {
             int current = process.poll(); // pull from START, or pop

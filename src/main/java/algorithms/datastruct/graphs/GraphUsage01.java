@@ -1,4 +1,4 @@
-package algorithms.graphs;
+package algorithms.datastruct.graphs;
 
 public class GraphUsage01 {
     public static void main(String[] args) {
