@@ -9,6 +9,7 @@ public class XNode<T> {
     this(value, null, null);
   }
 
+  // probably we need that constructor for delete implementation
   public XNode(T value, XNode<T> left, XNode<T> right) {
     this.value = value;
     this.left = left;

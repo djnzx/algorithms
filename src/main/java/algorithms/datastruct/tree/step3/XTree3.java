@@ -4,14 +4,14 @@ import algorithms.datastruct.tree.core.XAbstractTree;
 import algorithms.datastruct.tree.core.XNode;
 import algorithms.datastruct.tree.core.XTree;
 
-public class XTree3<T extends Integer> extends XAbstractTree<T> implements XTree<T> {
+public class XTree3<T extends Comparable> extends XAbstractTree<T> implements XTree<T> {
 
   private void addr(T value, XNode<T> curr) {
     if (value.compareTo(curr.value) < 0) {
       System.out.printf("adding %s to the left of %s\n", value, curr.value);
       if (curr.left == null) {
         System.out.println("left is null. assigning and creating");
-        curr.left = new XNode<>(value);
+        curr.left = new XNode<T>(value);
       } else {
         System.out.println("left is not null. gonna deeper");
         addr(value, curr.left);
@@ -20,7 +20,7 @@ public class XTree3<T extends Integer> extends XAbstractTree<T> implements XTree
       System.out.printf("adding %s to the right of %s\n", value, curr.value);
       if (curr.right == null) {
         System.out.println("right is null. assigning and creating");
-        curr.right = new XNode<>(value);
+        curr.right = new XNode<T>(value);
       } else {
         System.out.println("right is not null. gonna deeper");
         addr(value, curr.right);
@@ -59,8 +59,7 @@ public class XTree3<T extends Integer> extends XAbstractTree<T> implements XTree
     throw new IllegalArgumentException("XTree:remove:Hasn't implemented yet");
   }
 
-
-  public void add_data_r(XNode<T> curr, StringBuilder sb) {
+  private void add_data_r(XNode<T> curr, StringBuilder sb) {
     if (curr == null) return;
     sb.append(curr).append("\n");
     add_data_r(curr.left, sb);

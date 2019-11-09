@@ -1,0 +1,2 @@
+- add (only root elements)
+- contains (recursive implementation)
