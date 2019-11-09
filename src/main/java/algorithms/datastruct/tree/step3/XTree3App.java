@@ -2,6 +2,8 @@ package algorithms.datastruct.tree.step3;
 
 import algorithms.datastruct.tree.core.XTree;
 
+import java.util.Arrays;
+
 /**
  * contains is implemented
  * add is implemented only for one base case
@@ -10,9 +12,10 @@ import algorithms.datastruct.tree.core.XTree;
 public class XTree3App {
   public static void main(String[] args) {
     XTree<Integer> tree = new XTree3<>();
-    tree.add(10);
-    tree.add(1);
-    System.out.println(tree.contains(1));
-    System.out.println(tree.contains(2));
+    Arrays.asList(20,10,30,5,15,25,35).forEach(tree::add);
+    System.out.println(tree.contains(10)); // t
+    System.out.println(tree.contains(20)); // t
+    System.out.println(tree.contains(21)); // f
+    System.out.println(tree);
   }
 }

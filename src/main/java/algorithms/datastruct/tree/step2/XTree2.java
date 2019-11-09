@@ -7,8 +7,8 @@ import algorithms.datastruct.tree.core.XTree;
 public class XTree2<T> extends XAbstractTree<T> implements XTree<T> {
   @Override
   public void add(T value) {
-    if (head == null) {
-      head = new XNode<>(value);
+    if (root == null) {
+      root = new XNode<>(value);
     } else {
       throw new IllegalArgumentException("XTree:add:Hasn't implemented yet");
     }
@@ -23,7 +23,7 @@ public class XTree2<T> extends XAbstractTree<T> implements XTree<T> {
 
   @Override
   public boolean contains(T value) {
-    return contains(value, head);
+    return contains(value, root);
   }
 
   @Override

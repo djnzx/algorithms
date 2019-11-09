@@ -14,4 +14,12 @@ public class XNode<T> {
     this.left = left;
     this.right = right;
   }
+
+  @Override
+  public String toString() {
+    return String.format("Node v:%s L:%s R:%s", value,
+        left == null ? "_" : "N:"+left.value,
+        right == null ? "_" : "N:"+right.value
+    );
+  }
 }
