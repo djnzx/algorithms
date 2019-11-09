@@ -1,0 +1,41 @@
+0. You are given an array with random numbers (generate it), length = 20
+   Sort this array in ascending order
+   print the original array
+   print the sorted array
+   * - you aren't allowed to import even one java module
+       to implement sorting. only 'for', 'if', 'while', ..., etc constructs
+   * - feel free to use any approach to generate an array
+       and print it.
+
+R. generate 20 random unique numbers
+
+A. Put custom Comparator<Integer> into merge-sort implementation
+
+F. - create the List<String>
+   - length of list = 30;
+   - length of each string in the range [10..30]
+   - each character in the range ['a-z..A-Z']
+   - store/save/write this List in the text file
+   - load/read these strings from file
+   - sort them in the order of line length
+   - write them into different file
+
+
+1. get rid of vowels in the given string
+   signature: String filter(String origin)
+
+2. change the case to vice versa in a given string of characters
+   (a->A, b->B...). IF-ELSE, SWITCH-CASE, TERNARY (*?*:*) is FORBIDDEN!
+   signature: String convert(String origin) abCD -> ABcd
+
+3. function to check whether the given number is a prime number
+   signature: boolean check(int origin)
+
+4. function to check whether the given int number is a palindrome
+   signature: boolean check(int origin)
+
+5. generate 'N' first prime numbers
+   signature: List<Integer> gen_prime(int N)
+
+6. find the maximum palindrome,
+   which is the product of prime 5-digit numbers

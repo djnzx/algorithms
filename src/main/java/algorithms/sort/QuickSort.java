@@ -52,7 +52,7 @@ public class QuickSort {
   public static void main(String[] args) {
     int[] data = Utils.create_random_data(100);
 
-    System.out.printf("Source array: %s", Utils.arrToString(data));
+    System.out.printf("warmup.amazon.Source array: %s", Utils.arrToString(data));
     int[] sorted = sort(data);
     System.out.printf("Sorted array: %s", Utils.arrToString(sorted));
 

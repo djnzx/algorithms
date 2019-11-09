@@ -30,7 +30,7 @@ public class BubbleSortBasic {
     int[] data = Utils.create_random_data(10);
     int[] sorted = sort(data);
     System.out.println("Bubble sort, basic version: complexity: O(n^2)");
-    System.out.printf("Source array: %s\n", Utils.arrToString(data));
+    System.out.printf("warmup.amazon.Source array: %s\n", Utils.arrToString(data));
     System.out.printf("Sorted array: %s\n", Utils.arrToString(sorted));
   }
 
