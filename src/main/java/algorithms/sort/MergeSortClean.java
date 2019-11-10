@@ -71,7 +71,7 @@ public class MergeSortClean {
 
     // print
     System.out.println("Merge sort: complexity: O(n*log(N))");
-    System.out.printf("warmup.amazon.Source array: %s\n", Utils.arrToString(data));
+    System.out.printf("Source array: %s\n", Utils.arrToString(data));
     System.out.printf("Sorted array: %s\n", Utils.arrToString(sorted));
   }
 
