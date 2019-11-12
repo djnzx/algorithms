@@ -6,7 +6,7 @@ public class DecToBin {
 
   public String decToBin(int value) {
     // 8 - byte, 16 - short, 32 - int
-    return decToBin(value, 8);
+    return decToBin(value, 32);
   }
 
   public String decToBin(int value, int SIZE) {
@@ -17,6 +17,7 @@ public class DecToBin {
       int value_shifted = value >> index;
       int one_bit = value_shifted & MASK; // 0 or 1 only !
       sb.append(one_bit);
+      if ((index % 8 == 0)&&(index < SIZE)) sb.append(" ");
     }
 
     return sb.toString();
