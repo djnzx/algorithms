@@ -1,8 +1,10 @@
 package warmup.prime;
 
+import warmup.prime.versions.PrimesDynamic;
+
 import java.util.Arrays;
 
-public class PrimesApp {
+public class PrimesDynamicApp {
   private final static int MIN = 10000;
   private final static int MAX = 99999;
 

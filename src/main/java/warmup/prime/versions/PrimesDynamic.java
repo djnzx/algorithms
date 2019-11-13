@@ -1,4 +1,4 @@
-package warmup.prime;
+package warmup.prime.versions;
 
 import java.util.Arrays;
 
@@ -7,8 +7,9 @@ public class PrimesDynamic {
   private final int min;
   private int[] primes;
   private int process_size = 0;
+  private int counter = 0;
 
-  PrimesDynamic(int mn, int mx) {
+  public PrimesDynamic(int mn, int mx) {
     max = mx;
     min = mn;
     // this is very rough estimation
@@ -20,20 +21,21 @@ public class PrimesDynamic {
     if (value == 2) return true;
     int maxToAnalyze = (int) Math.sqrt(value);
     for (int idx = 0; idx < process_size; idx++) {
-      if (primes[idx] <= maxToAnalyze
-          && value % primes[idx] == 0) {
-        return false;
+      if (primes[idx] <= maxToAnalyze) {
+        counter++;
+        if(value % primes[idx] == 0) return false;
       }
     }
     return true;
   }
 
-  int[] data() {
+  public int[] data() {
     for (int value = 1; value <= max; value++) {
       if (is_prime(value)) primes[process_size++] = value;
     }
     int index_of_min = 0;
     while (index_of_min < process_size && primes[index_of_min] < min) index_of_min++;
+    System.out.println(counter);
     return Arrays.copyOfRange(primes, index_of_min, process_size);
   }
 
