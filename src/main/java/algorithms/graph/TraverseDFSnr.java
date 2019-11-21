@@ -3,15 +3,15 @@ package algorithms.graph;
 import java.util.LinkedList;
 import java.util.List;
 
-public class TraverseDFS {
+public class TraverseDFSnr {
 
   private final XGraph graph;
 
-  public TraverseDFS(XGraph graph) {
+  public TraverseDFSnr(XGraph graph) {
     this.graph = graph;
   }
 
-  public List<Integer> traverse_iterative(int source) {
+  public List<Integer> traverse(int source) {
     // real path
     final List<Integer> path_ = new LinkedList<>();
     // track the process
@@ -29,19 +29,4 @@ public class TraverseDFS {
     return path_;
   }
 
-  public List<Integer> traverse_recursive(int from) {
-    DFSRecursive d = new DFSRecursive();
-    d.dfs(from);
-    return d.path_;
-  }
-
-  // nested class with real recursive solution
-  class DFSRecursive {
-    private final List<Integer> path_ = new LinkedList<>();
-
-    void dfs(int source) {
-      path_.add(source);
-      graph.getEdgesFrom(source).forEach(vertex -> dfs(vertex));
-    }
-  }
 }

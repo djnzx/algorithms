@@ -1,5 +1,6 @@
 package algorithms.graph;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,7 +16,7 @@ public class TraverseUnordered {
   public List<Integer> traverse() {
     LinkedList<Integer> result = new LinkedList<>();
     for (int vertex = 0; vertex < graph.getVertexCount() ; vertex++) {
-      LinkedList<Integer> edgesFromVertex = graph.getEdgesFrom(vertex);
+      Collection<Integer> edgesFromVertex = graph.getEdgesFrom(vertex);
       if (!edgesFromVertex.isEmpty()) {
         result.add(vertex);
         edgesFromVertex.forEach(to -> result.add(to));
