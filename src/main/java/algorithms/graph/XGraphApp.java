@@ -1,6 +1,6 @@
 package algorithms.graph;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.StringJoiner;
 
 public class XGraphApp {
@@ -38,13 +38,13 @@ public class XGraphApp {
     return g;
   }
 
-  private static String list_to_string(List<Integer> vertices) {
+  private static String list_to_string(Collection<Integer> vertices) {
     StringJoiner sj = new StringJoiner(", ", "<", ">");
     vertices.forEach(n -> sj.add(String.valueOf(n)));
     return sj.toString();
   }
 
-  void print_traverse(String msg, List<Integer> data) {
+  void print_traverse(String msg, Collection<Integer> data) {
     System.out.printf(msg, list_to_string(data));
   }
 
@@ -52,7 +52,8 @@ public class XGraphApp {
     XGraphApp app = new XGraphApp();
     XGraph g = app.create();
     TraverseDFSnr dfs_nr = new TraverseDFSnr(g);
-    TraverseDFSr dfs_r = new TraverseDFSr(g);
+    TraverseDFSr1 dfs_r1 = new TraverseDFSr1(g);
+    TraverseDFSr2 dfs_r2 = new TraverseDFSr2(g);
     TraverseBFS bfs = new TraverseBFS(g);
     TraverseUnordered rnd = new TraverseUnordered(g);
     Paths paths = new Paths(g);
@@ -63,9 +64,10 @@ public class XGraphApp {
     System.out.printf("== Path from 6 to 13: %b\n", paths.isConnected(6, 13)); // false
     System.out.printf("== Path from 13 to 6: %b\n", paths.isConnected(13, 6)); // false
     System.out.printf("== Path from 2 to 1 : %b\n", paths.isConnected(2, 1)); // false
-    app.print_traverse("Unordered traversal      : %s\n", rnd.traverse());
-    app.print_traverse("BFS traversal            : %s\n", bfs.traverse());
-    app.print_traverse("DFS traversal (recursive): %s\n", dfs_r.traverse(0));
+    app.print_traverse("Unordered traversal         : %s\n", rnd.traverse());
+    app.print_traverse("BFS traversal               : %s\n", bfs.traverse());
+    app.print_traverse("DFS traversal (recursive,v1): %s\n", dfs_r1.traverse(0));
+    app.print_traverse("DFS traversal (recursive,v2): %s\n", dfs_r2.traverse(0));
 //    app.print_traverse("DFS traversal (iterative): %s\n", dfs_nr.traverse(0));
   }
 
