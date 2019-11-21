@@ -8,6 +8,11 @@ public class XGraph {
   private final int vertex_count;
   private final List<LinkedList<Integer>> edges;
 
+  /**
+   * constructor must be provided with
+   * number of vertices.
+   * 10 means vertex number 0..9
+   */
   public XGraph(int vertex_count) {
     this.vertex_count = vertex_count;
     this.edges = new ArrayList<>(vertex_count);
@@ -37,6 +42,16 @@ public class XGraph {
   }
 
   /**
+   * method to check whether the vertices are connected
+   * @param vertex_from
+   * @param vertex_to
+   */
+  public boolean check(int vertex_from, int vertex_to) {
+    LinkedList<Integer> vertex = edges.get(vertex_from);
+    return vertex.contains(new Integer(vertex_to));
+  }
+
+  /**
    * method to obtain count of vertices
    */
   public int getVertexCount() {
@@ -47,6 +62,8 @@ public class XGraph {
    * method to obtain edges from the specified vertex
    */
   public LinkedList<Integer> getEdgesFrom(int vertex_from) {
-    return edges.get(vertex_from);
+    LinkedList<Integer> destinations = edges.get(vertex_from);
+    return destinations;
   }
+
 }

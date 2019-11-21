@@ -6,7 +6,7 @@ import java.util.StringJoiner;
 public class XGraphApp {
 
   public XGraph create() {
-    XGraph g = new XGraph(15);
+    XGraph g = new XGraph(17);
     g.add(0, 1);
 
     g.add(1, 2);
@@ -29,6 +29,12 @@ public class XGraphApp {
     g.add(7, 13);
     g.add(7, 14);
 
+    g.add(12, 15);
+
+    // cycle - will produce stack overflow in Graph.isConnectedBasic(from, to)
+    g.add(6, 16);
+    g.add(16, 3);
+
     return g;
   }
 
@@ -38,7 +44,7 @@ public class XGraphApp {
     return sj.toString();
   }
 
-  void print(String msg, List<Integer> data) {
+  void print_traverse(String msg, List<Integer> data) {
     System.out.printf(msg, list_to_string(data));
   }
 
@@ -48,10 +54,18 @@ public class XGraphApp {
     TraverseDFS dfs = new TraverseDFS(g);
     TraverseBFS bfs = new TraverseBFS(g);
     TraverseUnordered rnd = new TraverseUnordered(g);
+    Paths paths = new Paths(g);
 
-    app.print("Unordered traversal      : %s\n", rnd.traverse());
-    app.print("BFS traversal            : %s\n", bfs.traverse());
-    app.print("DFS traversal (recursive): %s\n", dfs.traverse_recursive(0));
-    app.print("DFS traversal (iterative): %s\n", dfs.traverse_iterative(0));
+//    System.out.printf("Path (Basic) from 0 to 15:%b\n", paths.isConnectedBasic(0, 15)); // true
+//    System.out.printf("Path (Basic) from 6 to 13:%b\n", paths.isConnectedBasic(6, 13)); // false
+    System.out.printf("== Path from 0 to 15:%b\n", paths.isConnected(0, 15)); // true
+    System.out.printf("== Path from 6 to 13:%b\n", paths.isConnected(6, 13)); // false
+    System.out.printf("== Path from 13 to 6:%b\n", paths.isConnected(13, 6)); // false
+//    System.out.printf("== Path from 2 to 1:%b\n", paths.isConnected(2, 1)); // false
+//    app.print_traverse("Unordered traversal      : %s\n", rnd.traverse());
+//    app.print_traverse("BFS traversal            : %s\n", bfs.traverse());
+//    app.print("DFS traversal (recursive): %s\n", dfs.traverse_recursive(0));
+//    app.print("DFS traversal (iterative): %s\n", dfs.traverse_iterative(0));
   }
+
 }
