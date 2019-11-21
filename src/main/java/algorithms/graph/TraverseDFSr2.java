@@ -3,7 +3,7 @@ package algorithms.graph;
 import java.util.Collection;
 import java.util.LinkedList;
 
-public class TraverseDFSr2 {
+public class TraverseDFSr2 implements Traversable<Integer> {
 
   private final XGraph graph;
 
@@ -21,13 +21,14 @@ public class TraverseDFSr2 {
    * - WITHOUT global variable path
    * - PURE FUNCTIONAL approach
    *
-   * @param from - vertex to traverse from
+   * @param source - vertex to traverse from
    *
    * runner method
    */
-  public Collection<Integer> traverse(int from) {
+  @Override
+  public Collection<Integer> traverse(Integer source) {
     // run the recursive solution with clean 'visited' variable and empty 'result'
-    return traverse(from,
+    return traverse(source,
         new boolean[graph.getVertexCount()],
         new LinkedList<>());
   }
@@ -35,17 +36,17 @@ public class TraverseDFSr2 {
   /**
    * real recursive implementation
    */
-  private Collection<Integer> traverse(int from, boolean[] visited, Collection<Integer> list) {
+  private Collection<Integer> traverse(int source, boolean[] visited, Collection<Integer> list) {
     // skip iteration if already visited (loop detection)
-    if (visited[from]) return list;
+    if (visited[source]) return list;
     // mark as visited
-    visited[from] = true;
+    visited[source] = true;
     // put into resulted collection
-    list.add(from);
-    // get all possible ways
-    Collection<Integer> possible = graph.getEdgesFrom(from);
-    // iterate over all possible
-    for (int vertex: possible) {
+    list.add(source);
+    // get all children
+    Collection<Integer> children = graph.getEdgesFrom(source);
+    // iterate over all children
+    for (int vertex: children) {
       traverse(vertex, visited, list);
     }
     // finish with the modified list

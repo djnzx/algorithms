@@ -2,10 +2,9 @@ package algorithms.graph;
 
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.stream.Collectors;
 
-public class TraverseUnordered {
+public class TraverseUnordered implements Traversable<Integer>{
 
   private final XGraph graph;
 
@@ -13,7 +12,13 @@ public class TraverseUnordered {
     this.graph = graph;
   }
 
-  public List<Integer> traverse() {
+  /**
+   * @param ignored - can be any variable
+   *                presented here only for interface compatibility
+   * @return
+   */
+  @Override
+  public Collection<Integer> traverse(Integer ignored) {
     LinkedList<Integer> result = new LinkedList<>();
     for (int vertex = 0; vertex < graph.getVertexCount() ; vertex++) {
       Collection<Integer> edgesFromVertex = graph.getEdgesFrom(vertex);

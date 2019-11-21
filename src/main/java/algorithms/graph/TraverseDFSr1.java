@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-public class TraverseDFSr1 {
+public class TraverseDFSr1 implements Traversable<Integer> {
 
   private final XGraph graph;
   private boolean[] visited;
@@ -22,12 +22,13 @@ public class TraverseDFSr1 {
    * - with global variable visited
    * - with global variable path
    *
-   * @param from - vertex to traverse from
+   * @param source - vertex to traverse from
    */
-  public Collection<Integer> traverse(int from) {
+  @Override
+  public Collection<Integer> traverse(Integer source) {
     DFSRecursive d = new DFSRecursive();
     this.visited = new boolean[graph.getVertexCount()];
-    d.dfs(from);
+    d.dfs(source);
     return d.path_;
   }
 
@@ -39,7 +40,9 @@ public class TraverseDFSr1 {
       if (visited[src]) return;
       visited[src] = true;
       path_.add(src);
-      graph.getEdgesFrom(src).forEach(vertex -> dfs(vertex));
+      // get all children
+      Collection<Integer> children = graph.getEdgesFrom(src);
+      children.forEach(vertex -> dfs(vertex));
     }
   }
 }

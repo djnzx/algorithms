@@ -22,10 +22,10 @@ public class Paths {
   public boolean isConnectedBasic(int from, int to) {
     // we reached the final point
     if (from == to) return true;
-    // get the possible ways from the 'from' vertex
-    Collection<Integer> possible = graph.getEdgesFrom(from);
+    // get the children from the 'from' vertex
+    Collection<Integer> children = graph.getEdgesFrom(from);
     // iterate over them
-    for (int dst: possible) {
+    for (int dst: children) {
       // the way found - return true
       if (isConnectedBasic(dst, to)) return true;
     }
@@ -64,12 +64,12 @@ public class Paths {
     }
     if (visited[from]) return false;
     visited[from] = true;
-    Collection<Integer> possible = graph.getEdgesFrom(from);
-    System.out.printf("looking for path to destination via: %s\n", possible);
-    for (int dst: possible) {
+    Collection<Integer> children = graph.getEdgesFrom(from);
+    System.out.printf("looking for path to destination via: %s\n", children);
+    for (int dst: children) {
       if (isConnectedChatty(dst, to, visited)) return true;
     }
-    System.out.printf("looking for path to destination via: %s - NOT FOUND\n", possible);
+    System.out.printf("looking for path to destination via: %s - NOT FOUND\n", children);
     return false;
   }
 
@@ -81,8 +81,8 @@ public class Paths {
     if (from == to) return true;
     if (visited[from]) return false; // to solve cycles
     visited[from] = true;            // we need only these two lines
-    Collection<Integer> possible = graph.getEdgesFrom(from);
-    for (int dst: possible) {
+    Collection<Integer> children = graph.getEdgesFrom(from);
+    for (int dst: children) {
       if (isConnected(dst, to, visited)) return true;
     }
     return false;

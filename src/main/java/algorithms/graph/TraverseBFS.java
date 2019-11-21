@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-public class TraverseBFS {
+public class TraverseBFS implements Traversable<Integer> {
 
   private final XGraph graph;
 
@@ -12,19 +12,17 @@ public class TraverseBFS {
     this.graph = graph;
   }
 
-  public List<Integer> traverse() {
-    return traverse(0); // start from the vertex=0 (from the root of the graph)
-  }
-
   /**
    * BFS from the specified vertex
-   * with loop detection
+   * iterative version
+   * WITH LOOPS DETECTION
    *
    * we need extra space
    * 'process_' to track our process
    * 'visited_' to mark visited vertices
    */
-  public List<Integer> traverse(int from) {
+  @Override
+  public Collection<Integer> traverse(Integer source) {
     // the final result will be stored here
     final List<Integer> result = new LinkedList<>();
 
@@ -33,14 +31,14 @@ public class TraverseBFS {
     final LinkedList<Integer> process_ = new LinkedList<>();
 
     // initiating the iteration process
-    visited_[from] = true;
-    process_.add(from);
+    visited_[source] = true;
+    process_.add(source);
 
     while (!process_.isEmpty()) {
       int current = process_.poll();
       result.add(current);
-      Collection<Integer> possible = graph.getEdgesFrom(current);
-      for (int dst: possible) {
+      Collection<Integer> children = graph.getEdgesFrom(current);
+      for (int dst: children) {
         if (visited_[dst]) continue; // I'm not interested in already visited vertices
         visited_[dst] = true;
         process_.add(dst);
