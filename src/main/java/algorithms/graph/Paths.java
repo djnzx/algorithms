@@ -1,6 +1,7 @@
 package algorithms.graph;
 
-import java.util.Collection;
+import java.util.*;
+
 import static algorithms.graph.GUtils.print_visited_array;
 
 public class Paths {
@@ -86,6 +87,43 @@ public class Paths {
       if (isConnected(dst, to, visited)) return true;
     }
     return false;
+  }
+
+  /**
+   * runner
+   */
+  public Collection<Integer> path(int from, int to) {
+    return path(from, to, new boolean[graph.getVertexCount()], new Stack<>())
+        .orElseGet(() -> new ArrayList<>());   // lazy ;)
+//        .orElse(new ArrayList<>());            // eager :(
+  }
+
+  /**
+   * recursive part
+   * pure functional implementation
+   */
+  private Optional<Collection<Integer>> path(int from, int to, boolean[] visited, Stack<Integer> trace) {
+    // quit condition to detect loops
+    if (visited[from]) return Optional.empty();
+    // mark vertex as visited
+    visited[from] = true;
+    // push current to save the path for further usage
+    trace.push(from);
+    // print step
+//    System.out.println(trace);
+    // quit condition if we reached destination
+    if (from == to) return Optional.of(trace);
+    // iterate over all children
+    Collection<Integer> children = graph.getEdgesFrom(from);
+    for (int dst: children) {
+      Optional<Collection<Integer>> found = path(dst, to, visited, trace);
+      // quit if we found the solution
+      if (found.isPresent()) return found;
+    }
+    // pop current because nothing found
+    trace.pop();
+    // return empty
+    return Optional.empty();
   }
 
 }
