@@ -3,7 +3,7 @@ package algorithms.recursion;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Fibonacci2memo {
+public class FibonacciApp2memo {
   private static final Map<Integer, Integer> memo = new HashMap<>();
 
   private static boolean has(int number) {

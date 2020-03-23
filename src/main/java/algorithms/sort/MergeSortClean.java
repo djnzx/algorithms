@@ -48,15 +48,19 @@ public class MergeSortClean {
     }
   }
 
-  void sort(int[] data, int left, int right) {
+  void split(int[] data, int left, int right) {
     // left  - means index of the left part of array
     // right - means index of the right part of array
     if (left < right) {
       int mid = (left + right) / 2;
-      sort(data, left, mid);
-      sort(data, mid + 1, right);
+      split(data, left, mid);
+      split(data, mid + 1, right);
       merge(data, left, mid, right);
     }
+  }
+
+  void mergeSort(int[] data) {
+    split(data, 0, data.length - 1);
   }
 
   public static void main(String[] args) {
@@ -67,8 +71,7 @@ public class MergeSortClean {
     // create the new instance of our class
     MergeSortClean app = new MergeSortClean();
     // running sort
-    app.sort(sorted, 0, data.length - 1);
-
+    app.mergeSort(sorted);
     // print
     System.out.println("Merge sort: complexity: O(n*log(N))");
     System.out.printf("Source array: %s\n", Utils.arrToString(data));
