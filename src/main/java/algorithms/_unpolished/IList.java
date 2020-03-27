@@ -1,4 +1,4 @@
-package algorithms.datastruct_DIRTY;
+package algorithms._unpolished;
 
 public interface IList {
     void add(int el);

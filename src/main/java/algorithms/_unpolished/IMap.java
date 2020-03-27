@@ -1,4 +1,4 @@
-package algorithms.datastruct_DIRTY;
+package algorithms._unpolished;
 
 public interface IMap<K, V> {
     void put(K key, V val);

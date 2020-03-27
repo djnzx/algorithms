@@ -39,7 +39,7 @@ public class FibonacciApp2memo {
   }
 
   public static void main(String[] args) {
-    int N = 45;
+    int N = 55;
     int fibo45th = fibo(N);
     System.out.println(fibo45th);
   }

@@ -1,8 +1,8 @@
-package algorithms.datastruct_DIRTY;
+package algorithms._unpolished;
 
 import java.util.LinkedList;
 
-public class LinedListApp {
+public class XLinedListApp {
 
     LinkedList<Integer> queue = new LinkedList<>();
 
@@ -23,7 +23,7 @@ public class LinedListApp {
     }
 
     public static void main(String[] args) {
-        LinedListApp app = new LinedListApp();
+        XLinedListApp app = new XLinedListApp();
         for (int i = 0; i < 10; i++) {
             app.produce();
             app.print();

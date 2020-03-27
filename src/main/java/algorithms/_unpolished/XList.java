@@ -1,15 +1,15 @@
-package algorithms.datastruct_DIRTY;
+package algorithms._unpolished;
 
-public class AList implements IList {
+public class XList implements IList {
     private final static int DEFAULT_SIZE = 4;
     private int[] data;
     private int position;
 
-    public AList() {
+    public XList() {
         this(DEFAULT_SIZE);
     }
 
-    public AList(int capacity) {
+    public XList(int capacity) {
         this.data = new int[capacity];
         position = 0;
     }
@@ -84,7 +84,7 @@ public class AList implements IList {
     }
 
     public static void main1(String[] args) {
-        AList s = new AList();
+        XList s = new XList();
         s.add(5);
         s.add(10);
         s.add(15);
@@ -95,7 +95,7 @@ public class AList implements IList {
     }
 
     public static void main2(String[] args) {
-        AList s = new AList();
+        XList s = new XList();
         s.add(5);
         s.print();
         s.add(10);
@@ -112,7 +112,7 @@ public class AList implements IList {
     }
 
     public static void main(String[] args) {
-        AList a = new AList(0);
+        XList a = new XList(0);
         a.add(1);
         a.print();
         a.add(5);

@@ -1,6 +1,6 @@
-package algorithms.datastruct_DIRTY;
+package algorithms._unpolished;
 
-public class LList implements IList {
+public class XLinkedList implements IList {
 
     class Node {
         int value;
@@ -18,7 +18,7 @@ public class LList implements IList {
 
     private Node head = null;
 
-    public LList() {
+    public XLinkedList() {
     }
 
     private Node findLastNode() {
@@ -128,7 +128,7 @@ public class LList implements IList {
     }
 
     public static void main1(String[] args) {
-        LList ll = new LList();
+        XLinkedList ll = new XLinkedList();
         ll.print();
         System.out.println(ll.size());
 
@@ -143,7 +143,7 @@ public class LList implements IList {
     }
 
     public static void main2(String[] args) {
-        LList ll = new LList();
+        XLinkedList ll = new XLinkedList();
         ll.add(11);
         ll.add(22);
         ll.add(33);
@@ -152,7 +152,7 @@ public class LList implements IList {
     }
 
     public static void main33(String[] args) {
-        LList ll = new LList();
+        XLinkedList ll = new XLinkedList();
         ll.add(11);
         ll.add(22);
         ll.add(22);
@@ -164,7 +164,7 @@ public class LList implements IList {
     }
 
     public static void main(String[] args) {
-        LList ll = new LList();
+        XLinkedList ll = new XLinkedList();
         ll.add(11);
         ll.add(22);
         ll.add(33);

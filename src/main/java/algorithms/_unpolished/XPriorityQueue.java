@@ -1,11 +1,11 @@
-package algorithms.datastruct_DIRTY;
+package algorithms._unpolished;
 
-public class PriorityQueue_ {
+public class XPriorityQueue {
 
     private int[] data;
     private int count;
 
-    public PriorityQueue_(int size) {
+    public XPriorityQueue(int size) {
         this.data = new int[size];
     }
 
@@ -73,7 +73,7 @@ public class PriorityQueue_ {
 
 
     public static void main(String[] args) {
-        PriorityQueue_ pq = new PriorityQueue_(20);
+        XPriorityQueue pq = new XPriorityQueue(20);
         for (int i = 1; i <= 20; i++) {
             int val = (int) (Math.random()*99);
             pq.add(val);
