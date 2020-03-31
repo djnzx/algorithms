@@ -1,2 +1,0 @@
-- add (full implementation)
-- XNode toString() implementation

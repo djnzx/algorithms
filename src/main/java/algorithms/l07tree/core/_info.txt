@@ -1,3 +1,0 @@
-- XNode element
-- XAbstractTree definition
-- behavior declaration
