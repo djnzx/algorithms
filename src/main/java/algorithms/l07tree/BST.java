@@ -33,16 +33,16 @@ public class BST<K extends Comparable<K>, V> {
     return get(root, key);
   }
 
-  void put(K key, V value) {
-    root = put(root, key, value);
-  }
-
   Optional<V> get(Node x, K key) {
     if (x == null) return Optional.empty();
     int cmp = key.compareTo(x.key);
     if      (cmp < 0) return get(x.left, key);
     else if (cmp > 0) return get(x.right, key);
     else return Optional.of(x.value);
+  }
+
+  void put(K key, V value) {
+    root = put(root, key, value);
   }
 
   Node put(Node x, K key, V value) {
