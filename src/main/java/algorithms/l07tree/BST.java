@@ -94,19 +94,6 @@ public class BST<K extends Comparable<K>, V> {
     return x;
   }
 
-  Set<K> keys() {
-    HashSet<K> keys = new HashSet<>();
-    addAllKeys(root, keys);
-    return keys;
-  }
-
-  void addAllKeys(Node x, Set<K> acc) {
-    if (x == null) return;
-    acc.add(x.key);
-    addAllKeys(x.left, acc);
-    addAllKeys(x.right, acc);
-  }
-
   public Optional<K> min() {
     return root == null ? Optional.empty() : min(root);
   }
@@ -119,7 +106,7 @@ public class BST<K extends Comparable<K>, V> {
     return root == null ? Optional.empty() : max(root);
   }
 
-  public Optional<K> max(Node x) {
+  private Optional<K> max(Node x) {
     return x.right == null ? Optional.of(x.key) : max(x.right);
   }
 
@@ -140,24 +127,65 @@ public class BST<K extends Comparable<K>, V> {
     return h == 0 ? 0 : (int) Math.pow(2, h - 1);
   }
 
-  public List<K> traverse_width() {
+  public List<K> keys_traverse_breadth_it() {
+    LinkedList<K> outcome = new LinkedList<>();
+    LinkedList<Node> process = new LinkedList<>();
+    LinkedList<Node> next = new LinkedList<>();
+    process.add(root);
+
+    while (!process.isEmpty() && root!=null) {
+      while (!process.isEmpty()) {
+        Node node = process.pollFirst();
+        outcome.add(node.key);
+        if (node.left != null) next.add(node.left);
+        if (node.right != null) next.add(node.right);
+      }
+      process.addAll(next);
+      next.clear();
+    }
+
+    return outcome;
+  }
+
+  public List<K> keys_traverse_breadth() {
     LinkedList<K> keys = new LinkedList<>();
-    traverse_width(root, keys);
+    if (root!=null) keys_traverse_breadth(new LinkedList<Node>(){{ add(root); }}, keys);
     return keys;
   }
 
-  private void traverse_width(Node x, LinkedList<K> acc) {
+  private void keys_traverse_breadth(LinkedList<Node> process, LinkedList<K> acc) {
+    if (process.isEmpty()) return;
+    LinkedList<Node> next = new LinkedList<>();
+    process.forEach(node -> {
+      acc.add(node.key);
+      if (node.left != null) next.add(node.left);
+      if (node.right != null) next.add(node.right);
+    });
+    keys_traverse_breadth(next, acc);
   }
 
-  public List<K> keys_traverse_height() {
-    return keys_traverse_height(root);
+  Collection<K> keys() {
+    List<K> keys = new LinkedList<>();
+    addAllKeys(root, keys);
+    return keys;
   }
 
-  private List<K> keys_traverse_height(Node x) {
+  void addAllKeys(Node x, Collection<K> acc) {
+    if (x == null) return;
+    acc.add(x.key);
+    addAllKeys(x.left, acc);
+    addAllKeys(x.right, acc);
+  }
+
+  public List<K> keys_traverse_depth() {
+    return keys_traverse_depth(root);
+  }
+
+  private List<K> keys_traverse_depth(Node x) {
     return (x == null) ? Collections.emptyList() : new LinkedList<K>() {{
       add(x.key);
-      addAll(keys_traverse_height(x.left));
-      addAll(keys_traverse_height(x.right));
+      addAll(keys_traverse_depth(x.left));
+      addAll(keys_traverse_depth(x.right));
     }};
   }
 

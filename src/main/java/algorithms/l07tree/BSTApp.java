@@ -29,12 +29,11 @@ public class BSTApp {
     System.out.println(indexes(22, 0, 20, 4));
     System.out.printf("Random data to insert: %s\n", data);
 
+//    int index = (int) (Math.random()*data.size());
+//    int value = data.get(index);
 
-    int index = (int) (Math.random()*data.size());
-    int value = data.get(index);
-
-    System.out.printf("%s^^\n", spaces(23+4*(index)+1));
-    System.out.printf("Index %d, Value %d chosen to remove\n", index, value);
+//    System.out.printf("%s^^\n", spaces(23+4*(index)+1));
+//    System.out.printf("Index %d, Value %d chosen to remove\n", index, value);
 
     data.forEach(n -> tree.put(n, n));
     System.out.printf("Tree before removal: %s\n", tree.keys());
@@ -45,6 +44,8 @@ public class BSTApp {
     System.out.println(tree.max().map(n -> String.format("Tree max key: %s", n)).orElse("Empty tree. No max"));
     System.out.printf("Tree height: %d\n", tree.height());
     System.out.printf("Tree width : %d\n", tree.width());
-    System.out.printf("Tree keys (depth): %s\n", tree.keys_traverse_height());
+    System.out.printf("Tree keys (depth):   %s\n", tree.keys_traverse_depth());
+    System.out.printf("Tree keys (breadth): %s\n", tree.keys_traverse_breadth());
+    System.out.printf("Tree keys (breadth): %s\n", tree.keys_traverse_breadth_it());
   }
 }
