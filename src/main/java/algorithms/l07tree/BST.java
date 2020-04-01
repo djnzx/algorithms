@@ -1,8 +1,6 @@
 package algorithms.l07tree;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public class BST<K extends Comparable<K>, V> {
 
@@ -109,7 +107,58 @@ public class BST<K extends Comparable<K>, V> {
     addAllKeys(x.right, acc);
   }
 
+  public Optional<K> min() {
+    return root == null ? Optional.empty() : min(root);
+  }
 
+  private Optional<K> min(Node x) {
+    return x.left == null ? Optional.of(x.key) : min(x.left);
+  }
 
+  public Optional<K> max() {
+    return root == null ? Optional.empty() : max(root);
+  }
+
+  public Optional<K> max(Node x) {
+    return x.right == null ? Optional.of(x.key) : max(x.right);
+  }
+
+  public int height() {
+    return height(root, 0);
+  }
+
+  private int height(Node x, int h) {
+    if (x == null) return h;
+    return Math.max(
+        height(x.left, h+1),
+        height(x.right, h+1)
+    );
+  }
+
+  public int width() {
+    int h = height();
+    return h == 0 ? 0 : (int) Math.pow(2, h - 1);
+  }
+
+  public List<K> traverse_width() {
+    LinkedList<K> keys = new LinkedList<>();
+    traverse_width(root, keys);
+    return keys;
+  }
+
+  private void traverse_width(Node x, LinkedList<K> acc) {
+  }
+
+  public List<K> keys_traverse_height() {
+    return keys_traverse_height(root);
+  }
+
+  private List<K> keys_traverse_height(Node x) {
+    return (x == null) ? Collections.emptyList() : new LinkedList<K>() {{
+      add(x.key);
+      addAll(keys_traverse_height(x.left));
+      addAll(keys_traverse_height(x.right));
+    }};
+  }
 
 }
