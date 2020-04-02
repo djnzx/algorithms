@@ -83,7 +83,7 @@ public class BST<K extends Comparable<K>, V> {
       // 4. put the minimal instead of deleted
       x = min;
       // 5. we know that the MIN located from right. and we need to remove it and update
-      Node newRight = deleteMinFrom(tmp.right);
+      Node newRight = deleteMinAndPullUpFrom(tmp.right);
       x.right = newRight;
       // restore link to left sub-tree
       x.left = tmp.left;
@@ -96,9 +96,9 @@ public class BST<K extends Comparable<K>, V> {
     return x.left == null ? x : findMinFrom(x.left);
   }
 
-  Node deleteMinFrom(Node x) {
+  Node deleteMinAndPullUpFrom(Node x) {
     if (x.left == null) return x.right;
-    x.left = deleteMinFrom(x.left);
+    x.left = deleteMinAndPullUpFrom(x.left);
     return x;
   }
 
