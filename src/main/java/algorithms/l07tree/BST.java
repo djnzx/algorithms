@@ -34,11 +34,11 @@ public class BST<K extends Comparable<K>, V> {
     return x.n;
   }
 
-  Optional<V> get(K key) {
+  public Optional<V> get(K key) {
     return get(root, key);
   }
 
-  Optional<V> get(Node x, K key) {
+  private Optional<V> get(Node x, K key) {
     if (x == null) return Optional.empty();
     int cmp = key.compareTo(x.key);
     if      (cmp < 0) return get(x.left, key);
@@ -46,11 +46,11 @@ public class BST<K extends Comparable<K>, V> {
     else return Optional.of(x.value);
   }
 
-  void put(K key, V value) {
+  public void put(K key, V value) {
     root = put(root, key, value);
   }
 
-  Node put(Node x, K key, V value) {
+  private Node put(Node x, K key, V value) {
     if (x == null) return new Node(key, value, 1);
     int cmp = key.compareTo(x.key);
     if      (cmp < 0) x.left = put(x.left, key, value);
@@ -60,63 +60,83 @@ public class BST<K extends Comparable<K>, V> {
     return x;
   }
 
-  void remove(K key) {
+  public void remove(K key) {
     root = remove(root, key);
   }
 
-  Node remove(Node x, K key) {
+  private Node remove(Node x, K key) {
     // finish. not found
     if (x == null) return null;
     int cmp = key.compareTo(x.key);
     if      (cmp < 0) x.left = remove(x.left, key);
     else if (cmp > 0) x.right = remove(x.right, key);
     else {
-      // left is empty. pull-up right
+      // left is empty. just pull-up right
       if (x.left == null) return x.right;
-      // right is empty. pull-up left
+      // right is empty. just pull-up left
       if (x.right == null) return x.left;
       // both occupied, need more work.
-      // 2. don't touch the left. we need to find which one to pull-up
-      Node tmp = x;
-      // 3. find the minimal to put it instead of deleted
-      Node min = findMinFrom(tmp.right);
-      // 4. put the minimal instead of deleted
-      x = min;
-      // 5. we know that the MIN located from right. and we need to remove it and update
-      Node newRight = deleteMinAndPullUpFrom(tmp.right);
-      x.right = newRight;
-      // restore link to left sub-tree
-      x.left = tmp.left;
+      x = performNodeRemoval(x);
     }
     return x;
   }
 
-  // find the minimal value from the node
-  Node findMinFrom(Node x) {
+  /**
+   * take the reference of current node
+   * and return the new reference
+   * for sub-tree with deleted node
+   */
+  private Node performNodeRemoval(Node x) {
+    // 1. save the left sub-tree. we will attach it in 4.3
+    Node savedLeft = x.left;
+    // 2. find the minimal in the right sub-tree.
+    // It will be new instead of deleted
+    Node newNode = findMinFrom(x.right);
+    // 3. remove the minimal from the right sub-tree
+    Node newRight = deleteMinAndPullUpFrom(x.right);
+    // 4.2. attach new right
+    newNode.right = newRight;
+    // 4.3. attach saved left
+    newNode.left = savedLeft;
+    return newNode;
+  }
+
+  /**
+   * find the minimal value from the given node
+   * minimal node always has x.left == null
+   * it means that there are NO items less than it
+   */
+  private Node findMinFrom(Node x) {
     return x.left == null ? x : findMinFrom(x.left);
   }
 
-  // delete min and pull-up from the given node
-  Node deleteMinAndPullUpFrom(Node x) {
+  /**
+   * delete min and pull-up from the given node
+   */
+  private Node deleteMinAndPullUpFrom(Node x) {
+    // left is empty. we found it. skip it. just pull-up right. return right sub-tree
     if (x.left == null) return x.right;
+    // we didn't find. need go left to find it
     x.left = deleteMinAndPullUpFrom(x.left);
     return x;
   }
 
-  public Optional<K> min() {
-    return root == null ? Optional.empty() : min(root);
+  private Node findMaxFrom(Node x) {
+    return x.right == null ? x : findMaxFrom(x.right);
   }
 
-  private Optional<K> min(Node x) {
-    return x.left == null ? Optional.of(x.key) : min(x.left);
+  public Optional<K> min() {
+    if (root == null) return Optional.empty();
+    Node found = findMinFrom(root);
+    if (found == null) return Optional.empty();
+    return Optional.of(found.key);
   }
 
   public Optional<K> max() {
-    return root == null ? Optional.empty() : max(root);
-  }
-
-  private Optional<K> max(Node x) {
-    return x.right == null ? Optional.of(x.key) : max(x.right);
+    if (root == null) return Optional.empty();
+    Node found = findMaxFrom(root);
+    if (found == null) return Optional.empty();
+    return Optional.of(found.key);
   }
 
   public int height() {
@@ -173,17 +193,17 @@ public class BST<K extends Comparable<K>, V> {
     keys_traverse_breadth(next, acc);
   }
 
-  Collection<K> keys() {
+  public Collection<K> keys() {
     List<K> keys = new LinkedList<>();
-    addAllKeys(root, keys);
+    keys_add_all_to_acc(root, keys);
     return keys;
   }
 
-  void addAllKeys(Node x, Collection<K> acc) {
+  private void keys_add_all_to_acc(Node x, Collection<K> acc) {
     if (x == null) return;
     acc.add(x.key);
-    addAllKeys(x.left, acc);
-    addAllKeys(x.right, acc);
+    keys_add_all_to_acc(x.left, acc);
+    keys_add_all_to_acc(x.right, acc);
   }
 
   public List<K> keys_traverse_depth() {
@@ -215,30 +235,29 @@ public class BST<K extends Comparable<K>, V> {
      * 3.  I   J   K   L
      * 4. A B C D E F G H
      */
-    return IntStream.rangeClosed(1, height())
-        .mapToObj(lv -> new SList(lv, new ArrayList<K>() {{
-          IntStream.rangeClosed(1, 0b1 << (lv - 1)).forEach(n -> add(null));
-        }})).collect(Collectors.toList());
+    return IntStream.rangeClosed(1, height()) // iterate over levels 1..4
+        .mapToObj(lv ->
+            new SList(lv, IntStream.rangeClosed(1, 0b1 << (lv - 1)).mapToObj(n -> (K)null).collect(Collectors.toList()))
+        ).collect(Collectors.toList());
   }
 
   private void traverseAndFill(Node x, int level, int pos, List<SList> acc) {
-    if (x==null) return;
+    if (x == null) return;
     acc.get(level).keys.set(pos, x.key);
     traverseAndFill(x.left, level+1, pos*2, acc);
     traverseAndFill(x.right, level+1, pos*2+1, acc);
   }
 
-  static final int SIZE = 4;
-
   private List<List<String>> represent() {
+    final int SIZE = 4;
+    final int DEPTH = height();
     List<SList> rep = empty();
     traverseAndFill(root, 0, 0, rep);
-    final int depth = height();
     return rep.stream().map(line ->
         line.keys.stream().map(key ->
-            centered(key != null ? key.toString(): "", widthByLevelDepth(line.level, depth, SIZE))
-        ).collect(Collectors.toList()) // we remapped keys to Strings
-    ).collect(Collectors.toList()); // we have List<List<String>>
+            centered(key != null ? key.toString(): "", widthByLevelDepth(line.level, DEPTH, SIZE))
+        ).collect(Collectors.toList()) // we remap keys to Strings
+    ).collect(Collectors.toList());    // we have List<List<String>>
   }
 
   public String show() {
