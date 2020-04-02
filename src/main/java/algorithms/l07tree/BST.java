@@ -1,6 +1,11 @@
 package algorithms.l07tree;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static common.Utils.centered;
+import static common.Utils.widthByLevelDepth;
 
 public class BST<K extends Comparable<K>, V> {
 
@@ -71,26 +76,29 @@ public class BST<K extends Comparable<K>, V> {
       // right is empty. pull-up left
       if (x.right == null) return x.left;
       // both occupied, need more work.
-      // don't touch the left. we need to find which one to pull-up
+      // 2. don't touch the left. we need to find which one to pull-up
       Node tmp = x;
-      // this will be the new node
-      x = findLeftEmptyToLeft(tmp.right);
-      // find the right
-      x.right = findLeftEmptyToRight(tmp.right);
+      // 3. find the minimal to put it instead of deleted
+      Node min = findMinFrom(tmp.right);
+      // 4. put the minimal instead of deleted
+      x = min;
+      // 5. we know that the MIN located from right. and we need to remove it and update
+      Node newRight = deleteMinFrom(tmp.right);
+      x.right = newRight;
       // restore link to left sub-tree
       x.left = tmp.left;
     }
     return x;
   }
 
-  Node findLeftEmptyToLeft(Node x) {
-    if (x.left == null) return x;
-    return findLeftEmptyToLeft(x.left);
+  // find the minimal value from the node
+  Node findMinFrom(Node x) {
+    return x.left == null ? x : findMinFrom(x.left);
   }
 
-  Node findLeftEmptyToRight(Node x) {
+  Node deleteMinFrom(Node x) {
     if (x.left == null) return x.right;
-    x.left = findLeftEmptyToRight(x.left);
+    x.left = deleteMinFrom(x.left);
     return x;
   }
 
@@ -124,7 +132,7 @@ public class BST<K extends Comparable<K>, V> {
 
   public int width() {
     int h = height();
-    return h == 0 ? 0 : (int) Math.pow(2, h - 1);
+    return h == 0 ? 0 : 1 << (h-1);
   }
 
   public List<K> keys_traverse_breadth_it() {
@@ -187,6 +195,56 @@ public class BST<K extends Comparable<K>, V> {
       addAll(keys_traverse_depth(x.left));
       addAll(keys_traverse_depth(x.right));
     }};
+  }
+
+  class SList {
+    final int level;
+    final List<K> keys;
+
+    SList(int level, List<K> keys) {
+      this.level = level;
+      this.keys = keys;
+    }
+  }
+
+  private List<SList> empty() {
+    /**
+     * 1.        R
+     * 2.    M       N
+     * 3.  I   J   K   L
+     * 4. A B C D E F G H
+     */
+    return IntStream.rangeClosed(1, height())
+        .mapToObj(lv -> new SList(lv, new ArrayList<K>() {{
+          IntStream.rangeClosed(1, 0b1 << (lv - 1)).forEach(n -> add(null));
+        }})).collect(Collectors.toList());
+  }
+
+  private void traverseAndFill(Node x, int level, int pos, List<SList> acc) {
+    if (x==null) return;
+    acc.get(level).keys.set(pos, x.key);
+    traverseAndFill(x.left, level+1, pos*2, acc);
+    traverseAndFill(x.right, level+1, pos*2+1, acc);
+  }
+
+  static final int SIZE = 4;
+
+  private List<List<String>> represent() {
+    List<SList> rep = empty();
+    traverseAndFill(root, 0, 0, rep);
+    final int depth = height();
+    return rep.stream().map(line ->
+        line.keys.stream().map(key ->
+            centered(key != null ? key.toString(): "", widthByLevelDepth(line.level, depth, SIZE))
+        ).collect(Collectors.toList()) // we remapped keys to Strings
+    ).collect(Collectors.toList()); // we have List<List<String>>
+  }
+
+  public String show() {
+    final String NL = "\n\n";
+    return represent().stream()
+        .map(line -> String.join("", line))
+        .collect(Collectors.joining(NL));
   }
 
 }
