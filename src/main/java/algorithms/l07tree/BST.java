@@ -96,6 +96,7 @@ public class BST<K extends Comparable<K>, V> {
     return x.left == null ? x : findMinFrom(x.left);
   }
 
+  // delete min and pull-up from the given node
   Node deleteMinAndPullUpFrom(Node x) {
     if (x.left == null) return x.right;
     x.left = deleteMinAndPullUpFrom(x.left);
