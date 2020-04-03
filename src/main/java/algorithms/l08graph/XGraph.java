@@ -1,8 +1,9 @@
 package algorithms.l08graph;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class XGraph {
   private final int vertex_count;
@@ -15,10 +16,13 @@ public class XGraph {
    */
   public XGraph(int vertex_count) {
     this.vertex_count = vertex_count;
-    this.edges = new ArrayList<>(vertex_count);
-    for (int i = 0; i < vertex_count; i++) {
-      edges.add(new LinkedList<>());
-    }
+    this.edges = IntStream.range(0, vertex_count)
+        .mapToObj(n -> new LinkedList<Integer>())
+        .collect(Collectors.toList());
+//    this.edges = new ArrayList<>(vertex_count);
+//    for (int i = 0; i < vertex_count; i++) {
+//      edges.add(new LinkedList<>());
+//    }
   }
 
   /**

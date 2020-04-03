@@ -94,7 +94,8 @@ public class Paths {
    */
   public Collection<Integer> path(int from, int to) {
     return path(from, to, new boolean[graph.getVertexCount()], new Stack<>())
-        .orElseGet(() -> new ArrayList<>());   // lazy ;)
+        .orElseGet(ArrayList::new);            // lazy ;)
+//        .orElseGet(() -> new ArrayList<>());   // lazy ;)
 //        .orElse(new ArrayList<>());            // eager :(
   }
 
