@@ -1,45 +1,31 @@
 package algorithms.l01sort;
 
-import java.util.Scanner;
-
 public class QuickSort {
-  private static int counter_check = 0;
-  private static int counter_permutation = 0;
-  private static int counter = 0;
-
-  private static Scanner in = new Scanner(System.in);
-
-  // mutate the array
-  private static void doSort(final int[] data, final int start, final int end) {
-    if (start >= end) return;
-    int left = start;
-    int right = end;
-    // by design - middle of the array
-    int cur = left - (left - right) / 2;
-    while (left < right) {
+  /**
+   * sort in place
+   */
+  private static void doSort(final int[] data, final int L, final int R) {
+    if (L >= R) return;
+    int l = L;
+    int r = R;
+    // by design - middle of the array, it can be anything
+    int pivot = l - (l - r) / 2;
+    while (l < r) {
       // skip already sorted left side
-      while (data[left] <= data[cur] && left < cur) {
-        counter_check++;
-        left++;
-      }
+      while (data[l] <= data[pivot] && l < pivot) { l++; }
       // skip already sorted right side
-      while (data[cur] <= data[right] && cur < right) {
-        counter_check++;
-        right--;
-      }
+      while (data[pivot] <= data[r] && pivot < r) { r--; }
       // now, actually sort
-      if (left < right) {
-        int tmp = data[left];
-        data[left] = data[right];
-        data[right] = tmp;
-        counter++;
-        counter_permutation++;
-        if (cur == left) { cur = right; }
-        else if (cur == right) { cur = left; }
+      if (l < r) {
+        int tmp = data[l];
+        data[l] = data[r];
+        data[r] = tmp;
+        if (pivot == l) { pivot = r; }
+        else if (pivot == r) { pivot = l; }
       }
     }
-    doSort(data, start, cur);
-    doSort(data, cur + 1, end);
+    doSort(data, L, pivot);
+    doSort(data, pivot + 1, R);
   }
 
   private static int[] sort(int[] origin) {
@@ -52,12 +38,8 @@ public class QuickSort {
   public static void main(String[] args) {
     int[] data = Utils.create_random_data(100);
 
-    System.out.printf("Source array: %s", Utils.arrToString(data));
+    System.out.printf("Source array: %s\n", Utils.arrToString(data));
     int[] sorted = sort(data);
-    System.out.printf("Sorted array: %s", Utils.arrToString(sorted));
-
-    System.out.printf("Checks count: %d\nPermutations count: %d\n", counter_check, counter_permutation);
-    System.out.printf("Total: %d\n", counter_check * 2 + counter_permutation * 4);
-    System.out.println(counter);
+    System.out.printf("Sorted array: %s\n", Utils.arrToString(sorted));
   }
 }

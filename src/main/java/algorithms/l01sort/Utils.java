@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 public class Utils {
   public static int[] create_random_data(int amount) {
     Random r = new Random();
-    return Stream.generate(() -> r.nextInt(100))
+    return Stream.generate(() -> r.nextInt(200))
         .distinct()
         .limit(amount)
 //        .sorted((o1, o2) -> o2-o1)
