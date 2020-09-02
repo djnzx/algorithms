@@ -41,7 +41,7 @@ public class RadixSort {
   }
 
   public static void main (String[] args) {
-    int[] data = Utils.create_random_data(30);
+    int[] data = Utils.create_random_data(20);
     System.out.println(Utils.arrToString(data));
     int n = data.length;
     radixsort(data, n);
