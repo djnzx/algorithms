@@ -85,6 +85,9 @@ public class BST<K extends Comparable<K>, V> {
    * take the reference of current node
    * and return the new reference
    * for sub-tree with deleted node
+   *
+   * this is Hibbard deletion
+   * is a problem whe the tree exceeds max height 2^40 keys
    */
   private Node performNodeRemoval(Node x) {
     // 1. save the left sub-tree. we will attach it in 4.3
