@@ -1,5 +1,7 @@
 package algorithms.l08graph.rework;
 
+import algorithms.l08graph.rework.rep.Graph;
+import algorithms.l08graph.rework.rep.undir.GraphAS;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

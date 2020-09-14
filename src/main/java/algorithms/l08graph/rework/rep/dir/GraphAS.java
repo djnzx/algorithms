@@ -1,4 +1,4 @@
-package algorithms.l08graph.rework;
+package algorithms.l08graph.rework.rep.dir;
 
 import java.util.HashSet;
 

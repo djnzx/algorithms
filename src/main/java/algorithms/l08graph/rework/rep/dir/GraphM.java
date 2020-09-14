@@ -1,4 +1,6 @@
-package algorithms.l08graph.rework;
+package algorithms.l08graph.rework.rep.dir;
+
+import algorithms.l08graph.rework.rep.Graph;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -29,8 +31,6 @@ public class GraphM implements Graph {
   @Override
   public void addEdge(int v, int w) {
     m[v][w] = true;
-    // if we need to work with undirected
-//    m[w][v] = true;
   }
 
   @Override

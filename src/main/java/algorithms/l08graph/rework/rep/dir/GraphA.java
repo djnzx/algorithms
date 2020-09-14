@@ -1,4 +1,6 @@
-package algorithms.l08graph.rework;
+package algorithms.l08graph.rework.rep.dir;
+
+import algorithms.l08graph.rework.rep.Graph;
 
 import java.util.Collection;
 import java.util.Collections;
