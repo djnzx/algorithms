@@ -1,6 +1,5 @@
 package algorithms.l08graph.rework;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -11,8 +10,10 @@ import java.util.stream.IntStream;
 public class GraphM implements Graph {
 
   private final int v;
-  // first index - from
-  // second index - to
+  // first index - src vertex
+  // second index - dst vertex
+  // if we want to work with path cost
+  // we need to change it to int[][]
   private final boolean[][] m;
 
   public GraphM(int v) {
@@ -28,6 +29,8 @@ public class GraphM implements Graph {
   @Override
   public void addEdge(int v, int w) {
     m[v][w] = true;
+    // if we need to work with undirected
+//    m[w][v] = true;
   }
 
   @Override
