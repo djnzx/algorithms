@@ -3,6 +3,7 @@ package algorithms.l08graph;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class TraverseBFS implements Traversable<Integer> {
 
@@ -28,7 +29,7 @@ public class TraverseBFS implements Traversable<Integer> {
 
     // variables to track process
     final boolean[] visited_ = new boolean[graph.getVertexCount()]; // false by default, thankful to Java
-    final LinkedList<Integer> process_ = new LinkedList<>();
+    final Queue<Integer> process_ = new LinkedList<>();
 
     // initiating the iteration process
     visited_[source] = true;

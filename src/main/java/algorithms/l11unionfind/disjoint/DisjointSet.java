@@ -1,8 +1,14 @@
-package algorithms.l08graph.disjoint;
+package algorithms.l11unionfind.disjoint;
 
 import java.util.*;
 import java.util.function.IntConsumer;
 
+/**
+ * for detailed discussion
+ * and optimized versions
+ * go l11unionfind folder
+ *
+ */
 public class DisjointSet {
   private final int[] sets;
 

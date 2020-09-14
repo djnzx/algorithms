@@ -19,7 +19,7 @@ public class TraverseDFSr2 implements Traversable<Integer> {
    * - WITHOUT inner class
    * - WITHOUT global variable visited
    * - WITHOUT global variable path
-   * - PURE FUNCTIONAL approach
+   * - FUNCTIONAL approach
    *
    * @param source - vertex to traverse from
    *

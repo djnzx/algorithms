@@ -1,9 +1,9 @@
-package algorithms.l08graph.topoorder;
+package algorithms.l13topoorder;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class TopoOrder2 {
+public class TopologicalOrdering2 {
 
   public static void main(String[] args) {
 

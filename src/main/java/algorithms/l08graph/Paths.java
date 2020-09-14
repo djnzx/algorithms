@@ -101,7 +101,7 @@ public class Paths {
 
   /**
    * recursive part
-   * pure functional implementation
+   * functional implementation
    */
   private Optional<Collection<Integer>> path(int from, int to, boolean[] visited, Stack<Integer> trace) {
     // quit condition to detect loops

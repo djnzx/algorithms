@@ -1,9 +1,9 @@
-package algorithms.l08graph.topoorder;
+package algorithms.l13topoorder;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class TopoOrder1 {
+public class TopologicalOrdering {
 
   private static String intToStr(Integer n) {
     return Integer.toString(n);
@@ -125,7 +125,7 @@ public class TopoOrder1 {
     if (hasEdges(graph)) {
       return "The Graph has at least one cycle";
     } else {
-      return L.stream().map(TopoOrder1::intToStr).collect(Collectors.joining(" "));
+      return L.stream().map(TopologicalOrdering::intToStr).collect(Collectors.joining(" "));
     }
   }
 

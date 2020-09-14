@@ -1,4 +1,4 @@
-package algorithms.l08graph.disjoint;
+package algorithms.l11unionfind.disjoint;
 
 import java.util.*;
 
