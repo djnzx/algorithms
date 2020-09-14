@@ -53,7 +53,6 @@ public class XGraphApp {
     XGraph g = app.create();
 
     Paths paths = new Paths(g);
-    Traversable<Integer> rnd = new TraverseUnordered(g);
     Traversable<Integer> bfs_itr = new TraverseBFS(g);
     Traversable<Integer> dfs_itr = new TraverseDFSitr(g);
     Traversable<Integer> dfs_r1 = new TraverseDFSr1(g);
@@ -65,7 +64,6 @@ public class XGraphApp {
     System.out.printf("== Connection from 6 to 13: %b\n", paths.isConnected(6, 13)); // false
     System.out.printf("== Connection from 13 to 6: %b\n", paths.isConnected(13, 6)); // false
     System.out.printf("== Connection from 2 to 1 : %b\n", paths.isConnected(2, 1)); // false
-    app.print_traverse("Unordered traversal         : %s\n", rnd.traverse(0));
     app.print_traverse("BFS traversal               : %s\n", bfs_itr.traverse(0));
     app.print_traverse("DFS traversal (recursive,v1): %s\n", dfs_r1.traverse(0));
     app.print_traverse("DFS traversal (recursive,v2): %s\n", dfs_r2.traverse(0));
