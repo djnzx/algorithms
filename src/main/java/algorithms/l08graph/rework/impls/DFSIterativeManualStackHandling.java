@@ -2,12 +2,12 @@ package algorithms.l08graph.rework.impls;
 
 import algorithms.l08graph.rework.ops.TraverseDFS;
 import algorithms.l08graph.rework.rep.Graph;
+import sun.jvm.hotspot.StackTrace;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.LinkedList;
+import java.util.*;
 
 /**
+ * TODO:
  * DFS
  * Iterative
  * with Manual Stack Handling
@@ -30,15 +30,35 @@ public class DFSIterativeManualStackHandling implements TraverseDFS {
     return outcome;
   }
 
-  private void dfs(int curr, LinkedList<Integer> seq) {
-    if (visited[curr]) return;
-
+  private void markAndAdd(int curr, Collection<Integer> seq) {
     visited[curr] = true;
     seq.add(curr);
+  }
 
-    Collection<Integer> curr_children = g.children(curr);
-    for (int child: curr_children)
-      dfs(child, seq);
+  static class StackFrame {
+    public final int curr;
+    public final Iterator<Integer> children;
+
+    StackFrame(int curr, Iterator<Integer> children) {
+      this.curr = curr;
+      this.children = children;
+    }
+  }
+
+  private void dfs(int curr, LinkedList<Integer> seq) {
+    Stack<StackFrame> stack = new Stack<>();
+
+
+    markAndAdd(curr, seq);
+
+    Iterator<Integer> children = g.children(curr).iterator();
+
+    while (children.hasNext()) {
+      int child = children.next();
+      if (!visited[child])
+        dfs(child, seq);
+    }
+
   }
 
 
