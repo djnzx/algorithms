@@ -20,7 +20,7 @@ public class DecToBin {
       if ((index % 8 == 0)&&(index < SIZE)) sb.append(" ");
     }
 
-    return sb.toString();
+    return sb.toString().trim();
   }
 
   public static void main(String[] args) {

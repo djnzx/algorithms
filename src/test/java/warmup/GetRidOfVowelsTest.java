@@ -16,6 +16,6 @@ class GetRidOfVowelsTest {
 
   @Test
   void filter() {
-    assertEquals("qwrt", c.filter("qwerty") );
+    assertEquals("qwrty", c.filter("qwerty") );
   }
 }
