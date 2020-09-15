@@ -8,17 +8,25 @@ import java.util.Arrays;
 public class GraphData {
 
   public static Graph graph1_dfs() {
-    GraphAL g = new GraphAL(6);
+    GraphAL g = new GraphAL(12);
     g.addEdge(0, 1);
     g.addEdge(0, 2);
     g.addEdge(0, 3);
 
     g.addEdge(1, 4);
     g.addEdge(2, 5);
+
+    g.addEdge(5, 8);
+    g.addEdge(5, 9);
+
+    g.addEdge(3, 10);
+    g.addEdge(10, 11);
+    g.addEdge(11, 3);
+
     return g;
   }
 
-  public static Iterable<Integer> graph1_dfs_expected = Arrays.asList(0,1,4,2,5,3);
+  public static Iterable<Integer> graph1_dfs_expected = Arrays.asList(0,1,4,2,5,8,9,3,10,11);
 
   public static Graph graph2_bfs() {
     GraphAL g = new GraphAL(102);

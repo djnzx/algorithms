@@ -36,11 +36,15 @@ public class DFSIterativeManualStackHandling implements TraverseDFS {
       this.curr = curr;
       this.children = children;
     }
+
+    static StackFrame of(int vertex, Graph g) {
+      return new StackFrame(vertex, g.children(vertex).iterator());
+    }
   }
 
   private void dfs(int src, LinkedList<Integer> seq) {
     Stack<StackFrame> stack = new Stack<>();
-    stack.push(new StackFrame(src, g.children(src).iterator()));
+    stack.push(StackFrame.of(src, g));
 
     while (!stack.isEmpty()) {
       StackFrame sf = stack.peek();
@@ -52,7 +56,11 @@ public class DFSIterativeManualStackHandling implements TraverseDFS {
 
       if (sf.children.hasNext()) {
         int chi = sf.children.next();
-        stack.push(new StackFrame(chi, g.children(chi).iterator()));
+
+        if (!visited[chi]) {
+          stack.push(StackFrame.of(chi, g));
+        }
+
       } else stack.pop();
 
     }

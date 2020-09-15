@@ -26,7 +26,7 @@ class BoxingUnboxingTest {
   }
 
   @Test
-  void fail() {
+  void absurd() {
     assertEquals(true, false);
   }
 }

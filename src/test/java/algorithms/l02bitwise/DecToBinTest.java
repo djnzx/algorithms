@@ -17,22 +17,22 @@ class DecToBinTest {
 
   @Test
   void decToBin1() {
-    assertEquals("00000000", c.decToBin(0));
+    assertEquals("00000000", c.decToBin(0, 8));
   }
 
   @Test
   void decToBin2() {
-    assertEquals("00001111", c.decToBin(15));
+    assertEquals("00001111", c.decToBin(15,8));
   }
 
   @Test
   void decToBin3() {
-    assertEquals("11111111", c.decToBin(255));
+    assertEquals("11111111", c.decToBin(255,8));
   }
 
   @Test
   void decToBin4() {
-    assertEquals("01000010", c.decToBin(66));
+    assertEquals("01000010", c.decToBin(66,8));
   }
 
 }
