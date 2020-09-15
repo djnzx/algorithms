@@ -18,6 +18,7 @@ class DFSIterativeManualStackHandlingTest {
 
   @Test
   void traverse() {
+    System.out.println(dfs.traverse(0));
     assertIterableEquals(
       GraphData.graph1_dfs_expected,
       dfs.traverse(0)

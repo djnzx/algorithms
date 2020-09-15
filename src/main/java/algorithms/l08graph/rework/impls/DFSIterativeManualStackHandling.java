@@ -2,12 +2,10 @@ package algorithms.l08graph.rework.impls;
 
 import algorithms.l08graph.rework.ops.TraverseDFS;
 import algorithms.l08graph.rework.rep.Graph;
-import sun.jvm.hotspot.StackTrace;
 
 import java.util.*;
 
 /**
- * TODO:
  * DFS
  * Iterative
  * with Manual Stack Handling
@@ -30,11 +28,6 @@ public class DFSIterativeManualStackHandling implements TraverseDFS {
     return outcome;
   }
 
-  private void markAndAdd(int curr, Collection<Integer> seq) {
-    visited[curr] = true;
-    seq.add(curr);
-  }
-
   static class StackFrame {
     public final int curr;
     public final Iterator<Integer> children;
@@ -45,21 +38,25 @@ public class DFSIterativeManualStackHandling implements TraverseDFS {
     }
   }
 
-  private void dfs(int curr, LinkedList<Integer> seq) {
+  private void dfs(int src, LinkedList<Integer> seq) {
     Stack<StackFrame> stack = new Stack<>();
+    stack.push(new StackFrame(src, g.children(src).iterator()));
 
+    while (!stack.isEmpty()) {
+      StackFrame sf = stack.peek();
 
-    markAndAdd(curr, seq);
+      if (!visited[sf.curr]) {
+        visited[sf.curr] = true;
+        seq.add(sf.curr);
+      }
 
-    Iterator<Integer> children = g.children(curr).iterator();
+      if (sf.children.hasNext()) {
+        int chi = sf.children.next();
+        stack.push(new StackFrame(chi, g.children(chi).iterator()));
+      } else stack.pop();
 
-    while (children.hasNext()) {
-      int child = children.next();
-      if (!visited[child])
-        dfs(child, seq);
     }
 
   }
-
 
 }
