@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
  * to run isConnected in a constant time
  * process is done in a linear time
  *
- * This solution works only for UnDirectional (DiDirectional) Graphs
+ * This solution works only for UnDirectional (BiDirectional) Graphs
  * The approach is similar to UnionFind
  */
 public class ConnectedComponents implements IsConnected {
