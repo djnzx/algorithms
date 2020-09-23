@@ -66,6 +66,7 @@ public class RedBlackTree<K extends Comparable<K>, V> {
 
   public void put(K key, V value) {
     root = put(root, key, value);
+    root.color = BLACK;
   }
 
   /**
