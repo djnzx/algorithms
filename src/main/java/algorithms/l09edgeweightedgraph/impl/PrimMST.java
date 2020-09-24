@@ -25,15 +25,16 @@ public class PrimMST implements MinimalSpanningTree {
     UnionFind uf = new UnionFindV4(g.v());
 
     int pt = 0;
+    g.adj(pt).forEach(edges::add);
 
-    while (pt == 0 || !edges.isEmpty() && mst.size() < g.v() - 1 ) {
+    while (!edges.isEmpty() && mst.size() < g.v() - 1 ) {
       if (!visited[pt])
         for (Edge ex : g.adj(pt))
           if (!visited[ex.other(pt)]) edges.add(ex);
 
       visited[pt] = true;
 
-      Edge e = edges.poll();
+      Edge e = edges.remove();
 
       int v = e.either();
       int w = e.other(v);
