@@ -28,9 +28,8 @@ public class PrimMST implements MinimalSpanningTree {
     g.adj(pt).forEach(edges::add);
 
     while (!edges.isEmpty() && mst.size() < g.v() - 1 ) {
-      if (!visited[pt])
-        for (Edge ex : g.adj(pt))
-          if (!visited[ex.other(pt)]) edges.add(ex);
+      for (Edge ex : g.adj(pt))
+        if (!visited[ex.other(pt)]) edges.add(ex);
 
       visited[pt] = true;
 
