@@ -18,12 +18,10 @@ public class MSTinProcessApp {
   public static void main(String[] args) throws FileNotFoundException {
     EWG g = EdgeWeightedGraph.readFromFile("ewg.txt", 8);
     System.out.println("Kruskal");
-    KruskalMST mst1 = new KruskalMST(g);
-    mst1.minSpanTree().forEach(System.out::println);
+    new KruskalMST(g).minSpanTree().forEach(System.out::println);
 
     System.out.println("Prim");
-    PrimMST mst2 = new PrimMST(g);
-    mst2.minSpanTree().forEach(System.out::println);
+    new PrimMST(g).minSpanTree().forEach(System.out::println);
   }
 
 }
