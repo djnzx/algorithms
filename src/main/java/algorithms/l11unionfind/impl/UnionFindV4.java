@@ -1,25 +1,24 @@
-package algorithms.l11unionfind;
+package algorithms.l11unionfind.impl;
+
+import algorithms.l11unionfind.rep.UnionFind;
 
 /**
- * fourth.
- * improvement 2.
+ * 4. improvement 2.
  * path compression.
  *
  * each time we are looking for item,
  * we rewrite the parent.
  */
-public class QuickUnionWeightedPathCompressionUF {
+public class UnionFindV4 implements UnionFind {
   private final int[] id;
   private final int[] sz;
 
-  public QuickUnionWeightedPathCompressionUF(int size) {
+  public UnionFindV4(int size) {
     this.id = new int[size];
+    this.sz = new int[size];
+
     for (int i = 0; i < size; i++) {
       id[i] = i;
-    }
-
-    this.sz = new int[size];
-    for (int i = 0; i < size; i++) {
       sz[i] = 1;
     }
   }
@@ -27,16 +26,16 @@ public class QuickUnionWeightedPathCompressionUF {
   /** O(c) */
   private int root(int i) {
     while (i != id[i]) {
-      // only one line
+      // only one line, rewrite the path
       id[i] = id[id[i]];
       i = id[i];
     }
     return i;
   }
 
-  /** O(lg N) */
-  public boolean connected(int p, int q) {
-    return root(p) == root(q);
+  @Override
+  public int v() {
+    return id.length;
   }
 
   /** O(lg N) */
@@ -46,6 +45,12 @@ public class QuickUnionWeightedPathCompressionUF {
     if (i == j) return;
     if (sz[i] < sz[j]) { id[i] = j; sz[j] += sz[i]; }
     else               { id[j] = i; sz[i] += sz[j]; }
+  }
+
+  /** O(lg N) */
+  @Override
+  public boolean isConnected(int p, int q) {
+    return root(p) == root(q);
   }
 
 }

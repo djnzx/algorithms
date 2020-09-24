@@ -1,26 +1,25 @@
-package algorithms.l11unionfind;
+package algorithms.l11unionfind.impl;
+
+import algorithms.l11unionfind.rep.UnionFind;
 
 /**
- * third.
- * improvement #1.
+ * 3. improvement #1.
  * connect smaller to bigger.
  *
  * we will keep number of element in each tree
  * and ALWAYS connect smaller tree to a larger one
  * so, we can guarantee that tree isn't tall
  */
-public class QuickUnionWeightedUF {
+public class UnionFindV3 implements UnionFind {
   private final int[] id;
   private final int[] sz;
 
-  public QuickUnionWeightedUF(int size) {
+  public UnionFindV3(int size) {
     this.id = new int[size];
+    this.sz = new int[size];
+
     for (int i = 0; i < size; i++) {
       id[i] = i;
-    }
-
-    this.sz = new int[size];
-    for (int i = 0; i < size; i++) {
       sz[i] = 1;
     }
   }
@@ -33,18 +32,25 @@ public class QuickUnionWeightedUF {
     return i;
   }
 
-  /** O(lg N) */
-  public boolean connected(int p, int q) {
-    return root(p) == root(q);
+  @Override
+  public int v() {
+    return id.length;
   }
 
   /** O(lg N) */
+  @Override
   public void union(int p, int q) {
     int i = root(p);
     int j = root(q);
     if (i == j) return;
     if (sz[i] < sz[j]) { id[i] = j; sz[j] += sz[i]; }
     else               { id[j] = i; sz[i] += sz[j]; }
+  }
+
+  /** O(lg N) */
+  @Override
+  public boolean isConnected(int p, int q) {
+    return root(p) == root(q);
   }
 
 }
