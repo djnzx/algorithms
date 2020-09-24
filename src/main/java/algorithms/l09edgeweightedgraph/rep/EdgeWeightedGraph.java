@@ -1,5 +1,7 @@
 package algorithms.l09edgeweightedgraph.rep;
 
+import algorithms.l09edgeweightedgraph.KruskalMSTinProcess;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;

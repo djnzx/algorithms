@@ -1,4 +1,8 @@
-package algorithms.l09edgeweightedgraph.rep;
+package algorithms.l09edgeweightedgraph;
+
+import algorithms.l09edgeweightedgraph.rep.EWG;
+import algorithms.l09edgeweightedgraph.rep.Edge;
+import algorithms.l09edgeweightedgraph.rep.EdgeWeightedGraph;
 
 import java.io.FileNotFoundException;
 import java.util.Comparator;
@@ -39,6 +43,5 @@ public class KruskalMSTinProcess {
 
     System.out.println(mst);
   }
-
 
 }
