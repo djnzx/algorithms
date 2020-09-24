@@ -1,9 +1,10 @@
 package algorithms.l09edgeweightedgraph.rep;
 
-import common.RX;
-
-import java.util.Collections;
-import java.util.LinkedList;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class EdgeWeightedGraph implements EWG {
   private final int v;
@@ -36,8 +37,30 @@ public class EdgeWeightedGraph implements EWG {
     return Collections.unmodifiableCollection(adj[v]);
   }
 
+  @Override
   public Iterable<Edge> edges() {
-    throw RX.NI;
+    return () -> edgesStream().iterator();
   }
 
+  @Override
+  public Stream<Edge> edgesStream() {
+    return Arrays.stream(adj).flatMap(Collection::stream).distinct();
+  }
+
+  public static EWG readFromFile(String fname, int vcnt) throws FileNotFoundException {
+    EWG ewg = new EdgeWeightedGraph(vcnt);
+    String f = KruskalMSTinProcess.class.getClassLoader().getResource(fname).getFile();
+    try (Stream<String> lines = new BufferedReader(new FileReader(f)).lines()) {
+      lines.map(line -> {
+        String[] s1 = line.split(" ");
+        String[] s2 = s1[0].split("-");
+        double weight = Double.parseDouble(s1[1]);
+        int v = Integer.parseInt(s2[0]);
+        int w = Integer.parseInt(s2[1]);
+        return new Edge(v, w, weight);
+      })
+        .forEach(ewg::addEdge);
+      return ewg;
+    }
+  }
 }
