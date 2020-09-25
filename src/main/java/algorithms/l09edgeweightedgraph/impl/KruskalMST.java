@@ -7,6 +7,8 @@ import algorithms.l11unionfind.impl.UnionFindV4;
 import algorithms.l11unionfind.rep.UnionFind;
 
 import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.stream.Collectors;
 
 public class KruskalMST implements MinimalSpanningTree {
@@ -16,25 +18,29 @@ public class KruskalMST implements MinimalSpanningTree {
     this.g = g;
   }
 
-  private boolean isNotConnected(UnionFind uf, Edge e) {
+  private boolean isConnected(UnionFind uf, Edge e) {
     int v = e.either();
     int w = e.other(v);
-    return !uf.isConnected(v, w);
+    return uf.isConnected(v, w);
   }
 
   @Override
   public Iterable<Edge> minSpanTree() {
     UnionFind uf = new UnionFindV4(g.v());
-    // TODO: or just PriorityQueue with removal already visited
-    return g.edgesStream().sorted(Comparator.comparingDouble(e -> e.weight))
-      .filter(e -> isNotConnected(uf, e))
-      .limit(g.v() - 1)
-      .map(e -> {
-        int v = e.either();
-        int w = e.other(v);
-        uf.union(v, w);
-        return e;
-      })
-      .collect(Collectors.toList());
+
+    PriorityQueue<Edge> edges =
+      g.edgesStream()
+        .collect(Collectors.toCollection(() -> new PriorityQueue<>(Comparator.comparingDouble(e -> e.weight))));
+
+    LinkedList<Edge> mst = new LinkedList<>();
+    while (!edges.isEmpty() && mst.size() < g.v() - 1) {
+      Edge e = edges.remove();
+      if (isConnected(uf, e)) continue;
+      mst.add(e);
+      int v = e.either();
+      int w = e.other(v);
+      uf.union(v, w);
+    }
+    return mst;
   }
 }

@@ -1,7 +1,5 @@
 package algorithms.l09edgeweightedgraph.rep;
 
-import algorithms.l09edgeweightedgraph.MSTinProcessApp;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -51,7 +49,7 @@ public class EdgeWeightedGraph implements EWG {
 
   public static EWG readFromFile(String fname, int vcnt) throws FileNotFoundException {
     EWG ewg = new EdgeWeightedGraph(vcnt);
-    String f = MSTinProcessApp.class.getClassLoader().getResource(fname).getFile();
+    String f = EdgeWeightedGraph.class.getClassLoader().getResource(fname).getFile();
     try (Stream<String> lines = new BufferedReader(new FileReader(f)).lines()) {
       lines.map(line -> {
         String[] s1 = line.split(" ");
@@ -65,4 +63,5 @@ public class EdgeWeightedGraph implements EWG {
       return ewg;
     }
   }
+
 }
