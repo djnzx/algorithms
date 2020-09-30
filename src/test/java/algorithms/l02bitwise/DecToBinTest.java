@@ -1,6 +1,6 @@
 package algorithms.l02bitwise;
 
-import algorithms.l02bitwise.dec_to_bin.DecToBin;
+import algorithms.l02bitwise.conversion2.DecToBin;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

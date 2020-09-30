@@ -1,33 +1,32 @@
 package algorithms.l02bitwise;
 
+import algorithms.l02bitwise.conversion.IntToBin;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class NegativeRepresentation {
-  /**
-   * In computer science we have several notations:
-   * One Complement representation
-   * https://www.ntu.edu.sg/home/ehchua/programming/java/images/DataRep_OneComplement.png
-   * and
-   * Two Complement representation
-   * https://www.ntu.edu.sg/home/ehchua/programming/java/images/DataRep_TwoComplement.png
-   * Java uses 2's Complement representation
-   *
-   * https://www.cs.cornell.edu/~tomf/notes/cps104/twoscomp.html#twotwo
-   * https://stackoverflow.com/questions/2811319/difference-between-and
-   */
+
   public static void main(String[] args) {
     //   0 - 00000000
     //   1 - 00000001
     //   2 - 00000010
+    //   3 - 00000011
     //  ..
+    // 126 - 01111110
     // 127 - 01111111
     //-128 - 10000000
     //-127 - 10000001
+    //-126 - 10000010
+    //  ..
+    //  -3 - 11111101
     //  -2 - 11111110
     //  -1 - 11111111
+    IntToBin ib = new IntToBin();
 
-    List<Integer> data = Arrays.asList(127, 126, 2, 1, 0, -1, -2, -127, -128);
-    data.forEach(n -> System.out.printf("Decimal:%4d, Binary:%s\n", n, Integer.toBinaryString(n)));
+    Arrays.asList(0,1,2,3, 126,127,-128,-127,-126,-3,-2,-1)
+      .forEach(n ->
+        System.out.printf("Decimal:%4d, Binary:%s\n", n, ib.toBin(n))
+      );
   }
 }

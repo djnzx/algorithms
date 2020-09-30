@@ -1,4 +1,4 @@
-package algorithms.l02bitwise.dec_to_bin;
+package algorithms.l02bitwise.conversion2;
 
 import java.util.Scanner;
 

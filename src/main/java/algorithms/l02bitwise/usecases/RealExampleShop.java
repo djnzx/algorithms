@@ -1,4 +1,4 @@
-package algorithms.l02bitwise;
+package algorithms.l02bitwise.usecases;
 
 public class RealExampleShop {
 

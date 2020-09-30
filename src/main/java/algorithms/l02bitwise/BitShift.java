@@ -1,6 +1,6 @@
 package algorithms.l02bitwise;
 
-import algorithms.l02bitwise.dec_to_bin.DecToBin;
+import algorithms.l02bitwise.conversion2.DecToBin;
 
 public class BitShift {
   private DecToBin db = new DecToBin();
@@ -26,7 +26,7 @@ public class BitShift {
     app.pf(x << 2);  // 240
     /**
      * but there is a BIG difference between '>>' and '>>>'
-     * with it comes to negative numbers
+     * when it comes to negative numbers
      * >> - does care the sign
      * >>> - doesn't
      */

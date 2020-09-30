@@ -1,10 +1,5 @@
-package algorithms.l02bitwise.dec_to_bin;
+package algorithms.l02bitwise.conversion2;
 
-/**
- * http://www.asciitable.com/index/asciifull.gif
- * https://cdn.cs50.net/2016/x/psets/0/pset0/bulbs.html
- * http://sticksandstones.kstrom.com/appen.html
- */
 public class DecToBinV3 {
   public static void main(String[] args) {
 //    int value = new Scanner(System.in).nextInt(); // 17
