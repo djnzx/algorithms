@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 
 public class Lee {
   private final static int OBSTACLE = -10;
-  private final static int START = -1;
   private final int dimX;
   private final int dimY;
   private final int[][] board;
@@ -19,19 +18,17 @@ public class Lee {
     this.board = new int[dimY][dimX];
   }
 
-  public String formatted(LPoint point, List<LPoint> path) {
+  public String formatted(LPoint point) {
     int val = at(point);
     if (val == OBSTACLE) return " XX ";
-    if (path.isEmpty()) return String.format("%3d ", val);       // intermediate steps
-    if (path.contains(point)) return String.format("%3d ", val); // final step
-    return " __ ";
+    return String.format("%3d ", val);
   }
 
-  public void printMe(List<LPoint> path) {
+  public void printBoard() {
     for (int row = 0; row < dimY; row++) {
       for (int col = 0; col < dimX; col++) {
         LPoint p = new LPoint(col, row);
-        System.out.print(formatted(p, path));
+        System.out.print(formatted(p));
       }
       System.out.println();
     }
@@ -68,7 +65,7 @@ public class Lee {
       .filter(this::isOnBoard);
   }
 
-  Stream<LPoint> neighborsUnvisited(LPoint point) {
+  Stream<LPoint> nbUnvisited(LPoint point) {
     return neighbors(point)
       .filter(this::isUnvisited);
   }
@@ -82,22 +79,18 @@ public class Lee {
 
   private void initBoard() {
     IntStream.range(0, dimY).forEach(y ->
-      IntStream.range(0, dimX).forEach(x ->
-        board[y][x] = 0
-      )
-    );
+      IntStream.range(0, dimX).forEach(x -> board[y][x] = 0));
   }
 
   private void putObstacles(Iterable<LPoint> obstacles) {
     obstacles.forEach(p -> mark(p, OBSTACLE));
   }
 
-  private Iterable<LPoint> traceBack(LPoint start, LPoint finish, int[] counter) {
-    mark(start, 0);
+  private Iterable<LPoint> traceBack(LPoint finish, int[] counter) {
     LinkedList<LPoint> path = new LinkedList<>();
     path.add(finish);
     LPoint curr_p = finish;
-    while (counter[0] > 0) {
+    while (counter[0] > 1) {
       counter[0]--;
       LPoint prev_p = anyNeighborByValue(curr_p, counter[0]);
       path.addFirst(prev_p);
@@ -106,27 +99,26 @@ public class Lee {
     return path;
   }
 
-  private Optional<Iterable<LPoint>> trace(LPoint start, LPoint finish, boolean debug) {
-    boolean found = false;
-    mark(start, START);
-    Set<LPoint> curr = new HashSet<LPoint>() {{ add(start); }};
-    int[] counter = {0}; // we need to access it from lambda
-    while (!curr.isEmpty() && !found) {
-      counter[0]++;
-      Set<LPoint> next = curr.stream()
-        .flatMap(this::neighborsUnvisited)
-        .collect(Collectors.toSet());
-      next.forEach(p -> mark(p, counter[0]));
-      if (next.contains(finish)) found = true;
-      if (debug) printMe(new ArrayList<>());
-      curr = new HashSet<>(next);
-    }
-    return found ? Optional.of(traceBack(start, finish, counter)) : Optional.empty();
+  private boolean doStep(Set<LPoint> step, LPoint finish, int counter, boolean debug) {
+    if (step.isEmpty()) return false;
+    step.forEach(p -> mark(p, counter));
+    if (debug) printBoard();
+    if (step.contains(finish)) return true;
+    Set<LPoint> next = step.stream().flatMap(this::nbUnvisited).collect(Collectors.toSet());
+    return doStep(next, finish, counter + 1, debug);
+  }
+
+  private Optional<Iterable<LPoint>> doTrace(LPoint start, LPoint finish, boolean debug) {
+    boolean found = doStep(new HashSet<LPoint>() {{ add(start); }}, finish, 1, debug);
+
+    int[] counter = {0};
+    if (found) counter[0] = at(finish);
+    return found ? Optional.of(traceBack(finish, counter)) : Optional.empty();
   }
 
   public Optional<Iterable<LPoint>> trace(LPoint start, LPoint finish, Iterable<LPoint> obstacles, boolean debug) {
     initBoard();
     putObstacles(obstacles);
-    return trace(start, finish, debug);
+    return doTrace(start, finish, debug);
   }
 }
