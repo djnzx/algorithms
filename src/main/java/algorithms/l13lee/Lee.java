@@ -86,7 +86,11 @@ public class Lee {
     obstacles.forEach(p -> mark(p, OBSTACLE));
   }
 
-  private Iterable<LPoint> traceBack(LPoint finish, int[] counter) {
+  private void backStep() {
+
+  }
+
+  private Iterable<LPoint> backTrace(LPoint finish, int[] counter) {
     LinkedList<LPoint> path = new LinkedList<>();
     path.add(finish);
     LPoint curr_p = finish;
@@ -113,7 +117,7 @@ public class Lee {
 
     int[] counter = {0};
     if (found) counter[0] = at(finish);
-    return found ? Optional.of(traceBack(finish, counter)) : Optional.empty();
+    return found ? Optional.of(backTrace(finish, counter)) : Optional.empty();
   }
 
   public Optional<Iterable<LPoint>> trace(LPoint start, LPoint finish, Iterable<LPoint> obstacles, boolean debug) {
