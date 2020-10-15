@@ -86,21 +86,15 @@ public class Lee {
     obstacles.forEach(p -> mark(p, OBSTACLE));
   }
 
-  private void backStep() {
-
+  private Iterable<LPoint> backStep(LPoint p, LinkedList<LPoint> path) {
+    path.addFirst(p);
+    if (at(p) == 1) return path;
+    LPoint prev = anyNeighborByValue(p, at(p) - 1);
+    return backStep(prev, path);
   }
 
-  private Iterable<LPoint> backTrace(LPoint finish, int[] counter) {
-    LinkedList<LPoint> path = new LinkedList<>();
-    path.add(finish);
-    LPoint curr_p = finish;
-    while (counter[0] > 1) {
-      counter[0]--;
-      LPoint prev_p = anyNeighborByValue(curr_p, counter[0]);
-      path.addFirst(prev_p);
-      curr_p = prev_p;
-    }
-    return path;
+  private Iterable<LPoint> backTrace(LPoint finish) {
+    return backStep(finish, new LinkedList<>());
   }
 
   private boolean doStep(Set<LPoint> step, LPoint finish, int counter, boolean debug) {
@@ -113,11 +107,10 @@ public class Lee {
   }
 
   private Optional<Iterable<LPoint>> doTrace(LPoint start, LPoint finish, boolean debug) {
-    boolean found = doStep(new HashSet<LPoint>() {{ add(start); }}, finish, 1, debug);
-
-    int[] counter = {0};
-    if (found) counter[0] = at(finish);
-    return found ? Optional.of(backTrace(finish, counter)) : Optional.empty();
+    return
+      doStep(new HashSet<LPoint>() {{ add(start); }}, finish, 1, debug) ?
+        Optional.of(backTrace(finish)) :
+        Optional.empty();
   }
 
   public Optional<Iterable<LPoint>> trace(LPoint start, LPoint finish, Iterable<LPoint> obstacles, boolean debug) {
