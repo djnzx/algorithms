@@ -145,6 +145,18 @@ public class XLinkedList {
     head = prev;
   }
 
+  private XItem reverseR3(XItem curr, XItem next) {
+    if (curr == null) return next;
+    XItem savedNext = curr.next;
+    curr.next = next;
+    return reverseR3(savedNext, curr);
+  }
+
+  public void reverseR3() {
+    head = reverseR3(head, null);
+  }
+
+
   /**
    * toStringFrom(item)
    */
