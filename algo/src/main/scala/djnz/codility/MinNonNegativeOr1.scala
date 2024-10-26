@@ -34,7 +34,6 @@ object MinNonNegativeOr1 {
     }
 
     go(0, 1)
-
   }
 
 }
