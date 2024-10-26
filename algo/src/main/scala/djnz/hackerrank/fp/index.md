@@ -45,8 +45,27 @@ Some solutions to [HackerRank](https://www.hackerrank.com) problems in chapter [
 
 ### Recursion
 
-| Problem                                                                                                                                             | Solution                                     |
-|:----------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------|
+| Problem                                                                                                                                   | Solution                                 |
+|:------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------|
+| [Computing the GCD](https://www.hackerrank.com/challenges/functional-programming-warmups-in-recursion---gcd/problem)                      | [code](a2recursion/P1.scala)             |
+| [Fibonacci Numbers](https://www.hackerrank.com/challenges/functional-programming-warmups-in-recursion---fibonacci-numbers/problem)        | [code](a2recursion/P2.scala)             |
+| [Pascal's Triangle](https://www.hackerrank.com/challenges/pascals-triangle/problem)                                                       | [code](a2recursion/P3.scala)             |
+| [Functions and Fractals: Sierpinski triangles](https://www.hackerrank.com/challenges/functions-and-fractals-sierpinski-triangles/problem) | [code](a2recursion/P4.scala)             |
+| [String Mingling](https://www.hackerrank.com/challenges/string-mingling/problem)                                                          | [code](a2recursion/P5.scala)             |
+| [String-o-Permute](https://www.hackerrank.com/challenges/string-o-permute/problem)                                                        | [code](a2recursion/P6.scala)             |
+| [Functions and Fractals - Recursive Trees](https://www.hackerrank.com/challenges/fractal-trees/problem)                                   | [code](a2recursion/P7.scala)             |
+| [Convex Hull](https://www.hackerrank.com/challenges/convex-hull-fp/problem)                                                               | [code](a2recursion/P8.scala)             |
+| [String Compression](https://www.hackerrank.com/challenges/string-compression/problem)                                                    | [code](a2recursion/P9.scala)             |
+| [Crosswords-101](https://www.hackerrank.com/challenges/crosswords-101/problem)                                                            | [code](a2recursion/P10.scala)            |
+| [Prefix Compression](https://www.hackerrank.com/challenges/prefix-compression/problem)                                                    | [code](a2recursion/P11.scala)            |
+| [String Reductions](https://www.hackerrank.com/challenges/string-reductions/problem)                                                      | [code](a2recursion/P12.scala)            |
+| [Super-Queens on a Chessboard](https://www.hackerrank.com/challenges/super-queens-on-a-chessboard/problem)                                | [code](a2recursion/P13.scala)            |
+| [The Sums of Powers](https://www.hackerrank.com/challenges/functional-programming-the-sums-of-powers/problem)                             | [code](a2recursion/P14.scala)            |
+| [Sequence full of colors](https://www.hackerrank.com/challenges/sequence-full-of-colors/problem)                                          | [code](a2recursion/P15.scala)            |
+| [Filter Elements](https://www.hackerrank.com/challenges/filter-elements/problem)                                                          | [code](a2recursion/P16.scala)            |
+| [Super Digit](https://www.hackerrank.com/challenges/super-digit/problem)                                                                  | [code](a2recursion/P17.scala)            |
+| [The Tree Of Life](https://www.hackerrank.com/challenges/the-tree-of-life/problem)                                                        | [code](a2recursion/P18TreeOfLife.scala)) |
+| [Concave Polygon](https://www.hackerrank.com/challenges/lambda-march-concave-polygon/problem)                                             | [code](a2recursion/P19.scala)            |
 
 ### Functional Structures
 
