@@ -49,8 +49,6 @@ public class MergeSortClean {
   }
 
   void split(int[] data, int left, int right) {
-    // left  - means index of the left part of array
-    // right - means index of the right part of array
     if (left < right) {
       int mid = (left + right) / 2;
       split(data, left, mid);

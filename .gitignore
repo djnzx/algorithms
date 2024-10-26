@@ -1,3 +1,6 @@
-/.idea/
-target/
+.idea
+.bloop
+.bsp
+target
+project/project
 *.iml

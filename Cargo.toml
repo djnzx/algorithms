@@ -1,0 +1,10 @@
+[package]
+name = "rust-playground"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+colored = "2.1.0"
+rand = "^0.8.5"
+time = "0.3.36"
+regex = "1.11.0"

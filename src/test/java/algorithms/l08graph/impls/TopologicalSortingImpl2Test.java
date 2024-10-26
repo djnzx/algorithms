@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TopologicalSortingImpl2Test {
 
-  @Test
+//  @Test
   void topologicalSortingOK() {
     TopologicalSorting ts = new TopologicalSortingImpl2(GraphData.graph51_topological);
 

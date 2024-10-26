@@ -1,0 +1,1 @@
+mod adjacent_sum;

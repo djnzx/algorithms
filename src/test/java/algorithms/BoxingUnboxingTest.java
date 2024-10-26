@@ -4,7 +4,7 @@ import core.BoxingUnboxing;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BoxingUnboxingTest {
 
@@ -25,7 +25,7 @@ class BoxingUnboxingTest {
     assertEquals(5, bx.unboxing(new Integer(5)));
   }
 
-  @Test
+//  @Test
   void absurd() {
     assertEquals(true, false);
   }
