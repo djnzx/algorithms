@@ -6,5 +6,5 @@ object P22EvalEx5 {
 
      λx.λy.y ≡ 0
 
-  */
+   */
 }

@@ -8,5 +8,5 @@ object P17Reduction4 {
 
     CAN'T REDUCE
 
-  */
+   */
 }

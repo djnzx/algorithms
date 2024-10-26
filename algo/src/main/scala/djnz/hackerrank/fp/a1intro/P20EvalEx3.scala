@@ -5,5 +5,5 @@ object P20EvalEx3 {
   /*
 
      λx.λy.x^47y ≡ 47
-  */
+   */
 }

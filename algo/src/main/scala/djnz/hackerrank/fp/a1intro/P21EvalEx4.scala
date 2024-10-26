@@ -6,5 +6,5 @@ object P21EvalEx4 {
 
      λx.λy.x(xy) ≡ 2
 
-  */
+   */
 }

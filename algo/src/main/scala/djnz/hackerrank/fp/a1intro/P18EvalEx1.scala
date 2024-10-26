@@ -6,5 +6,5 @@ object P18EvalEx1 {
 
       (λx.x+1)3 ≡ 4
 
-  */
+   */
 }
