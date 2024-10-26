@@ -14,12 +14,12 @@ object MatrixTranspose {
 
   def transpose(xss: Seq[Seq[Int]]): Seq[Seq[Int]] = xss match {
     // last element given
-    case Seq(heads)     => heads.map(x => Seq(x))
+    case Seq(heads)      => heads.map(x => Seq(x))
     // non-last element given
     case heads +: tailss =>
       map2(heads, transpose(tailss))((h, ts) => h +: ts)
     // empty matrix given
-    case _              => Seq.empty
+    case _               => Seq.empty
   }
 
 }
@@ -32,7 +32,6 @@ class MatrixTranspose extends AnyFunSuite with Matchers {
     xss
       .map(_.mkString(" "))
       .foreach(println)
-
 
   test("1 - single row") {
 

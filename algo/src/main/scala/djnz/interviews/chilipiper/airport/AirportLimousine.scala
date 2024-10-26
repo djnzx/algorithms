@@ -2,7 +2,6 @@ package djnz.interviews.chilipiper.airport
 
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
-
 import scala.util.chaining.scalaUtilChainingOps
 
 object AirportLimousine {
