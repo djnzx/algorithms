@@ -1,3 +1,9 @@
+### 2020-08-25, Nixa
+
+- [task1](nixa/Task1.scala)
+- [task2](nixa/Task2.scala)
+- [task3](nixa/Task3.SQL)
+
 ### 2020-09-03, Luxoft
 
 - What Type Class Is [code](luxoft/WhatTypeClassIs.scala)
