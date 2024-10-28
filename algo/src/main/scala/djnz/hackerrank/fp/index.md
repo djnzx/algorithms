@@ -104,13 +104,13 @@ Some solutions to [HackerRank](https://www.hackerrank.com) problems in chapter [
 
 ### Persistent Structures
 
-|   | Problem                                                                            |           Solution           |
-|:-:|:-----------------------------------------------------------------------------------|:----------------------------:|
-| 1 | [Minimum Multiple](https://www.hackerrank.com/challenges/minimum-multiple/problem) | [code](a5persistent/P.scala) |
-| 2 | [Messy Medians](https://www.hackerrank.com/challenges/messy-medians/problem)       | [code](a5persistent/P.scala) |
-| 3 | [Boleyn Salary](https://www.hackerrank.com/challenges/boleyn-salary/problem)       | [code](a5persistent/P.scala) |
+|   | Problem                                                                            |           Solution            |
+|:-:|:-----------------------------------------------------------------------------------|:-----------------------------:|
+| 1 | [Minimum Multiple](https://www.hackerrank.com/challenges/minimum-multiple/problem) | [code](a5persistent/P1.scala) |
+| 2 | [Messy Medians](https://www.hackerrank.com/challenges/messy-medians/problem)       | [code](a5persistent/P2.scala) |
+| 3 | [Boleyn Salary](https://www.hackerrank.com/challenges/boleyn-salary/problem)       | [code](a5persistent/P3.scala) |
 
-### Ad Hoc
+### 6. Ad Hoc
 
 |    | Problem                                                                                                              |        Solution         |
 |:--:|:---------------------------------------------------------------------------------------------------------------------|:-----------------------:|
