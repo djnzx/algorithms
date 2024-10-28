@@ -85,22 +85,22 @@ Some solutions to [HackerRank](https://www.hackerrank.com) problems in chapter [
 | 12 | [Tree manager](https://www.hackerrank.com/challenges/tree-manager/problem)                                 | [code](a3structures/P.scala) |
 | 13 | [Fighting Armies](https://www.hackerrank.com/challenges/fighting-armies/problem)                           | [code](a3structures/P.scala) |
 
-### Memoization and DP
+### 4. Memoization and DP
 
-|    | Problem                                                                                                    |       Solution       |
-|:--:|:-----------------------------------------------------------------------------------------------------------|:--------------------:|
-| 1  | [Number of Binary Search Tree](https://www.hackerrank.com/challenges/number-of-binary-search-tree/problem) | [code](a4dp/P.scala) |
-| 2  | [Pentagonal Numbers](https://www.hackerrank.com/challenges/pentagonal-numbers/problem)                     | [code](a4dp/P.scala) |
-| 3  | [Bitter Chocolate](https://www.hackerrank.com/challenges/bitter-chocolate/problem)                         | [code](a4dp/P.scala) |
-| 4  | [Fibonacci](https://www.hackerrank.com/challenges/fibonacci-fp/problem)                                    | [code](a4dp/P.scala) |
-| 5  | [Reverse Factorization](https://www.hackerrank.com/challenges/reverse-factorization/problem)               | [code](a4dp/P.scala) |
-| 6  | [Different Ways](https://www.hackerrank.com/challenges/different-ways-fp/problem)                          | [code](a4dp/P.scala) |
-| 7  | [Dice Path](https://www.hackerrank.com/challenges/dice-path/problem)                                       | [code](a4dp/P.scala) |
-| 8  | [Bangalore Bank](https://www.hackerrank.com/challenges/bangalore-bank/problem)                             | [code](a4dp/P.scala) |
-| 9  | [Sherlock and the Maze](https://www.hackerrank.com/challenges/sherlock-and-the-maze/problem)               | [code](a4dp/P.scala) |
-| 10 | [Password Cracker FP](https://www.hackerrank.com/challenges/password-cracker-fp/problem)                   | [code](a4dp/P.scala) |
-| 11 | [Expressions](https://www.hackerrank.com/challenges/expressions/problem)                                   | [code](a4dp/P.scala) |
-| 12 | [Klotski](https://www.hackerrank.com/challenges/klotski/problem)                                           | [code](a4dp/P.scala) |
+|    | Problem                                                                                                    |        Solution        |
+|:--:|:-----------------------------------------------------------------------------------------------------------|:----------------------:|
+| 1  | [Number of Binary Search Tree](https://www.hackerrank.com/challenges/number-of-binary-search-tree/problem) | [code](a4dp/P1.scala)  |
+| 2  | [Pentagonal Numbers](https://www.hackerrank.com/challenges/pentagonal-numbers/problem)                     | [code](a4dp/P2.scala)  |
+| 3  | [Bitter Chocolate](https://www.hackerrank.com/challenges/bitter-chocolate/problem)                         | [code](a4dp/P3.scala)  |
+| 4  | [Fibonacci](https://www.hackerrank.com/challenges/fibonacci-fp/problem)                                    | [code](a4dp/P4.scala)  |
+| 5  | [Reverse Factorization](https://www.hackerrank.com/challenges/reverse-factorization/problem)               | [code](a4dp/P5.scala)  |
+| 6  | [Different Ways](https://www.hackerrank.com/challenges/different-ways-fp/problem)                          | [code](a4dp/P6.scala)  |
+| 7  | [Dice Path](https://www.hackerrank.com/challenges/dice-path/problem)                                       | [code](a4dp/P7.scala)  |
+| 8  | [Bangalore Bank](https://www.hackerrank.com/challenges/bangalore-bank/problem)                             | [code](a4dp/P8.scala)  |
+| 9  | [Sherlock and the Maze](https://www.hackerrank.com/challenges/sherlock-and-the-maze/problem)               | [code](a4dp/P9.scala)  |
+| 10 | [Password Cracker FP](https://www.hackerrank.com/challenges/password-cracker-fp/problem)                   | [code](a4dp/P10.scala) |
+| 11 | [Expressions](https://www.hackerrank.com/challenges/expressions/problem)                                   | [code](a4dp/P11.scala) |
+| 12 | [Klotski](https://www.hackerrank.com/challenges/klotski/problem)                                           | [code](a4dp/P12.scala) |
 
 ### Persistent Structures
 
