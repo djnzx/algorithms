@@ -67,14 +67,14 @@ Some solutions to [HackerRank](https://www.hackerrank.com) problems in chapter [
 | 18 | [The Tree Of Life](https://www.hackerrank.com/challenges/the-tree-of-life/problem)                                                        |   [code](a2recursion/P18TreeOfLife.scala))    |
 | 19 | [Concave Polygon](https://www.hackerrank.com/challenges/lambda-march-concave-polygon/problem)                                             | [code](a2recursion/P19IsConcavePolygon.scala) |
 
-### Functional Structures
+### 3. Functional Structures
 
 |    | Problem                                                                                                    |                Solution                |
 |:--:|:-----------------------------------------------------------------------------------------------------------|:--------------------------------------:|
 | 1  | [Swap Nodes](https://www.hackerrank.com/challenges/swap-nodes/problem)                                     | [code](a3structures/P1SwapNodes.scala) |
 | 2  | [Matrix Rotation](https://www.hackerrank.com/challenges/matrix-rotation/problem)                           |     [code](a3structures/P2.scala)      |
-| 3  | [Valid BST](https://www.hackerrank.com/challenges/valid-bst/problem)                                       |     [code](a3structures/P3.scala)      |
-| 4  | [Lists and GCD](https://www.hackerrank.com/challenges/lists-and-gcd/problem)                               |     [code](a3structures/P4.scala)      |
+| 3  | [Valid BST](https://www.hackerrank.com/challenges/valid-bst/problem)                                       |     [code](a3structures/P3IsPreorderBST.scala)      |
+| 4  | [Lists and GCD](https://www.hackerrank.com/challenges/lists-and-gcd/problem)                               |     [code](a3structures/P4ListsAndGCD.scala)      |
 | 5  | [Prison Transport](https://www.hackerrank.com/challenges/prison-transport/problem)                         |     [code](a3structures/P5.scala)      |
 | 6  | [Substring Searching](https://www.hackerrank.com/challenges/kmp-fp/problem)                                |     [code](a3structures/P6.scala)      |
 | 7  | [Order exercises](https://www.hackerrank.com/challenges/order-exercises/problem)                           |     [code](a3structures/P7.scala)      |
