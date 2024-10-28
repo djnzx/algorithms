@@ -7,15 +7,12 @@ object ClosestNumbers extends App {
     arr.sorted
       .iterator
       .sliding(2)
-      .map { case Seq(a, b) => math.abs(a - b) -> (a, b) }
-      .toList
-      .groupMap { case (diff, _) => diff } { case (_, ab) => ab }
-      .iterator
+      .toArray
+      .groupMap { case Seq(a, b) => math.abs(a - b) } { case Seq(a, b) => (a, b) }
       .minBy { case (diff, _) => diff }
       ._2
       .sorted
       .flatMap { case (a, b) => Array(a, b) }
-      .toArray
 
   val as = Array(1, 5, 7, 100, 101)
   val s = closestNumbers(as)
