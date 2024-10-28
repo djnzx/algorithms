@@ -138,10 +138,10 @@ Some solutions to [HackerRank](https://www.hackerrank.com) problems in chapter [
 
 ### Interpreter and Compilers
 
-|   | Problem                                                                                        |            Solution             |
-|:-:|:-----------------------------------------------------------------------------------------------|:-------------------------------:|
-| 1 | [While Language](https://www.hackerrank.com/challenges/while-language-fp/problem)              | [code](a8interpreters/P1WhileInterpreter.scala) |
-| 2 | [Intuitive language](https://www.hackerrank.com/challenges/intuitive-language/problem)         | [code](a8interpreters/P.scala)  |
-| 3 | [Down With Abstractions](https://www.hackerrank.com/challenges/down-with-abstractions/problem) | [code](a8interpreters/P.scala)  |
-| 4 | [Infer](https://www.hackerrank.com/challenges/infer/problem)                                   | [code](a8interpreters/P.scala)  |
-| 5 | [BrainF__k interpreter](https://www.hackerrank.com/challenges/brainf-k-interpreter-fp/problem) | [code](a8interpreters/P.scala)  |
+|   | Problem                                                                                        |            Solution            |
+|:-:|:-----------------------------------------------------------------------------------------------|:------------------------------:|
+| 1 | [While Language](https://www.hackerrank.com/challenges/while-language-fp/problem)              | [code](a8interpreters/P.scala) |
+| 2 | [Intuitive language](https://www.hackerrank.com/challenges/intuitive-language/problem)         | [code](a8interpreters/P.scala) |
+| 3 | [Down With Abstractions](https://www.hackerrank.com/challenges/down-with-abstractions/problem) | [code](a8interpreters/P.scala) |
+| 4 | [Infer](https://www.hackerrank.com/challenges/infer/problem)                                   | [code](a8interpreters/P.scala) |
+| 5 | [BrainF__k interpreter](https://www.hackerrank.com/challenges/brainf-k-interpreter-fp/problem) | [code](a8interpreters/P.scala) |
