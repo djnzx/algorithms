@@ -4,9 +4,9 @@ import djnz.tools.ASuite
 
 /** https://www.hackerrank.com/challenges/prison-transport/problem
   * https://cp-algorithms.com/data_structures/disjoint_set_union.html
- * it works, but fails on 100.000 pairs
+  * it works, but fails on 100.000 pairs
   */
-object P5 {
+object P5Slow {
 
   def price1g(n: Int): Int = math.ceil(math.sqrt(n)).toInt
   def priceNg(xs: Iterable[Int]): Int = xs.foldLeft(0)((a, x) => a + price1g(x))
@@ -86,9 +86,9 @@ object P5 {
 
 }
 
-class P5 extends ASuite {
+class P5Slow extends ASuite {
 
-  import P5._
+  import P5Slow._
 
   test("1") {
     val xs = List(Set(1, 2), Set(3, 4), Set(5, 6))
@@ -104,20 +104,27 @@ class P5 extends ASuite {
     pprint.log(pull(xs, 1, 2))   // BothInTheSame
     pprint.log(pull(xs, 1, 100)) // Aonly(as = Set(1, 2)
     pprint.log(pull(xs, 100, 1)) // Bonly(bs = Set(1, 2)
-    pprint.log(pull(xs, 1, 3))   //  BothAlready(as = Set(1, 2), bs = Set(3, 4))
+    pprint.log(pull(xs, 1, 3))   // BothAlready(as = Set(1, 2), bs = Set(3, 4))
   }
 
+  val xs = "6 11\n9 5\n11 9\n15 9\n13 15\n12 14\n15 16\n1 16"
+    .split("\n")
+    .map(_.split(" "))
+    .map(_.map(_.toInt))
+    .map { case Array(a, b) => (a, b) }
+
   test("3") {
-    //                               c  c
-    //                                       b  b
-    //        d d   d d                                   a a
-    val xs = "6 11\n9 5\n11 9\n15 9\n13 15\n12 14\n15 16\n1 16"
-      .split("\n")
-      .map(_.split(" "))
-      .map(_.map(_.toInt))
-      .map { case Array(a, b) => (a, b) }
     val x = solve(xs)
     x.foreach(println)
+  }
+
+  def mk0(xs: Seq[(Int, Int)]) =
+    (xs ++ xs.map { case (a, b) => (b, a) })
+      .groupMap(_._1)(_._2)
+
+  test("4") {
+    val x = mk0(xs)
+    pprint.log(x)
   }
 
 }
