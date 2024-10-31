@@ -1,5 +1,11 @@
 package djnz.hackerrank.fp.a3structures
 
+import djnz.tools.ASuite
+import org.scalatest.ConfigMap
+import scala.collection.immutable.AbstractMap
+import scala.collection.immutable.SeqMap
+import scala.collection.immutable.SortedMap
+
 /** https://www.hackerrank.com/challenges/prison-transport/problem
   * https://cp-algorithms.com/data_structures/disjoint_set_union.html
   */
@@ -12,6 +18,11 @@ object P5PrisonTransport {
   def price(n: Int, xs: Iterable[Int]): Int = n - xs.sum + priceNg(xs)
 
   case class Tree(id: Int, links: Set[Int])
+
+  def mkLinks0(xs: Seq[(Int, Int)]) =
+    (xs ++ xs.map { case (x, y) => (y, x) })
+      .groupMapReduce(_._1)(x => Set(x._2))(_ ++ _)
+//      .map { case (k, ls) => k -> Tree(k, ls.toSet) }
 
   def mkLinks(xs: Seq[(Int, Int)]) =
     (xs ++ xs.map { case (x, y) => (y, x) })
@@ -65,5 +76,81 @@ object P5PrisonTransport {
     val chains: List[Int] = split(links)
     val outcome: Int = price(n, chains)
     println(outcome)
+  }
+}
+
+class P5PrisonTransport extends ASuite {
+  import P5PrisonTransport._
+  val xs =
+    """
+      |6 11
+      |9 5
+      |11 9
+      |15 9
+      |13 15
+      |12 14
+      |15 16
+      |1 16
+      |""".stripMargin
+      .split("\n")
+      .filter(_.nonEmpty)
+      .map(_.split(" "))
+      .map(_.map(_.toInt) match {
+        case Array(a, b) => (a, b)
+      })
+
+  /*
+
+  1 5 6 9 11 13 15 16
+  12 14
+  1 16
+
+   5  -> Tree(5,Set(9))
+   6  -> Tree(6,Set(11))
+   9  -> Tree(9,Set(5, 11, 15))
+   11 -> Tree(11,Set(9, 6))
+   13 -> Tree(13,Set(15))
+   15 -> Tree(15,Set(9, 16, 13))
+   16 -> Tree(16,Set(15, 1))
+   1  -> Tree(1,Set(16))
+
+   14 -> Tree(14,Set(12))
+   12 -> Tree(12,Set(14))
+
+   */
+
+  test("1") {
+
+    def repack(linked: Map[Int, Set[Int]]): List[Set[Int]] = {
+
+      def extract(linked: Map[Int, Set[Int]], process: Set[Int]): (Map[Int, Set[Int]], Set[Int]) = {
+
+        def go(linked: Map[Int, Set[Int]], group: Set[Int]): (Map[Int, Set[Int]], Set[Int]) = {
+          val (linked2, groupWide) = group.foldLeft(linked -> Set.empty[Int]) { case (a @ (linked, collected), n) =>
+            linked.get(n) match {
+              case Some(gg) => (linked - n) -> (collected ++ gg)
+              case None     => a
+            }
+          }
+          linked2 -> groupWide
+        }
+
+        go(linked, process)
+      }
+
+      def go(linked: Map[Int, Set[Int]], acc: List[Set[Int]]): List[Set[Int]] = linked match {
+        case m if m.isEmpty => acc
+        case m              =>
+          val (map2, group) = extract(m.tail, m.head match { case (a, b) => b + a })
+          go(map2, group :: acc)
+      }
+
+      go(linked.tail, Nil)
+    }
+
+    val x: Map[Int, Set[Int]] = mkLinks0(xs)
+    x.foreach { case (a, b) => println(s"$a -> $b") }
+    repack(x)
+      .foreach(println)
   }
 }
