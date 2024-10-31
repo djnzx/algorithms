@@ -7,7 +7,7 @@ import djnz.hackerrank.fp.a3structures.P5Slow.solve
 /** https://www.hackerrank.com/challenges/prison-transport/problem doesn't pass N9 Disjoint Set Union
   * https://cp-algorithms.com/data_structures/disjoint_set_union.html needs to be applied
   */
-object P5Mutable {
+object P5Mutable2020 {
   def priceOneGroup(n: Int): Int = math.ceil(math.sqrt(n)).toInt
   def priceAllGroups(xs: Iterable[Int]): Int = xs.toVector.map(priceOneGroup).sum
   def priceTotal(N: Int, xs: Iterable[Int]): Int = N - xs.sum + priceAllGroups(xs)
