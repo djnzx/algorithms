@@ -72,7 +72,7 @@ Some solutions to [HackerRank](https://www.hackerrank.com) problems in chapter [
 |    | Problem                                                                                                    |                   Solution                   |
 |:--:|:-----------------------------------------------------------------------------------------------------------|:--------------------------------------------:|
 | 1  | [Swap Nodes](https://www.hackerrank.com/challenges/swap-nodes/problem)                                     |    [code](a3structures/P1SwapNodes.scala)    |
-| 2  | [Matrix Rotation](https://www.hackerrank.com/challenges/matrix-rotation/problem)                           |        [code](a3structures/P2.scala)         |
+| 2  | [Matrix Rotation](https://www.hackerrank.com/challenges/matrix-rotation/problem)                           | [code](a3structures/P2MatrixRotation.scala)  |
 | 3  | [Valid BST](https://www.hackerrank.com/challenges/valid-bst/problem)                                       |  [code](a3structures/P3IsPreorderBST.scala)  |
 | 4  | [Lists and GCD](https://www.hackerrank.com/challenges/lists-and-gcd/problem)                               |   [code](a3structures/P4ListsAndGCD.scala)   |
 | 5  | [Prison Transport](https://www.hackerrank.com/challenges/prison-transport/problem)                         | [code](a3structures/P5PrisonTransport.scala) |
