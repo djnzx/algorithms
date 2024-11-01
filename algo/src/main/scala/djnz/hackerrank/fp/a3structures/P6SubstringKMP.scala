@@ -11,72 +11,56 @@ object P6SubstringKMP {
 
   def next() = scala.io.StdIn.readLine()
 
-  def buildMeta(word: String): Vector[Int] = {
-    // mutable
-    val meta = Array.fill[Int](word.length + 1)(-1)
-    // mutable
-    var pos = 1
-    // mutable
-    var cnd = 0
+  def buildLps(w: String): IndexedSeq[Int] = {
+    val n = w.length
+    val lps = Array.ofDim[Int](n)
+    lps(0) = 0
 
-    while (pos < word.length) {
-      if (word(pos) == word(cnd)) {
-        /////////
-        meta(pos) = meta(cnd)
-      } else {
-        /////////
-        meta(pos) = cnd
-        while (cnd >= 0 && word(pos) != word(cnd))
-          cnd = meta(cnd)
-      }
-      pos += 1
-      cnd += 1
-    }
+    @scala.annotation.tailrec
+    def go(i: Int, len: Int): Unit =
+      if (i < n) {
+        val (nextI, nextLen) =
+          if (w(i) == w(len)) (i + 1, len + 1)
+          else if (len == 0) (i + 1, 0)
+          else (i, lps(len - 1))
 
-    meta(pos) = cnd
-    meta.toVector
-  }
-
-  def solve(raw: String, word: String): Boolean = {
-    val meta: Vector[Int] = buildMeta(word)
-    // mutable
-    var j = 0 // source (S) index
-    // mutable
-    var k = 0 // pattern (W) index
-    // mutable
-    val indexes = scala.collection.mutable.ListBuffer.empty[Int]
-
-    // search using index (built with meta)
-    while (j < raw.length)
-      if (word(k) == raw(j)) {
-        j += 1
-        k += 1
-        if (k == word.length) {
-          indexes += j - k
-          k = meta(k)
-        }
-      } else {
-        k = meta(k)
-        if (k < 0) {
-          j += 1
-          k += 1
-        }
+        lps(i) = nextLen
+        go(nextI, nextLen)
       }
 
-    indexes.nonEmpty
+    go(1, 0)
+    lps.toIndexedSeq
   }
 
-  def main(args: Array[String]): Unit = {
-    val n = next().toInt
-    (1 to n)
+  def search(pat: String, txt: String): List[Int] = {
+    val lps = buildLps(pat)
+
+    @scala.annotation.tailrec
+    def go(i: Int, j: Int, acc: List[Int]): List[Int] =
+      if (i < txt.length) {
+        val (nextI, nextJ) =
+          if (pat(j) == txt(i)) (i + 1, j + 1)
+          else if (j == 0) (i + 1, 0)
+          else (i, lps(j - 1))
+
+        val found = nextJ == pat.length
+        val xx = if (found) lps(nextJ - 1) else nextJ
+        val yy = if (found) nextI - nextJ :: acc else acc
+        go(nextI, xx, yy)
+      } else acc
+
+    go(0, 0, Nil)
+  }
+
+  def main(args: Array[String]): Unit =
+    (1 to next().toInt)
       .map { _ =>
-        val src = next()
+        val s = next()
         val w = next()
-        solve(src, w)
+        search(w, s)
       }
-      .map(if (_) "YES" else "NO")
+      .map(x => if (x.isEmpty) "NO" else "YES")
       .foreach(println)
-  }
 }
 
 class P6SubstringKMP extends ASuite {
@@ -94,7 +78,7 @@ class P6SubstringKMP extends ASuite {
       "ABCDABD",
     )
       .foreach { x =>
-        val m = buildMeta(x)
+        val m = buildLps(x)
         println(x -> m)
       }
 
