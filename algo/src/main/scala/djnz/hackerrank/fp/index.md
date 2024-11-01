@@ -79,10 +79,10 @@ Some solutions to [HackerRank](https://www.hackerrank.com) problems in chapter [
 | 6  | [Substring Searching](https://www.hackerrank.com/challenges/kmp-fp/problem)                                |  [code](a3structures/P6SubstringKMP.scala)   |
 | 7  | [Order exercises](https://www.hackerrank.com/challenges/order-exercises/problem)                           |        [code](a3structures/P7.scala)         |
 | 8  | [John and Fences](https://www.hackerrank.com/challenges/john-and-fences/problem)                           |        [code](a3structures/P8.scala)         |
-| 9  | [Range Minimum Query](https://www.hackerrank.com/challenges/range-minimum-query/problem)                   |        [code](a3structures/P9.scala)         |
+| 9  | [Range Minimum Query](https://www.hackerrank.com/challenges/range-minimum-query/problem)                   |  [code](a3structures/P9RangeMinimum.scala)   |
 | 10 | [Stock Prediction](https://www.hackerrank.com/challenges/stocks-prediction/problem)                        |        [code](a3structures/P10.scala)        |
 | 11 | [Mirko at the Construction Site](https://www.hackerrank.com/challenges/mirko-at-construction-site/problem) |        [code](a3structures/P11.scala)        |
-| 12 | [Tree manager](https://www.hackerrank.com/challenges/tree-manager/problem)                                 |        [code](a3structures/P12.scala)        |
+| 12 | [Tree manager](https://www.hackerrank.com/challenges/tree-manager/problem)                                 |  [code](a3structures/P12TreeManager.scala)   |
 | 13 | [Fighting Armies](https://www.hackerrank.com/challenges/fighting-armies/problem)                           |        [code](a3structures/P13.scala)        |
 
 ### Memoization and DP
