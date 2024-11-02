@@ -5,18 +5,21 @@ package djnz.hackerrank.fp.a3structures
   */
 object P3IsPreorderBST {
 
-  case class XState(stack: List[Int], valid: Boolean, root: Int)
-  val s0 = XState(Nil, valid = true, Integer.MIN_VALUE)
+  case class XState(stack: List[Int], root: Int, valid: Boolean = true)
+  val s0 = XState(Nil, Integer.MIN_VALUE)
 
   def isBST(data: Vector[Int]): Boolean = data.foldLeft(s0) {
-    case (st @ XState(_, false, _), _) => st
+    case (st @ XState(_, _, false), _) => st
     case (st, x) if x < st.root        => st.copy(valid = false)
     case (st, x)                       =>
-      def refine(s0: List[Int], r0: Int): (List[Int], Int) =
-        if (s0.nonEmpty && s0.head < x) refine(s0.tail, s0.head) else (s0, r0)
+      def go(s0: List[Int], r0: Int): (List[Int], Int) = s0 match {
+        case h :: t if h < x => go(t, h)
+        case s0              => (s0, r0)
+      }
 
-      val (s2, r2) = refine(st.stack, st.root)
-      st.copy(stack = x :: s2, root = r2)
+      go(st.stack, st.root) match {
+        case (s2, r2) => XState(x :: s2, r2)
+      }
   }
     .valid
 

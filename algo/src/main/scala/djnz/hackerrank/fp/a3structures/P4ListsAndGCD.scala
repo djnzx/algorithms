@@ -3,7 +3,6 @@ package djnz.hackerrank.fp.a3structures
 /** https://www.hackerrank.com/challenges/lists-and-gcd/problem */
 object P4ListsAndGCD {
 
-  @scala.annotation.tailrec
   def toPairs(x: List[Int], acc: List[(Int, Int)]): List[(Int, Int)] = x match {
     case Nil            => acc.reverse
     case a :: b :: tail => toPairs(tail, (a, b) :: acc)
@@ -13,12 +12,12 @@ object P4ListsAndGCD {
   def process(data: List[List[Int]]) = {
     val maps = data.map(toPairs(_, Nil)).map(_.toMap)
     maps
-      .foldLeft(Set.empty[Int])((acc, item) => acc ++ item.keys)
+      .foldLeft(Set.empty[Int])((set, x) => set ++ x.keys)
       .map(p => (p, maps.map(_.getOrElse(p, 0)).min))
-      .filter(_._2 > 0)
+      .filter { case (_, b) => b > 0 }
       .toList
       .sorted
-      .map(t => s"${t._1} ${t._2}")
+      .map { case (a, b) => s"$a $b" }
       .mkString(" ")
   }
 
