@@ -2,82 +2,76 @@ package djnz.hackerrank.fp.a3structures
 
 /** https://www.hackerrank.com/challenges/mirko-at-construction-site/problem */
 object P11ConstructionSiteDP {
-  // TODO
-  import java.util.Scanner
+
+  def next() = scala.io.StdIn.readLine()
+
   def main(args: Array[String]): Unit = {
-    val sc = new Scanner(System.in)
+    val (_, q) = next().split(" ").map(_.toInt) match { case Array(x, y) => x -> y }
 
-    sc.nextInt
-    val q = sc.nextInt
-    sc.nextLine
-    val initials = sc.nextLine.split(" ").map(_.toInt)
-    val steps = sc.nextLine.split(" ").map(_.toInt)
+    val base = next().split(" ").map(_.toInt)
+    val increments = next().split(" ").map(_.toInt)
 
-    case class Query(index: Int, time: Int)
-    val queries = (0 until q).map(Query(_, sc.nextInt)).sortBy(_.time)
+    case class Query(idx: Int, time: Int)
+    val queries = (0 until q).map(i => Query(i, next().toInt)).sortBy(_.time)
 
-    sc.close()
-
-    case class Building(index: Int, initial: Long, step: Long) extends Ordered[Building] {
+    case class Building(idx: Int, base: Long, inc: Long) extends Ordered[Building] {
       override def compare(that: Building): Int =
-        if (this.step < that.step) -1
-        else if (this.step > that.step) 1
-        else if (this.initial < that.initial) -1
-        else if (this.initial > that.initial) 1
-        else this.index.compareTo(that.index)
-
-      def height(time: Long): Long = initial + step * time
+        if (this.inc < that.inc) -1
+        else if (this.inc > that.inc) 1
+        else if (this.base < that.base) -1
+        else if (this.base > that.base) 1
+        else this.idx.compareTo(that.idx)
     }
 
-    val buildings: List[Building] = initials.indices.map(i => Building(i + 1, initials(i), steps(i)))
-      .groupBy(_.step)
-      .map { case (_, list) => list.maxBy(_.initial) }
+    val buildings: List[Building] = base.indices
+      .map(i => Building(i + 1, base(i), increments(i)))
+      .groupBy(_.inc)
+      .map { case (_, list) => list.maxBy(_.base) }
       .toList
       .sorted
 
-    def intersection(b0: Building, b1: Building) = (b1.initial.toDouble - b0.initial) / (b0.step.toDouble - b1.step)
+    def cross(b0: Building, b1: Building) = (b1.base.toDouble - b0.base) / (b0.inc.toDouble - b1.inc)
 
     @scala.annotation.tailrec
-    def prepare(buildings: List[Building], acc: List[Building]): List[Building] = buildings match {
-      case Nil            => acc
-      case v :: Nil       => v :: acc
-      case v0 :: v1 :: vs =>
-        val highest = acc.head
-        val inter0 = intersection(highest, v0)
-        val inter1 = intersection(highest, v1)
-
-        if (inter0 < inter1 || inter0 == inter1 && v0.index > v1.index)
-          prepare(v1 :: vs, v0 :: acc)
-        else if (acc.tail.isEmpty)
-          prepare(v1 :: vs, acc)
-        else
-          prepare(acc.head :: v1 :: vs, acc.tail)
+    def sort(buildings: List[Building], acc: List[Building]): List[Building] = (buildings, acc) match {
+      case (Nil, _)            => acc              // done
+      case (v :: Nil, _)       => v :: acc         // last one, done
+      case (h :: t, Nil)       => sort(t, List(h)) // start
+      case (b1 :: b2 :: bs, h :: _) if {
+            val is1 = cross(h, b1)
+            val is2 = cross(h, b2)
+            is1 < is2 || is1 == is2 && b1.idx > b2.idx
+          } => sort(b2 :: bs, b1 :: acc)
+      case (_ :: bs, _ :: Nil) => sort(bs, acc)
+      case (_ :: bs, h :: hs)  => sort(h :: bs, hs)
     }
 
-    val highBuildings = prepare(buildings.tail, List(buildings.head)).reverse
+    val buildingsReordered = sort(buildings, Nil).reverse
 
-    case class Pair(queryIndex: Int, highestIndex: Int)
-    case class Acc(buildings: List[Building], highestIndices: List[Pair])
-    val answer = queries.foldLeft(Acc(highBuildings, Nil)) { (acc, q) =>
-      @scala.annotation.tailrec
-      def findHighest(buildings: List[Building]): Acc = buildings match {
-        case b :: Nil       => Acc(acc.buildings, Pair(q.index, b.index) :: acc.highestIndices)
-        case b0 :: b1 :: bs =>
-          val inter = intersection(b0, b1)
-          if (inter > q.time || inter == q.time && b0.index > b1.index)
-            Acc(buildings, Pair(q.index, b0.index) :: acc.highestIndices)
-          else
-            findHighest(b1 :: bs)
-        case Nil            => throw new Exception("Impossible")
+    case class Pair(qIdx: Int, highestIdx: Int)
+    case class State(buildings: List[Building], highest: List[Pair])
+    val s0 = State(buildingsReordered, Nil)
+
+    queries
+      .foldLeft(s0) { (s, q) =>
+
+        @scala.annotation.tailrec
+        def highest(buildings: List[Building]): State = buildings match {
+          case b :: Nil => State(s.buildings, Pair(q.idx, b.idx) :: s.highest)
+          case b1 :: b2 :: _ if {
+                val is = cross(b1, b2)
+                is > q.time || is == q.time && b1.idx > b2.idx
+              } => State(buildings, Pair(q.idx, b1.idx) :: s.highest)
+          case _ :: bs  => highest(bs)
+          case Nil      => sys.error("impossible, but req for exhaustiveness")
+        }
+
+        highest(s.buildings)
       }
-
-      findHighest(acc.buildings)
-    }
-
-    println(answer.highestIndices
-      .sortBy(_.queryIndex)
-      .map(_.highestIndex)
-      .mkString("\n"))
+      .highest
+      .sortBy(_.qIdx)
+      .map(_.highestIdx)
+      .foreach(println)
   }
 
 }

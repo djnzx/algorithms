@@ -7,7 +7,7 @@ object P4ListsAndGCD {
   def toPairs(x: List[Int], acc: List[(Int, Int)]): List[(Int, Int)] = x match {
     case Nil            => acc.reverse
     case a :: b :: tail => toPairs(tail, (a, b) :: acc)
-    case _              => ???
+    case _              => sys.error("we don't handle odd count of elements")
   }
 
   def process(data: List[List[Int]]) = {

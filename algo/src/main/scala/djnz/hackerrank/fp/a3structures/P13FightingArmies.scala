@@ -72,29 +72,33 @@ object P13FightingArmies {
 
   def next() = scala.io.StdIn.readLine()
 
+  type State = TreeMap[Int, Army]
+
+  /** we use mutable builder here since it is performance only, not affecting functional approach in solution */
+  def mk0(n: Int): State =
+    TreeMap.newBuilder[Int, Army].addAll((1 to n).map(_ -> AEmpty)).result()
+
+  def invoke(s: State, cmd: Command): (State, Option[Int]) = cmd match {
+    case CmdFindStrongest(i) => (s, Some(s(i).strongest))
+    case cmd: CmdModify      =>
+      val s2 = cmd match {
+        case CmdKillStrongest(i) => s.updated(i, s(i).kill())
+        case CmdRecruit(i, c)    => s.updated(i, s(i).recruit(c))
+        case CmdMerge(i, j)      => s.updated(i, s(i).merge(s(j))).updated(j, AEmpty)
+      }
+      (s2, None)
+  }
+
   def main(args: Array[String]): Unit = {
     val (n, q) = next().split(" ").map(_.toInt) match { case Array(n, q) => (n, q) }
-
-    // TODO: implement via immutable state
-    val aa = Array.fill[Army](n + 1)(AEmpty)
-
-    def solve(cmd: Command) = cmd match {
-      case CmdFindStrongest(i) => Some(aa(i).strongest)
-      case cmd: CmdModify      =>
-        cmd match {
-          case CmdKillStrongest(i) => aa(i) = aa(i).kill()
-          case CmdRecruit(i, c)    => aa(i) = aa(i).recruit(c)
-          case CmdMerge(i, j)      =>
-            aa(i) = aa(i).merge(aa(j))
-            aa(j) = AEmpty
-        }
-        None
-    }
 
     (1 to q)
       .map(_ => next().split(" ").map(_.toInt))
       .map(Command.parse(_))
-      .flatMap(solve)
-      .foreach(println)
+      .foldLeft(mk0(n)) { (s, cmd) =>
+        val (s2, xo) = invoke(s, cmd)
+        xo.foreach(println)
+        s2
+      }
   }
 }

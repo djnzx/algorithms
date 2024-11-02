@@ -8,18 +8,17 @@ object P9RangeMinimum {
   case class Node(left: Int, right: Int, min: Int)
 
   class SegmentTree(values: Array[Int]) {
-    private val nodes = Array.fill[Node](4 * values.size)(null)
+    // TODO: immutable ?
+    private val nodes = Array.fill[Node](4 * values.length)(null)
     build(1, 0, values.length - 1)
 
-    // TODO: immutable ?
     private def build(index: Int, left: Int, right: Int): Node = {
-      val min = if (left == right) {
-        values(left)
-      } else {
-        val median = (left + right) / 2;
-        val l = build(2 * index, left, median);
-        val r = build(2 * index + 1, median + 1, right);
-        Math.min(l.min, r.min)
+      val min = if (left == right) values(left)
+      else {
+        val median = (left + right) / 2
+        val l = build(2 * index, left, median)
+        val r = build(2 * index + 1, median + 1, right)
+        l.min min r.min
       }
       val node = Node(left, right, min)
       nodes(index) = node

@@ -8,21 +8,23 @@ object P2MatrixRotation {
   def next() = scala.io.StdIn.readLine()
 
   type Matrix = List[List[Int]]
+
+  /** we need an orientation for the most inner scalp */
   sealed trait Orientation
   case object Hor extends Orientation
   case object Ver extends Orientation
   case class Scalp(data: List[Int], or: Option[Orientation])
 
-  def shift(scalp: Scalp, n: Int): Scalp =
-    scalp.copy(
-      data = scalp.data.splitAt(n % scalp.data.length) match {
-        case (a, b) => b ++ a
-      }
-    )
+  def shift(scalp: Scalp, n: Int): Scalp = scalp.copy(
+    data = scalp.data.splitAt(n % scalp.data.length) match {
+      case (a, b) => b ++ a
+    }
+  )
 
   def toMatrix(s: Scalp): Matrix = s match {
-    case Scalp(_, None)         => ???
-    case Scalp(data, Some(Hor)) => data.splitAt(data.length / 2) match {
+    case Scalp(_, None)         => sys.error("doesn't make sense for not the most inner one")
+    case Scalp(data, Some(Hor)) =>
+      data.splitAt(data.length / 2) match {
         case (top, down) => List(top, down.reverse)
       }
     case Scalp(data, Some(Ver)) =>
@@ -147,7 +149,7 @@ class P2MatrixRotation extends ASuite {
     show(m)
   }
 
-  test("not-failed") {
+  test("hor") {
     val m: List[List[Int]] =
       (1 to 8).map(y =>
         (1 to 10).map(x => 100 + y * 10 + x).toList
@@ -159,7 +161,7 @@ class P2MatrixRotation extends ASuite {
     show(r)
   }
 
-  test("failed") {
+  test("ver") {
     val m: List[List[Int]] =
       (1 to 10).map(y =>
         (1 to 8).map(x => 100 + y * 10 + x).toList
@@ -167,30 +169,6 @@ class P2MatrixRotation extends ASuite {
     show(m)
 
     val r = rotate(m, 40)
-    println
-    show(r)
-  }
-
-  test("failed2") {
-    val in =
-      """
-        |9718805 60013003 5103628 85388216 21884498 38021292 73470430 31785927
-        |69999937 71783860 10329789 96382322 71055337 30247265 96087879 93754371
-        |79943507 75398396 38446081 34699742 1408833 51189 17741775 53195748
-        |79354991 26629304 86523163 67042516 54688734 54630910 6967117 90198864
-        |84146680 27762534 6331115 5932542 29446517 15654690 92837327 91644840
-        |58623600 69622764 2218936 58592832 49558405 17112485 38615864 32720798
-        |49469904 5270000 32589026 56425665 23544383 90502426 63729346 35319547
-        |20888810 97945481 85669747 88915819 96642353 42430633 47265349 89653362
-        |55349226 10844931 25289229 90786953 22590518 54702481 71197978 50410021
-        |9392211 31297360 27353496 56239301 7071172 61983443 86544343 43779176
-        |""".stripMargin
-    val matrix = in
-      .split("\n").filter(_.nonEmpty).drop(1)
-      .map(_.split(" ").map(_.toInt).toList)
-      .toList
-    show(matrix)
-    val r = rotate(matrix, 40)
     println
     show(r)
   }

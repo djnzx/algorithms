@@ -9,7 +9,7 @@ object P1SwapNodes {
 
   object Tree {
 
-    def parse(nodes: Seq[(Int, Int)]): Tree = {
+    def construct(nodes: Seq[(Int, Int)]): Tree = {
 
       def go(index: Int): Tree = index match {
         case -1 => Empty
@@ -46,13 +46,10 @@ object P1SwapNodes {
 
   def main(args: Array[String]): Unit = {
     val n = next().toInt
-    val nodes = (1 to n).map { _ =>
-      next().split(" ").map(_.toInt) match {
-        case Array(x, y) => x -> y
-      }
-    }
+    val nodes = (1 to n)
+      .map(_ => next().split(" ").map(_.toInt) match { case Array(x, y) => x -> y })
 
-    val t0 = Tree.parse(nodes)
+    val t0 = Tree.construct(nodes)
 
     val tc = next().toInt
     val queries = (1 to tc).map(_ => next().toInt)
