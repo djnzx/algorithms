@@ -46,9 +46,9 @@ object P13FightingArmies {
   }
 
   case class AMerged(l: Army, r: Army) extends Army {
-    lazy val strongest: Int = math.max(l.strongest, r.strongest)
-    lazy val soldiers: TreeMap[Int, Int] =
-      l.soldiers.foldLeft(r.soldiers) { case (both, (sid, pow)) =>
+    lazy val strongest = l.strongest max r.strongest
+    lazy val soldiers = l.soldiers
+      .foldLeft(r.soldiers) { case (both, (sid, pow)) =>
         val pow2 = both.getOrElse(sid, 0) + pow
         both + (sid -> pow2)
       }
