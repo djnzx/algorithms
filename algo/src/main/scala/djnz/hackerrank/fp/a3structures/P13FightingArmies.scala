@@ -7,66 +7,65 @@ object P13FightingArmies {
 
   sealed trait Army {
     def strongest: Int
-    def values: TreeMap[Int, Int]
-    def add(c: Int): Army = new AddedArmy(this, c)
-    def remove(): Army = new RemovedArmy(this)
+    def soldiers: TreeMap[Int, Int]
+    def recruit(c: Int): Army = AWith(this, c)
+    def kill(): Army = AWithout(this)
     def merge(that: Army): Army = () match {
       case _ if this.isEmpty => that
       case _ if that.isEmpty => this
-      case _                 => new MergedArmy(this, that)
+      case _                 => AMerged(this, that)
     }
     def isEmpty: Boolean = false
   }
 
-  case object Empty extends Army {
-    override def isEmpty: Boolean = true
-    override def strongest: Int = ???
-    override def add(c: Int): Army = new SingleArmy(c)
-    override def remove(): Army = ???
-    override def merge(that: Army): Army = that
-    override def values: TreeMap[Int, Int] = ???
+  case object AEmpty extends Army {
+    def strongest = ???
+    def soldiers = TreeMap.empty
+    override def recruit(c: Int) = AOfSingle(c)
+    override def kill() = this
+    override def merge(that: Army) = that
+    override def isEmpty = true
   }
 
-  class SingleArmy(val strongest: Int) extends Army {
-    override lazy val values: TreeMap[Int, Int] = TreeMap(strongest -> 1)
-    override def remove(): Army = Empty
+  case class AOfSingle(strongest: Int) extends Army {
+    lazy val soldiers = TreeMap(strongest -> 1)
+    override def kill() = AEmpty
   }
 
-  class AddedArmy(army: Army, c: Int) extends Army {
-    override lazy val strongest: Int = math.max(army.strongest, c)
-    override lazy val values: TreeMap[Int, Int] =
-      army.values + (c -> (army.values.getOrElse(c, 0) + 1))
+  case class AWith(that: Army, c: Int) extends Army {
+    lazy val strongest = that.strongest max c
+    lazy val soldiers = that.soldiers + (c -> (that.soldiers.getOrElse(c, 0) + 1))
   }
 
-  class RemovedArmy(army: Army) extends Army {
-    override lazy val strongest: Int = values.lastKey
-    override lazy val values: TreeMap[Int, Int] =
-      army.values.last match {
-        case (key, 1)     => army.values - key
-        case (key, value) => army.values + (key -> (value - 1))
-      }
+  case class AWithout(that: Army) extends Army {
+    lazy val strongest = soldiers.lastKey
+    lazy val soldiers = that.soldiers.last match {
+      case (key, 1)     => that.soldiers - key
+      case (key, value) => that.soldiers + (key -> (value - 1))
+    }
   }
 
-  class MergedArmy(left: Army, right: Army) extends Army {
-    override lazy val strongest: Int = math.max(left.strongest, right.strongest)
-    override lazy val values: TreeMap[Int, Int] =
-      left.values.foldLeft(right.values) { (acc, v) =>
-        val nextValue = acc.getOrElse(v._1, 0) + v._2
-        acc + (v._1 -> nextValue)
+  case class AMerged(l: Army, r: Army) extends Army {
+    lazy val strongest: Int = math.max(l.strongest, r.strongest)
+    lazy val soldiers: TreeMap[Int, Int] =
+      l.soldiers.foldLeft(r.soldiers) { case (both, (sid, pow)) =>
+        val pow2 = both.getOrElse(sid, 0) + pow
+        both + (sid -> pow2)
       }
   }
 
   sealed trait Command
   case class CmdFindStrongest(i: Int) extends Command
-  case class CmdKillStrongest(i: Int) extends Command
-  case class CmdRecruit(i: Int, c: Int) extends Command
-  case class CmdMerge(i: Int, j: Int) extends Command
+  sealed trait CmdModify extends Command
+  case class CmdKillStrongest(i: Int) extends CmdModify
+  case class CmdRecruit(i: Int, c: Int) extends CmdModify
+  case class CmdMerge(i: Int, j: Int) extends CmdModify
   object Command {
     def parse(xs: Seq[Int]): Command = xs match {
-      case Seq(1, i)    => CmdFindStrongest(i - 1)
-      case Seq(2, i)    => CmdKillStrongest(i - 1)
-      case Seq(3, i, c) => CmdRecruit(i - 1, c)
-      case Seq(4, i, j) => CmdMerge(i - 1, j)
+      case Seq(1, i)    => CmdFindStrongest(i)
+      case Seq(2, i)    => CmdKillStrongest(i)
+      case Seq(3, i, c) => CmdRecruit(i, c)
+      case Seq(4, i, j) => CmdMerge(i, j)
       case _            => ???
     }
   }
@@ -77,15 +76,18 @@ object P13FightingArmies {
     val (n, q) = next().split(" ").map(_.toInt) match { case Array(n, q) => (n, q) }
 
     // TODO: implement via immutable state
-    val aa = Array.fill[Army](n)(Empty)
+    val aa = Array.fill[Army](n + 1)(AEmpty)
 
     def solve(cmd: Command) = cmd match {
       case CmdFindStrongest(i) => Some(aa(i).strongest)
-      case CmdKillStrongest(i) => aa(i) = aa(i).remove(); None
-      case CmdRecruit(i, c)    => aa(i) = aa(i).add(c); None
-      case CmdMerge(i, j)      =>
-        aa(i) = aa(i).merge(aa(j - 1))
-        aa(j - 1) = Empty
+      case cmd: CmdModify      =>
+        cmd match {
+          case CmdKillStrongest(i) => aa(i) = aa(i).kill()
+          case CmdRecruit(i, c)    => aa(i) = aa(i).recruit(c)
+          case CmdMerge(i, j)      =>
+            aa(i) = aa(i).merge(aa(j))
+            aa(j) = AEmpty
+        }
         None
     }
 
