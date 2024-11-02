@@ -67,23 +67,23 @@ Some solutions to [HackerRank](https://www.hackerrank.com) problems in chapter [
 | 18 | [The Tree Of Life](https://www.hackerrank.com/challenges/the-tree-of-life/problem)                                                        |   [code](a2recursion/P18TreeOfLife.scala))    |
 | 19 | [Concave Polygon](https://www.hackerrank.com/challenges/lambda-march-concave-polygon/problem)                                             | [code](a2recursion/P19IsConcavePolygon.scala) |
 
-### Functional Structures
+### 3. Functional Structures
 
-|    | Problem                                                                                                    |           Solution           |
-|:--:|:-----------------------------------------------------------------------------------------------------------|:----------------------------:|
-| 1  | [Swap Nodes](https://www.hackerrank.com/challenges/swap-nodes/problem)                                     | [code](a3structures/P.scala) |
-| 2  | [Matrix Rotation](https://www.hackerrank.com/challenges/matrix-rotation/problem)                           | [code](a3structures/P.scala) |
-| 3  | [Valid BST](https://www.hackerrank.com/challenges/valid-bst/problem)                                       | [code](a3structures/P.scala) |
-| 4  | [Lists and GCD](https://www.hackerrank.com/challenges/lists-and-gcd/problem)                               | [code](a3structures/P.scala) |
-| 5  | [Prison Transport](https://www.hackerrank.com/challenges/prison-transport/problem)                         | [code](a3structures/P.scala) |
-| 6  | [Substring Searching](https://www.hackerrank.com/challenges/kmp-fp/problem)                                | [code](a3structures/P.scala) |
-| 7  | [Order exercises](https://www.hackerrank.com/challenges/order-exercises/problem)                           | [code](a3structures/P.scala) |
-| 8  | [John and Fences](https://www.hackerrank.com/challenges/john-and-fences/problem)                           | [code](a3structures/P.scala) |
-| 9  | [Range Minimum Query](https://www.hackerrank.com/challenges/range-minimum-query/problem)                   | [code](a3structures/P.scala) |
-| 10 | [Stock Prediction](https://www.hackerrank.com/challenges/stocks-prediction/problem)                        | [code](a3structures/P.scala) |
-| 11 | [Mirko at the Construction Site](https://www.hackerrank.com/challenges/mirko-at-construction-site/problem) | [code](a3structures/P.scala) |
-| 12 | [Tree manager](https://www.hackerrank.com/challenges/tree-manager/problem)                                 | [code](a3structures/P.scala) |
-| 13 | [Fighting Armies](https://www.hackerrank.com/challenges/fighting-armies/problem)                           | [code](a3structures/P.scala) |
+|    | Problem                                                                                                    |                     Solution                     |
+|:--:|:-----------------------------------------------------------------------------------------------------------|:------------------------------------------------:|
+| 1  | [Swap Nodes](https://www.hackerrank.com/challenges/swap-nodes/problem)                                     |      [code](a3structures/P1SwapNodes.scala)      |
+| 2  | [Matrix Rotation](https://www.hackerrank.com/challenges/matrix-rotation/problem)                           |   [code](a3structures/P2MatrixRotation.scala)    |
+| 3  | [Valid BST](https://www.hackerrank.com/challenges/valid-bst/problem)                                       |    [code](a3structures/P3IsPreorderBST.scala)    |
+| 4  | [Lists and GCD](https://www.hackerrank.com/challenges/lists-and-gcd/problem)                               |     [code](a3structures/P4ListsAndGCD.scala)     |
+| 5  | [Prison Transport](https://www.hackerrank.com/challenges/prison-transport/problem)                         |   [code](a3structures/P5PrisonTransport.scala)   |
+| 6  | [Substring Searching](https://www.hackerrank.com/challenges/kmp-fp/problem)                                |    [code](a3structures/P6SubstringKMP.scala)     |
+| 7  | [Order exercises](https://www.hackerrank.com/challenges/order-exercises/problem)                           |   [code](a3structures/P7OrderExercises.scala)    |
+| 8  | [John and Fences](https://www.hackerrank.com/challenges/john-and-fences/problem)                           |    [code](a3structures/P8JohnAndFences.scala)    |
+| 9  | [Range Minimum Query](https://www.hackerrank.com/challenges/range-minimum-query/problem)                   |    [code](a3structures/P9RangeMinimum.scala)     |
+| 10 | [Stock Prediction](https://www.hackerrank.com/challenges/stocks-prediction/problem)                        |  [code](a3structures/P10StockPrediction.scala)   |
+| 11 | [Mirko at the Construction Site](https://www.hackerrank.com/challenges/mirko-at-construction-site/problem) | [code](a3structures/P11ConstructionSiteDP.scala) |
+| 12 | [Tree manager](https://www.hackerrank.com/challenges/tree-manager/problem)                                 |    [code](a3structures/P12TreeManager.scala)     |
+| 13 | [Fighting Armies](https://www.hackerrank.com/challenges/fighting-armies/problem)                           |   [code](a3structures/P13FightingArmies.scala)   |
 
 ### Memoization and DP
 
