@@ -46,7 +46,7 @@ object P9RangeMinimum {
   def solve(st: SegmentTree, mnx: (Int, Int)): Int = st.findMin(mnx._1, mnx._2)
 
   def main(args: Array[String]): Unit = {
-    val n = next().toInt
+    val n = next().split(" ").map(_.toInt).drop(1).head
     val data = next().split(" ").map(_.toInt)
     val st = new SegmentTree(data)
 
