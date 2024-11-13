@@ -129,6 +129,7 @@ object P12Klotski {
   def shortest[A](xs: List[A], ys: List[A]): List[A] = if (xs.length < ys.length) xs else ys
 
   /** combine and pick shorter path */
+  // TODO: but we need the ability to get element by board
   def combine[A](base: Map[A, List[Move]], increment: Map[A, List[Move]]) =
     increment.foldLeft(base) { case (base, (a, path)) =>
       base.updatedWith(a) {
@@ -144,6 +145,7 @@ object P12Klotski {
 
   def solve(board: Board, c: String, target: Loc): Option[List[Move]] = {
 
+    // TODO: from the optimization perspective, we need PriorityQueue / TreeMap
     def go(visited: Set[Board], toVisit: Map[Board, List[Move]], sol: Option[List[Move]]): Option[List[Move]] = {
       pprint.log("visited:")
       showBoards(visited)
