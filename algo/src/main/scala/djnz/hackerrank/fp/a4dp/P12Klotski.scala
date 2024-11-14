@@ -174,15 +174,12 @@ object P12Klotski {
     val f = next().trim
     val targetLoc = next().split(" ").map(_.toInt) match { case Array(y, x) => Loc(y, x) }
     val board = Board.parse(raw)
-    solve(board, f, targetLoc)
-      .map(_.length)
-      .foreach(println)
-//    match {
-//      case None           => println("no solutions")
-//      case Some(solution) =>
-//        println(solution.size)
-//        solution.reverse.foreach(println)
-//    }
+    solve(board, f, targetLoc) match {
+      case None           => println("no solutions")
+      case Some(solution) =>
+        println(solution.size)
+        solution.reverse.foreach(println)
+    }
   }
 
 }
