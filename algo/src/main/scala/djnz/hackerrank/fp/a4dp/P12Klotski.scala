@@ -128,8 +128,6 @@ object P12Klotski {
 
   def shortest[A](xs: List[A], ys: List[A]): List[A] = if (xs.length < ys.length) xs else ys
 
-  /** combine and pick shorter path */
-  // TODO: but we need the ability to get element by board
   def combine[A](base: Map[A, List[Move]], increment: Map[A, List[Move]]) =
     increment.foldLeft(base) { case (base, (a, path)) =>
       base.updatedWith(a) {
@@ -145,24 +143,27 @@ object P12Klotski {
 
   def solve(board: Board, c: String, target: Loc): Option[List[Move]] = {
 
-    // TODO: from the optimization perspective, we need PriorityQueue / TreeMap
-    def go(visited: Set[Board], toVisit: Map[Board, List[Move]], sol: Option[List[Move]]): Option[List[Move]] = {
-      pprint.log("visited:")
-      showBoards(visited)
-      pprint.log("toVisit:")
-      showBoards(toVisit.keys)
+    def go(visited: Map[Board, Int], toVisit: Map[Board, List[Move]], sol: Option[List[Move]]): Option[List[Move]] =
       toVisit.headOption match {
+        // done
         case None                                                           => sol
-        case Some((b, path)) if b.hasFigureAt(c, target)                    => go(visited + b, toVisit.tail, collect(sol, path))
-        case Some((b, _)) if visited.contains(b)                            => go(visited, toVisit.tail, sol)
-        case Some((b, path)) if path.size >= sol.fold(Int.MaxValue)(_.size) => go(visited + b, toVisit.tail, sol)
-        case Some((b, path))                                                =>
-          val toVisit2 = nextMove(b).map { case (b0, m) => b0 -> (m :: path) }.toMap
-          go(visited + b, combine(toVisit.tail, toVisit2), sol)
+        // solution found, collect
+        case Some((b, path)) if b.hasFigureAt(c, target)                    => go(visited + (b -> path.length), toVisit.tail, collect(sol, path))
+        // current path is longer than we have, drop this branch
+        case Some((b, path)) if path.size >= sol.fold(Int.MaxValue)(_.size) => go(visited + (b -> path.length), toVisit.tail, sol)
+        case Some((b, path))                                                => visited.get(b) match {
+            // we have been there, and path was shorter, drop this branch
+            case Some(len0) if len0 <= path.length => go(visited, toVisit.tail, sol)
+            // we have been there, and path was longer, remove and go again
+            case Some(_)                           => go(visited - b, toVisit, sol)
+            // we have not been there, do the logic
+            case None                              =>
+              val toVisit2 = nextMove(b).map { case (b0, m) => b0 -> (m :: path) }.toMap
+              go(visited + (b -> path.length), combine(toVisit.tail, toVisit2), sol)
+          }
       }
-    }
 
-    go(Set.empty, Map(board -> List.empty), None)
+    go(Map.empty, Map(board -> List.empty), None)
   }
 
   def next() = scala.io.StdIn.readLine()
@@ -173,12 +174,15 @@ object P12Klotski {
     val f = next().trim
     val targetLoc = next().split(" ").map(_.toInt) match { case Array(y, x) => Loc(y, x) }
     val board = Board.parse(raw)
-    solve(board, f, targetLoc) match {
-      case None           => println("no solutions")
-      case Some(solution) =>
-        println(solution.size)
-        solution.reverse.foreach(println)
-    }
+    solve(board, f, targetLoc)
+      .map(_.length)
+      .foreach(println)
+//    match {
+//      case None           => println("no solutions")
+//      case Some(solution) =>
+//        println(solution.size)
+//        solution.reverse.foreach(println)
+//    }
   }
 
 }
