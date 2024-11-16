@@ -100,7 +100,7 @@ Some solutions to [HackerRank](https://www.hackerrank.com) problems in chapter [
 | 9  | [Sherlock and the Maze](https://www.hackerrank.com/challenges/sherlock-and-the-maze/problem)               |       [code](a4dp/P9Sherlock.scala)       |
 | 10 | [Password Cracker FP](https://www.hackerrank.com/challenges/password-cracker-fp/problem)                   |  [code](a4dp/P10PasswordCrackerFp.scala)  |
 | 11 | [Expressions](https://www.hackerrank.com/challenges/expressions/problem)                                   |     [code](a4dp/P11Expressions.scala)     |
-| 12 | [Klotski](https://www.hackerrank.com/challenges/klotski/problem)                                           |       [code](a4dp/P12Klotski.scala)       |
+| 12 | [Klotski](https://www.hackerrank.com/challenges/klotski/problem)                                           |       [code](a4dp/P12KlotskiDFSAll.scala)       |
 
 ### Persistent Structures
 

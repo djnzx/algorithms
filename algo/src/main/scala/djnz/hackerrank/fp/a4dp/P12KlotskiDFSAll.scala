@@ -3,7 +3,7 @@ package djnz.hackerrank.fp.a4dp
 import djnz.tools.ASuite
 
 /** https://www.hackerrank.com/challenges/klotski/problem */
-object P12Klotski {
+object P12KlotskiDFSAll {
 
   case class Loc(y: Int, x: Int) {
     override def toString: String = s"($y,$x)"
@@ -143,6 +143,7 @@ object P12Klotski {
 
   def solve(board: Board, c: String, target: Loc): Option[List[Move]] = {
 
+    /** basically it collects all solutions, but on each step we collect the best one */
     def go(visited: Map[Board, Int], toVisit: Map[Board, List[Move]], sol: Option[List[Move]]): Option[List[Move]] =
       toVisit.headOption match {
         // done
@@ -184,8 +185,8 @@ object P12Klotski {
 
 }
 
-class P12Klotski extends ASuite {
-  import P12Klotski._
+class P12KlotskiDFSAll extends ASuite {
+  import P12KlotskiDFSAll._
 
   test("origin1") {
 
