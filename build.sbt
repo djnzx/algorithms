@@ -54,6 +54,6 @@ ThisBuild / libraryDependencies ++= Seq(
 lazy val algo = project.in(file("algo"))
   .settings(
     organization := "com.djnzx",
-    name := "algorithms",
+    name := "algorithms-scala",
     version := "0.0.1",
   )
