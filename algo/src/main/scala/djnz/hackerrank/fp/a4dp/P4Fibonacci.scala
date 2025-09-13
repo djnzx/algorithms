@@ -7,7 +7,6 @@ object P4Fibonacci {
 
   def next() = scala.io.StdIn.readLine()
 
-  // TODO: what's wrong with scala BigDecimal ?
   type BD = java.math.BigDecimal
   val bd0 = new BD(0)
   val bd1 = new BD(1)

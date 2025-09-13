@@ -8,7 +8,7 @@ object P3BitterChocolate {
   case class Plate(row1: Int, row2: Int, row3: Int)
   case class XY(x: Int, y: Int)
 
-  // TODO: PURE!
+  // TODO
   private val data = scala.collection.mutable.Map[Plate, Boolean]()
 
   def eat(at: XY, p: Plate): Plate = at.y match {
@@ -18,23 +18,29 @@ object P3BitterChocolate {
     case _ => sys.error("never by design")
   }
 
-  def solve(p: Plate): Boolean = data.getOrElseUpdate(
-    p,
-    p == Plate(0, 0, 0) ||
-      p.row1 > 0 && (0 until p.row1).exists(x => !solve(eat(XY(x, 0), p))) ||
-      p.row2 > 0 && (0 until p.row2).exists(x => !solve(eat(XY(x, 1), p))) ||
-      p.row3 > 0 && (0 until p.row3).exists(x => !solve(eat(XY(x, 2), p)))
-  )
+  def solve(p: Plate): Boolean = data.get(p) match {
+    case Some(v) => v
+    case None    =>
+      val sol =
+        p == Plate(0, 0, 0) ||
+          p.row1 > 0 && (0 until p.row1).exists(x => !solve(eat(XY(x, 0), p))) ||
+          p.row2 > 0 && (0 until p.row2).exists(x => !solve(eat(XY(x, 1), p))) ||
+          p.row3 > 0 && (0 until p.row3).exists(x => !solve(eat(XY(x, 2), p)))
+      data(p) = sol
+      sol
+  }
+
+  val show: Boolean => String = {
+    case true => "WIN"
+    case _    => "LOSE"
+  }
 
   def main(args: Array[String]): Unit =
     (1 to next().toInt)
       .map(_ => next().split(" ").map(_.toInt))
       .map { case Array(a, b, c) => Plate(a, b, c) }
       .map(solve)
-      .map {
-        case true => "WIN"
-        case _    => "LOSE"
-      }
+      .map(show)
       .foreach(println)
 
 }

@@ -11,6 +11,7 @@ object P9Sherlock {
    */
 
   def next() = scala.io.StdIn.readLine()
+
   val modulo = 1000000007
   sealed trait Dir {
     def another: Dir = this match {
@@ -23,10 +24,11 @@ object P9Sherlock {
   case object D extends Dir
 
   def solve(n: Int, m: Int, k: Int): Int = {
-    // TODO: implement in a functional fold
-    val memo = scala.collection.mutable.Map.empty[(Int, Int, Int, Dir), Int]
 
-    def go(m0: Int, n0: Int, k: Int, dir0: Dir): Int = {
+    type Cache = Map[(Int, Int, Int, Dir), Int]
+    val memo0: Cache = Map.empty
+
+    def go(m0: Int, n0: Int, k: Int, dir0: Dir, memo: Cache): (Int, Cache) = {
       val (m, n, dir) = if (m0 < n0)
         (m0, n0, dir0)
       else
@@ -35,19 +37,33 @@ object P9Sherlock {
       val key = (m, n, k, dir)
 
       val x = memo.get(key) match {
-        case Some(x)                      => Right(x)
-        case _ if k < 0 || m < 1 || n < 1 => Left(0)
-        case _ if m == 1 && n == 1        => Left(1)
-        case _ if dir == R                => Left((go(m - 1, n, k, R) + go(m, n - 1, k - 1, D)) % modulo)
-        case _ if dir == D                => Left((go(m - 1, n, k - 1, R) + go(m, n - 1, k, D)) % modulo)
+        case Some(x)                      => Right(x -> memo)
+        case _ if k < 0 || m < 1 || n < 1 => Left(0 -> memo)
+        case _ if m == 1 && n == 1        => Left(1 -> memo)
+        case _ if dir == R                =>
+          val (x1, memo1) = go(m - 1, n, k, R, memo)
+          val (x2, memo2) = go(m, n - 1, k - 1, D, memo1)
+          val x = (x1 + x2) % modulo
+          Left(x -> memo2)
+        case _ if dir == D                =>
+          val (x1, memo1) = go(m - 1, n, k - 1, R, memo)
+          val (x2, memo2) = go(m, n - 1, k, D, memo1)
+          val x = (x1 + x2) % modulo
+          Left(x -> memo2)
         case _                            => sys.error("never by design")
       }
-      x.fold(x => { memo.put(key, x); x }, identity)
+      x match {
+        case Left((x, c)) => x -> (c + (key -> x))
+        case Right(x)     => x
+      }
     }
 
     (m, n) match {
       case (1, 1) => 1
-      case (m, n) => (go(m - 1, n, k, R) + go(m, n - 1, k, D)) % modulo
+      case (m, n) =>
+        val (x1, memo1) = go(m - 1, n, k, R, memo0)
+        val (x2, memo2) = go(m, n - 1, k, D, memo1)
+        (x1 + x2) % modulo
     }
   }
 

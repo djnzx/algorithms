@@ -26,16 +26,16 @@ object P11Expressions {
     case n :: ns           => opsAll.flatMap(op => doSolve(a.collect(op, n), ns))
   }
 
+  def represent(numbers: List[Int], ops: List[Char]) =
+    numbers.tail.zip(ops)
+      .foldLeft(new StringBuilder(numbers.head.toString)) {
+        case (sb, (n, op)) => sb ++= s"$op$n"
+      }.toString
+
   def solve(numbers: List[Int]) = {
     val ops = doSolve(A(numbers.head, Nil), numbers.tail).head.ops.reverse
     represent(numbers, ops)
   }
-
-  def represent(numbers: List[Int], ops: List[Char]) =
-    numbers.tail.zip(ops)
-      .foldLeft(new StringBuilder(numbers.head.toString)) {
-        case (a, (n, op)) => a ++= s"$op$n"
-      }.toString
 
   def main(args: Array[String]): Unit = {
     val _ = next()

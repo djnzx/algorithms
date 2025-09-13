@@ -5,6 +5,8 @@ import djnz.tools.ASuite
 /** https://www.hackerrank.com/challenges/password-cracker-fp/problem */
 object P10PasswordCrackerFp {
 
+  def next() = scala.io.StdIn.readLine()
+
   def isSolvable(words: Iterable[String], phrase: String): Boolean = {
     val have = words.flatten.toSet
     val need = phrase.toSet
@@ -54,8 +56,6 @@ object P10PasswordCrackerFp {
       .headOption
       .map(_.represent)
   }
-
-  def next() = scala.io.StdIn.readLine()
 
   def main(xs: Array[String]): Unit = {
     val n = next().toInt
