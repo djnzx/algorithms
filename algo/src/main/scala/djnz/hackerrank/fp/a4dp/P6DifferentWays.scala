@@ -48,4 +48,5 @@ object P6DifferentWays {
     process(cases)
       .foreach(println)
   }
+
 }
