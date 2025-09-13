@@ -8,7 +8,7 @@ object P3BitterChocolate {
   case class Plate(row1: Int, row2: Int, row3: Int)
   case class XY(x: Int, y: Int)
 
-  // TODO: implement via pure functional structure
+  // TODO: PURE!
   private val data = scala.collection.mutable.Map[Plate, Boolean]()
 
   def eat(at: XY, p: Plate): Plate = at.y match {
@@ -35,5 +35,6 @@ object P3BitterChocolate {
         case true => "WIN"
         case _    => "LOSE"
       }
+      .foreach(println)
 
 }

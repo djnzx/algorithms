@@ -37,6 +37,7 @@ object P2Pentagonal {
       .foreach(println)
 
   }
+
 }
 
 class P2Pentagonal extends ASuite {
