@@ -4,16 +4,16 @@ Some solutions to [HackerRank](https://www.hackerrank.com) problems in chapter [
 
 ## Chapters
 
-- [Introduction](#Introduction)
-- [Recursion](#Recursion)
-- [Functional Structures](#Functional-Structures)
-- [Memoization and DP](#Memoization-and-DP)
-- [Persistent Structures](#Persistent-Structures)
-- [Ad Hoc](#Ad-Hoc)
-- [Parsers](#Parsers)
-- [Interpreter and Compilers](#Interpreter-and-Compilers)
+- [1. Introduction](#Introduction)
+- [2. Recursion](#Recursion)
+- [3. Functional Structures](#Functional-Structures)
+- [4. Memoization and DP](#Memoization-and-DP)
+- [5. Persistent Structures](#Persistent-Structures)
+- [6. Ad Hoc](#Ad-Hoc)
+- [7. Parsers](#Parsers)
+- [8. Interpreter and Compilers](#Interpreter-and-Compilers)
 
-### Introduction
+### 1. Introduction
 
 |    | Problem                                                                                                                                             |                   Solution                   |
 |:--:|:----------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------:|
@@ -43,7 +43,7 @@ Some solutions to [HackerRank](https://www.hackerrank.com) problems in chapter [
 | 24 | [Compute the Perimeter of a Polygon](https://www.hackerrank.com/challenges/lambda-march-compute-the-perimeter-of-a-polygon/problem)                 |  [code](a1intro/P24PolygonPerimeter.scala)   |
 | 25 | [Compute the Area of a Polygon](https://www.hackerrank.com/challenges/lambda-march-compute-the-area-of-a-polygon/problem)                           |     [code](a1intro/P25PolygonArea.scala)     |
 
-### Recursion
+### 2. Recursion
 
 |    | Problem                                                                                                                                   |                   Solution                    |
 |:--:|:------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------:|
@@ -67,48 +67,48 @@ Some solutions to [HackerRank](https://www.hackerrank.com) problems in chapter [
 | 18 | [The Tree Of Life](https://www.hackerrank.com/challenges/the-tree-of-life/problem)                                                        |   [code](a2recursion/P18TreeOfLife.scala))    |
 | 19 | [Concave Polygon](https://www.hackerrank.com/challenges/lambda-march-concave-polygon/problem)                                             | [code](a2recursion/P19IsConcavePolygon.scala) |
 
-### Functional Structures
+### 3. Functional Structures
 
-|    | Problem                                                                                                    |           Solution           |
-|:--:|:-----------------------------------------------------------------------------------------------------------|:----------------------------:|
-| 1  | [Swap Nodes](https://www.hackerrank.com/challenges/swap-nodes/problem)                                     | [code](a3structures/P.scala) |
-| 2  | [Matrix Rotation](https://www.hackerrank.com/challenges/matrix-rotation/problem)                           | [code](a3structures/P.scala) |
-| 3  | [Valid BST](https://www.hackerrank.com/challenges/valid-bst/problem)                                       | [code](a3structures/P.scala) |
-| 4  | [Lists and GCD](https://www.hackerrank.com/challenges/lists-and-gcd/problem)                               | [code](a3structures/P.scala) |
-| 5  | [Prison Transport](https://www.hackerrank.com/challenges/prison-transport/problem)                         | [code](a3structures/P.scala) |
-| 6  | [Substring Searching](https://www.hackerrank.com/challenges/kmp-fp/problem)                                | [code](a3structures/P.scala) |
-| 7  | [Order exercises](https://www.hackerrank.com/challenges/order-exercises/problem)                           | [code](a3structures/P.scala) |
-| 8  | [John and Fences](https://www.hackerrank.com/challenges/john-and-fences/problem)                           | [code](a3structures/P.scala) |
-| 9  | [Range Minimum Query](https://www.hackerrank.com/challenges/range-minimum-query/problem)                   | [code](a3structures/P.scala) |
-| 10 | [Stock Prediction](https://www.hackerrank.com/challenges/stocks-prediction/problem)                        | [code](a3structures/P.scala) |
-| 11 | [Mirko at the Construction Site](https://www.hackerrank.com/challenges/mirko-at-construction-site/problem) | [code](a3structures/P.scala) |
-| 12 | [Tree manager](https://www.hackerrank.com/challenges/tree-manager/problem)                                 | [code](a3structures/P.scala) |
-| 13 | [Fighting Armies](https://www.hackerrank.com/challenges/fighting-armies/problem)                           | [code](a3structures/P.scala) |
+|    | Problem                                                                                                    |                     Solution                     |
+|:--:|:-----------------------------------------------------------------------------------------------------------|:------------------------------------------------:|
+| 1  | [Swap Nodes](https://www.hackerrank.com/challenges/swap-nodes/problem)                                     |      [code](a3structures/P1SwapNodes.scala)      |
+| 2  | [Matrix Rotation](https://www.hackerrank.com/challenges/matrix-rotation/problem)                           |   [code](a3structures/P2MatrixRotation.scala)    |
+| 3  | [Valid BST](https://www.hackerrank.com/challenges/valid-bst/problem)                                       |    [code](a3structures/P3IsPreorderBST.scala)    |
+| 4  | [Lists and GCD](https://www.hackerrank.com/challenges/lists-and-gcd/problem)                               |     [code](a3structures/P4ListsAndGCD.scala)     |
+| 5  | [Prison Transport](https://www.hackerrank.com/challenges/prison-transport/problem)                         |   [code](a3structures/P5PrisonTransport.scala)   |
+| 6  | [Substring Searching](https://www.hackerrank.com/challenges/kmp-fp/problem)                                |    [code](a3structures/P6SubstringKMP.scala)     |
+| 7  | [Order exercises](https://www.hackerrank.com/challenges/order-exercises/problem)                           |   [code](a3structures/P7OrderExercises.scala)    |
+| 8  | [John and Fences](https://www.hackerrank.com/challenges/john-and-fences/problem)                           |    [code](a3structures/P8JohnAndFences.scala)    |
+| 9  | [Range Minimum Query](https://www.hackerrank.com/challenges/range-minimum-query/problem)                   |    [code](a3structures/P9RangeMinimum.scala)     |
+| 10 | [Stock Prediction](https://www.hackerrank.com/challenges/stocks-prediction/problem)                        |  [code](a3structures/P10StockPrediction.scala)   |
+| 11 | [Mirko at the Construction Site](https://www.hackerrank.com/challenges/mirko-at-construction-site/problem) | [code](a3structures/P11ConstructionSiteDP.scala) |
+| 12 | [Tree manager](https://www.hackerrank.com/challenges/tree-manager/problem)                                 |    [code](a3structures/P12TreeManager.scala)     |
+| 13 | [Fighting Armies](https://www.hackerrank.com/challenges/fighting-armies/problem)                           |   [code](a3structures/P13FightingArmies.scala)   |
 
-### Memoization and DP
+### 4. Memoization and DP
 
-|    | Problem                                                                                                    |       Solution       |
-|:--:|:-----------------------------------------------------------------------------------------------------------|:--------------------:|
-| 1  | [Number of Binary Search Tree](https://www.hackerrank.com/challenges/number-of-binary-search-tree/problem) | [code](a4dp/P.scala) |
-| 2  | [Pentagonal Numbers](https://www.hackerrank.com/challenges/pentagonal-numbers/problem)                     | [code](a4dp/P.scala) |
-| 3  | [Bitter Chocolate](https://www.hackerrank.com/challenges/bitter-chocolate/problem)                         | [code](a4dp/P.scala) |
-| 4  | [Fibonacci](https://www.hackerrank.com/challenges/fibonacci-fp/problem)                                    | [code](a4dp/P.scala) |
-| 5  | [Reverse Factorization](https://www.hackerrank.com/challenges/reverse-factorization/problem)               | [code](a4dp/P.scala) |
-| 6  | [Different Ways](https://www.hackerrank.com/challenges/different-ways-fp/problem)                          | [code](a4dp/P.scala) |
-| 7  | [Dice Path](https://www.hackerrank.com/challenges/dice-path/problem)                                       | [code](a4dp/P.scala) |
-| 8  | [Bangalore Bank](https://www.hackerrank.com/challenges/bangalore-bank/problem)                             | [code](a4dp/P.scala) |
-| 9  | [Sherlock and the Maze](https://www.hackerrank.com/challenges/sherlock-and-the-maze/problem)               | [code](a4dp/P.scala) |
-| 10 | [Password Cracker FP](https://www.hackerrank.com/challenges/password-cracker-fp/problem)                   | [code](a4dp/P.scala) |
-| 11 | [Expressions](https://www.hackerrank.com/challenges/expressions/problem)                                   | [code](a4dp/P.scala) |
-| 12 | [Klotski](https://www.hackerrank.com/challenges/klotski/problem)                                           | [code](a4dp/P.scala) |
+|    | Problem                                                                                                    |                 Solution                  |
+|:--:|:-----------------------------------------------------------------------------------------------------------|:-----------------------------------------:|
+| 1  | [Number of Binary Search Tree](https://www.hackerrank.com/challenges/number-of-binary-search-tree/problem) |     [code](a4dp/P1NumberOfBST.scala)      |
+| 2  | [Pentagonal Numbers](https://www.hackerrank.com/challenges/pentagonal-numbers/problem)                     |      [code](a4dp/P2Pentagonal.scala)      |
+| 3  | [Bitter Chocolate](https://www.hackerrank.com/challenges/bitter-chocolate/problem)                         |   [code](a4dp/P3BitterChocolate.scala)    |
+| 4  | [Fibonacci](https://www.hackerrank.com/challenges/fibonacci-fp/problem)                                    |      [code](a4dp/P4Fibonacci.scala)       |
+| 5  | [Reverse Factorization](https://www.hackerrank.com/challenges/reverse-factorization/problem)               | [code](a4dp/P5ReverseFactorization.scala) |
+| 6  | [Different Ways](https://www.hackerrank.com/challenges/different-ways-fp/problem)                          |    [code](a4dp/P6DifferentWays.scala)     |
+| 7  | [Dice Path](https://www.hackerrank.com/challenges/dice-path/problem)                                       |       [code](a4dp/P7DicePath.scala)       |
+| 8  | [Bangalore Bank](https://www.hackerrank.com/challenges/bangalore-bank/problem)                             |    [code](a4dp/P8BangaloreBank.scala)     |
+| 9  | [Sherlock and the Maze](https://www.hackerrank.com/challenges/sherlock-and-the-maze/problem)               |       [code](a4dp/P9Sherlock.scala)       |
+| 10 | [Password Cracker FP](https://www.hackerrank.com/challenges/password-cracker-fp/problem)                   |  [code](a4dp/P10PasswordCrackerFp.scala)  |
+| 11 | [Expressions](https://www.hackerrank.com/challenges/expressions/problem)                                   |     [code](a4dp/P11Expressions.scala)     |
+| 12 | [Klotski](https://www.hackerrank.com/challenges/klotski/problem)                                           |    [code](a4dp/P12KlotskiDFSAll.scala)    |
 
-### Persistent Structures
+### 5. Persistent Structures
 
-|   | Problem                                                                            |           Solution           |
-|:-:|:-----------------------------------------------------------------------------------|:----------------------------:|
-| 1 | [Minimum Multiple](https://www.hackerrank.com/challenges/minimum-multiple/problem) | [code](a5persistent/P.scala) |
-| 2 | [Messy Medians](https://www.hackerrank.com/challenges/messy-medians/problem)       | [code](a5persistent/P.scala) |
-| 3 | [Boleyn Salary](https://www.hackerrank.com/challenges/boleyn-salary/problem)       | [code](a5persistent/P.scala) |
+|   | Problem                                                                            |                   Solution                   |
+|:-:|:-----------------------------------------------------------------------------------|:--------------------------------------------:|
+| 1 | [Minimum Multiple](https://www.hackerrank.com/challenges/minimum-multiple/problem) | [code](a5persistent/P1MinimumMultiple.scala) |
+| 2 | [Messy Medians](https://www.hackerrank.com/challenges/messy-medians/problem)       |  [code](a5persistent/P2MessyMedians.scala)   |
+| 3 | [Boleyn Salary](https://www.hackerrank.com/challenges/boleyn-salary/problem)       |  [code](a5persistent/P3BoleynSalary.scala)   |
 
 ### 6. Ad Hoc
 

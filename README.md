@@ -13,7 +13,7 @@ This multilanguage repository is set up for writing code in:
 - [main rust sandbox](https://github.com/djnzx/learning-rust)
 
 ### Copyright
-- 2017-2024 © <a href="https://www.linkedin.com/in/alexey-rykhalskiy/" target="_blank">Oleksiy Rykhalskyy</a>.
+- 2017-2026 © <a href="https://www.linkedin.com/in/alexey-rykhalskiy/" target="_blank">Oleksiy Rykhalskyy</a>.
 
 ![java](https://img.shields.io/badge/java-17.0.12-brightgreen)
 ![sbt](https://img.shields.io/badge/sbt-1.10.3-brightgreen)
