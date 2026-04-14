@@ -14,19 +14,15 @@ object P9GameOfKyles {
   def mex(states: Set[Int]): Int =
     LazyList.from(0).find(i => !states.contains(i)).get
 
-  // magic
+  // solutions
   lazy val grundy: LazyList[Int] = {
 
     def compute(v: Int): Int = {
-      val wo1 =
-        (0 until v).iterator
-          .map(i => grundy(i) ^ grundy(v - i - 1))
-          .toSet
+      val wo1 = (0 until v)
+        .map(i => grundy(i) ^ grundy(v - i - 1)).toSet
 
-      val wo2 =
-        (0 until (v - 1)).iterator
-          .map(i => grundy(i) ^ grundy(v - i - 2))
-          .toSet
+      val wo2 = (0 until (v - 1))
+        .map(i => grundy(i) ^ grundy(v - i - 2)).toSet
 
       mex(wo1 ++ wo2)
     }
