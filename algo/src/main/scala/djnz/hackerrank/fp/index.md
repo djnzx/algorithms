@@ -4,16 +4,16 @@ Some solutions to [HackerRank](https://www.hackerrank.com) problems in chapter [
 
 ## Chapters
 
-- [Introduction](#Introduction)
-- [Recursion](#Recursion)
-- [Functional Structures](#Functional-Structures)
-- [Memoization and DP](#Memoization-and-DP)
-- [Persistent Structures](#Persistent-Structures)
-- [Ad Hoc](#Ad-Hoc)
-- [Parsers](#Parsers)
-- [Interpreter and Compilers](#Interpreter-and-Compilers)
+- [1. Introduction](#Introduction)
+- [2. Recursion](#Recursion)
+- [3. Functional Structures](#Functional-Structures)
+- [4. Memoization and DP](#Memoization-and-DP)
+- [5. Persistent Structures](#Persistent-Structures)
+- [6. Ad Hoc](#Ad-Hoc)
+- [7. Parsers](#Parsers)
+- [8. Interpreter and Compilers](#Interpreter-and-Compilers)
 
-### Introduction
+### 1. Introduction
 
 |    | Problem                                                                                                                                             |                   Solution                   |
 |:--:|:----------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------:|
@@ -43,7 +43,7 @@ Some solutions to [HackerRank](https://www.hackerrank.com) problems in chapter [
 | 24 | [Compute the Perimeter of a Polygon](https://www.hackerrank.com/challenges/lambda-march-compute-the-perimeter-of-a-polygon/problem)                 |  [code](a1intro/P24PolygonPerimeter.scala)   |
 | 25 | [Compute the Area of a Polygon](https://www.hackerrank.com/challenges/lambda-march-compute-the-area-of-a-polygon/problem)                           |     [code](a1intro/P25PolygonArea.scala)     |
 
-### Recursion
+### 2. Recursion
 
 |    | Problem                                                                                                                                   |                   Solution                    |
 |:--:|:------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------:|
@@ -102,13 +102,13 @@ Some solutions to [HackerRank](https://www.hackerrank.com) problems in chapter [
 | 11 | [Expressions](https://www.hackerrank.com/challenges/expressions/problem)                                   |     [code](a4dp/P11Expressions.scala)     |
 | 12 | [Klotski](https://www.hackerrank.com/challenges/klotski/problem)                                           |    [code](a4dp/P12KlotskiDFSAll.scala)    |
 
-### Persistent Structures
+### 5. Persistent Structures
 
-|   | Problem                                                                            |           Solution           |
-|:-:|:-----------------------------------------------------------------------------------|:----------------------------:|
-| 1 | [Minimum Multiple](https://www.hackerrank.com/challenges/minimum-multiple/problem) | [code](a5persistent/P.scala) |
-| 2 | [Messy Medians](https://www.hackerrank.com/challenges/messy-medians/problem)       | [code](a5persistent/P.scala) |
-| 3 | [Boleyn Salary](https://www.hackerrank.com/challenges/boleyn-salary/problem)       | [code](a5persistent/P.scala) |
+|   | Problem                                                                            |                   Solution                   |
+|:-:|:-----------------------------------------------------------------------------------|:--------------------------------------------:|
+| 1 | [Minimum Multiple](https://www.hackerrank.com/challenges/minimum-multiple/problem) | [code](a5persistent/P1MinimumMultiple.scala) |
+| 2 | [Messy Medians](https://www.hackerrank.com/challenges/messy-medians/problem)       |  [code](a5persistent/P2MessyMedians.scala)   |
+| 3 | [Boleyn Salary](https://www.hackerrank.com/challenges/boleyn-salary/problem)       |  [code](a5persistent/P3BoleynSalary.scala)   |
 
 ### Ad Hoc
 
