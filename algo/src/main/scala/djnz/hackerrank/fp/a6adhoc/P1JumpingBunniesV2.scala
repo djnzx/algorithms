@@ -3,7 +3,7 @@ package djnz.hackerrank.fp.a6adhoc
 /** https://www.hackerrank.com/challenges/jumping-bunnies/problem
   * https://www.mesacc.edu/~scotz47781/mat120/notes/radicals/simplify/images/examples/prime_factorization.html
   */
-object P1JumpingBunniesV2 {
+object P1JumpingBunniesV2 { me =>
 
   def pow(n: Int, p: Int): Long = (1 to p).foldLeft(1L)((a, _) => a * n)
 
@@ -13,7 +13,7 @@ object P1JumpingBunniesV2 {
 
   def allPrimesTo(max: Int): Seq[Int] = (2 to max).filter(isPrime)
 
-  def inc(map: Map[Int, Int], key: Int): Map[Int, Int] =
+  def inc[A](map: Map[A, Int], key: A): Map[A, Int] =
     map.updatedWith(key) { ov =>
       Some(ov match {
         case None    => 1
@@ -21,13 +21,16 @@ object P1JumpingBunniesV2 {
       })
     }
 
+  implicit class IncOpsMap[A](map: Map[A, Int]) {
+    def inc(key: A): Map[A, Int] = me.inc(map, key)
+  }
+
   def factorize(n: Int, primes: List[Int], acc: Map[Int, Int]): Map[Int, Int] =
     if (primes.contains(n)) inc(acc, n)
     else primes match {
-      case Nil      => acc
-      case ph :: pt =>
-        if (n % ph == 0) factorize(n / ph, primes, inc(acc, ph))
-        else factorize(n, pt, acc)
+      case Nil => acc
+      case ph :: _ if n % ph == 0 => factorize(n / ph, primes, acc.inc(ph))
+      case _ :: pt => factorize(n, pt, acc)
     }
 
   def maxValByKeys[K](map1: Map[K, Int], map2: Map[K, Int]): Map[K, Int] =
@@ -65,7 +68,7 @@ object P1JumpingBunniesV2 {
     ) { src =>
       val it = src.getLines().map(_.trim)
       process(it.next())
-    }.fold(_ => ???, identity)
+    }.getOrElse(???)
   }
 
   implicit class StringToOps(s: String) {
