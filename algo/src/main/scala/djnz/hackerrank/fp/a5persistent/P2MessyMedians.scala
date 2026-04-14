@@ -1,7 +1,5 @@
 package djnz.hackerrank.fp.a5persistent
 
-import org.scalatest.funsuite.AnyFunSuite
-import org.scalatest.matchers.should.Matchers
 import scala.io.StdIn.readLine
 
 /** https://www.hackerrank.com/challenges/messy-medians/problem */
@@ -104,10 +102,4 @@ object P2MessyMedians {
       .reverse
       .foreach(println)
   }
-}
-
-class P2MessyMediansTest extends AnyFunSuite with Matchers {
-
-  import P2MessyMedians._
-
 }

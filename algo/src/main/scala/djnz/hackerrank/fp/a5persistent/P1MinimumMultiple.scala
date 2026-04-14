@@ -43,22 +43,22 @@ object P1MinimumMultipleSlow {
       acc.updated(p, acc.getOrElse(p, 0) + e)
     }
 
-  def powMod(base0: Long, exp0: Int, mod: Long = modulo): Long = {
+  def powMod(base0: Long, exp0: Int): Long = {
 
     @annotation.tailrec
     def go(b: Long, e: Int, r: Long): Long =
       if (e == 0) r
       else {
-        val b2 = (b * b) % mod
-        val e2 = e >>> 1
+        val b2 = (b * b) % modulo
+        val e2 = e >> 1
 
         if ((e & 1) == 1)
-          go(b2, e2, (r * b) % mod)
+          go(b2, e2, (r * b) % modulo)
         else
           go(b2, e2, r)
       }
 
-    val b0 = Math.floorMod(base0, mod)
+    val b0 = Math.floorMod(base0, modulo)
     go(b0, exp0, 1L)
   }
 

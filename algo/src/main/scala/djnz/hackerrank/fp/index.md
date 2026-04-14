@@ -108,7 +108,7 @@ Some solutions to [HackerRank](https://www.hackerrank.com) problems in chapter [
 |:-:|:-----------------------------------------------------------------------------------|:--------------------------------------------:|
 | 1 | [Minimum Multiple](https://www.hackerrank.com/challenges/minimum-multiple/problem) | [code](a5persistent/P1MinimumMultiple.scala) |
 | 2 | [Messy Medians](https://www.hackerrank.com/challenges/messy-medians/problem)       |  [code](a5persistent/P2MessyMedians.scala)   |
-| 3 | [Boleyn Salary](https://www.hackerrank.com/challenges/boleyn-salary/problem)       |        [code](a5persistent/P3.scala)         |
+| 3 | [Boleyn Salary](https://www.hackerrank.com/challenges/boleyn-salary/problem)       |  [code](a5persistent/P3BoleynSalary.scala)   |
 
 ### Ad Hoc
 
