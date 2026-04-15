@@ -124,7 +124,7 @@ chapter [Functional Programming](https://www.hackerrank.com/domains/fp)
 | 7  | [Common Divisors](https://www.hackerrank.com/challenges/common-divisors/problem)                                     |  [code](a6adhoc/P7CommonDivisors.scala)  |
 | 8  | [Mangoes](https://www.hackerrank.com/challenges/mango/problem)                                                       |     [code](a6adhoc/P8Mangoes.scala)      |
 | 9  | [Game of Kyles](https://www.hackerrank.com/challenges/game-of-kyles/problem)                                         |   [code](a6adhoc/P9GameOfKyles.scala)    |
-| 10 | [Subset Sum](https://www.hackerrank.com/challenges/subset-sum/problem)                                               |        [code](a6adhoc/P10.scala)         |
+| 10 | [Subset Sum](https://www.hackerrank.com/challenges/subset-sum/problem)                                               |    [code](a6adhoc/P10SubsetSum.scala)    |
 | 11 | [Elementary Watson](https://www.hackerrank.com/challenges/elementary-watson/problem)                                 |        [code](a6adhoc/P11.scala)         |
 | 12 | [Captain Prime](https://www.hackerrank.com/challenges/captain-prime/problem)                                         |        [code](a6adhoc/P12.scala)         |
 | 13 | [Puzzle and PC](https://www.hackerrank.com/challenges/puzzle-and-pc/problem)                                         |        [code](a6adhoc/P13.scala)         |
