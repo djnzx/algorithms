@@ -5,16 +5,18 @@ object P9GameOfKyles {
 
   import scala.io.StdIn.readLine
 
+  // "II.III..I" -> List(1,3,2)
   def mkGroups(s: String) = s.foldLeft(List(0)) {
     case (h :: t, 'I') => (h + 1) :: t
     case (gs, _)       => 0 :: gs
   }.filter(_ > 0)
 
-  // first non existent
+  // Sprague–Grundy theory implemented for an impartial combinatorial game
+
+  // minimum excluded nonnegative integer
   def mex(states: Set[Int]): Int =
     LazyList.from(0).find(i => !states.contains(i)).get
 
-  // solutions
   lazy val grundy: LazyList[Int] = {
 
     def compute(v: Int): Int = {
@@ -30,9 +32,7 @@ object P9GameOfKyles {
     LazyList.from(0).map(compute)
   }
 
-  def number(v: Int): Int = grundy(v)
-
-  def solve(gs: List[Int]) = gs.map(number).foldLeft(0)(_ ^ _)
+  def solve(gs: List[Int]) = gs.map(grundy).foldLeft(0)(_ ^ _)
 
   def main(args: Array[String]): Unit =
     (1 to readLine.toInt)
