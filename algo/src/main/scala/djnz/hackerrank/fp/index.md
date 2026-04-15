@@ -127,7 +127,7 @@ chapter [Functional Programming](https://www.hackerrank.com/domains/fp)
 | 10 | [Subset Sum](https://www.hackerrank.com/challenges/subset-sum/problem)                                               |    [code](a6adhoc/P10SubsetSum.scala)     |
 | 11 | [Elementary Watson](https://www.hackerrank.com/challenges/elementary-watson/problem)                                 |         [code](a6adhoc/P11.scala)         |
 | 12 | [Captain Prime](https://www.hackerrank.com/challenges/captain-prime/problem)                                         |         [code](a6adhoc/P12.scala)         |
-| 13 | [Puzzle and PC](https://www.hackerrank.com/challenges/puzzle-and-pc/problem)                                         |         [code](a6adhoc/P13.scala)         |
+| 13 | [Puzzle and PC](https://www.hackerrank.com/challenges/puzzle-and-pc/problem)                                         |   [code](a6adhoc/P13PuzzleAndPc.scala)    |
 | 14 | [\[Approximate Challenge\] Convolutional Coding](https://www.hackerrank.com/challenges/convolutional-coding/problem) | [code](a6adhoc/P14CaptainPrime2020.scala) |
 
 ### Parsers
