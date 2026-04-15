@@ -113,22 +113,22 @@ chapter [Functional Programming](https://www.hackerrank.com/domains/fp)
 
 ### 6. Ad Hoc
 
-|    | Problem                                                                                                              |                 Solution                 |
-|:--:|:---------------------------------------------------------------------------------------------------------------------|:----------------------------------------:|
-| 1  | [Jumping Bunnies](https://www.hackerrank.com/challenges/jumping-bunnies/problem)                                     |  [code](a6adhoc/P1JumpingBunnies.scala)  |
-| 2  | [Rotate String](https://www.hackerrank.com/challenges/rotate-string/problem)                                         |   [code](a6adhoc/P2RotateString.scala)   |
-| 3  | [Remove Duplicates](https://www.hackerrank.com/challenges/remove-duplicates/problem)                                 | [code](a6adhoc/P3RemoveDuplicates.scala) |
-| 4  | [Huge GCD](https://www.hackerrank.com/challenges/huge-gcd-fp/problem)                                                |     [code](a6adhoc/P4HugeGCD.scala)      |
-| 5  | [Kundu And Bubble Wrap](https://www.hackerrank.com/challenges/kundu-and-bubble-wrap/problem)                         |    [code](a6adhoc/P5BubbleWrap.scala)    |
-| 6  | [Missing Numbers (FP)](https://www.hackerrank.com/challenges/missing-numbers-fp/problem)                             |  [code](a6adhoc/P6MissingNumbers.scala)  |
-| 7  | [Common Divisors](https://www.hackerrank.com/challenges/common-divisors/problem)                                     |  [code](a6adhoc/P7CommonDivisors.scala)  |
-| 8  | [Mangoes](https://www.hackerrank.com/challenges/mango/problem)                                                       |     [code](a6adhoc/P8Mangoes.scala)      |
-| 9  | [Game of Kyles](https://www.hackerrank.com/challenges/game-of-kyles/problem)                                         |   [code](a6adhoc/P9GameOfKyles.scala)    |
-| 10 | [Subset Sum](https://www.hackerrank.com/challenges/subset-sum/problem)                                               |    [code](a6adhoc/P10SubsetSum.scala)    |
-| 11 | [Elementary Watson](https://www.hackerrank.com/challenges/elementary-watson/problem)                                 |        [code](a6adhoc/P11.scala)         |
-| 12 | [Captain Prime](https://www.hackerrank.com/challenges/captain-prime/problem)                                         |        [code](a6adhoc/P12.scala)         |
-| 13 | [Puzzle and PC](https://www.hackerrank.com/challenges/puzzle-and-pc/problem)                                         |        [code](a6adhoc/P13.scala)         |
-| 14 | [\[Approximate Challenge\] Convolutional Coding](https://www.hackerrank.com/challenges/convolutional-coding/problem) |        [code](a6adhoc/P14.scala)         |
+|    | Problem                                                                                                              |                 Solution                  |
+|:--:|:---------------------------------------------------------------------------------------------------------------------|:-----------------------------------------:|
+| 1  | [Jumping Bunnies](https://www.hackerrank.com/challenges/jumping-bunnies/problem)                                     |  [code](a6adhoc/P1JumpingBunnies.scala)   |
+| 2  | [Rotate String](https://www.hackerrank.com/challenges/rotate-string/problem)                                         |   [code](a6adhoc/P2RotateString.scala)    |
+| 3  | [Remove Duplicates](https://www.hackerrank.com/challenges/remove-duplicates/problem)                                 | [code](a6adhoc/P3RemoveDuplicates.scala)  |
+| 4  | [Huge GCD](https://www.hackerrank.com/challenges/huge-gcd-fp/problem)                                                |      [code](a6adhoc/P4HugeGCD.scala)      |
+| 5  | [Kundu And Bubble Wrap](https://www.hackerrank.com/challenges/kundu-and-bubble-wrap/problem)                         |    [code](a6adhoc/P5BubbleWrap.scala)     |
+| 6  | [Missing Numbers (FP)](https://www.hackerrank.com/challenges/missing-numbers-fp/problem)                             |  [code](a6adhoc/P6MissingNumbers.scala)   |
+| 7  | [Common Divisors](https://www.hackerrank.com/challenges/common-divisors/problem)                                     |  [code](a6adhoc/P7CommonDivisors.scala)   |
+| 8  | [Mangoes](https://www.hackerrank.com/challenges/mango/problem)                                                       |      [code](a6adhoc/P8Mangoes.scala)      |
+| 9  | [Game of Kyles](https://www.hackerrank.com/challenges/game-of-kyles/problem)                                         |    [code](a6adhoc/P9GameOfKyles.scala)    |
+| 10 | [Subset Sum](https://www.hackerrank.com/challenges/subset-sum/problem)                                               |    [code](a6adhoc/P10SubsetSum.scala)     |
+| 11 | [Elementary Watson](https://www.hackerrank.com/challenges/elementary-watson/problem)                                 |         [code](a6adhoc/P11.scala)         |
+| 12 | [Captain Prime](https://www.hackerrank.com/challenges/captain-prime/problem)                                         |         [code](a6adhoc/P12.scala)         |
+| 13 | [Puzzle and PC](https://www.hackerrank.com/challenges/puzzle-and-pc/problem)                                         |         [code](a6adhoc/P13.scala)         |
+| 14 | [\[Approximate Challenge\] Convolutional Coding](https://www.hackerrank.com/challenges/convolutional-coding/problem) | [code](a6adhoc/P14CaptainPrime2020.scala) |
 
 ### Parsers
 
