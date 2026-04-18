@@ -1,7 +1,7 @@
 package djnz.hackerrank.fp.a6adhoc.p11
 
 import cats.data.NonEmptyList
-import cats.implicits.catsSyntaxOptionId
+import cats.implicits.{catsSyntaxEitherId, catsSyntaxOptionId}
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
@@ -9,29 +9,21 @@ import org.scalatest.matchers.should.Matchers
 // pure Horn clause logic with explicit disequality constraints
 object P11 {
 
-  def main(args: Array[String]): Unit = {
+  def main(args: Array[String]): Unit =
     println("coming soon...")
-  }
 
 }
 
 object Model {
 
+  import Parsers.Parser
+  import Parsers.ParserImpl
+  import Parsers.ParserImpl._
+
   case class Name(value: String) extends AnyVal
-
-  sealed trait Op
-
-  case object QuitCommand extends Op
-
-  sealed trait NoOp extends Op
-  case object NoOpEmptyLine extends NoOp
-  case class NoOpComment(value: String) extends NoOp
-
-  sealed trait Rule extends Op
-  case class RuleFact(st: SimpleTerm) extends Rule
-  case class RuleComplex(from: List[ComplexTerm], to: SimpleTerm) extends Rule
-
-  case class Query(terms: List[ComplexTerm]) extends Op
+  object Name {
+    val parser: Parser[Name] = regex("[a-z][a-zA-Z0-9\\-]*".r).map(Name.apply)
+  }
 
   sealed trait ComplexTerm
   case class EqualityAssertion(lt: SimpleTerm, rt: SimpleTerm) extends ComplexTerm
@@ -42,16 +34,56 @@ object Model {
   case class StVariable(name: Name) extends SimpleTerm
   case class StRelationTerm(name: Name, terms: NonEmptyList[SimpleTerm]) extends SimpleTerm
 
-}
+  sealed trait Op
+  object Op {
 
-object ParsersInst {
-  import Parsers.Parser
-  import Parsers.ParserImpl._
-  val identifier: Parser[String] = regex("[a-z][a-zA-Z0-9\\-]*".r)
+    def parser: Parser[Op] =
+      // 1. quit
+      // 2. noop (comment, nl)
+      // 3. rule (Fact(Simple), Complex(Complex, Simple))
+      // 4. query (List[ComplexTerm])
+      ???
+  }
+
+  case object QuitCommand extends Op {
+    def parser: Parser[QuitCommand.type] = ???
+  }
+
+  sealed trait NoOp extends Op
+  case object NoOpEmptyLine extends NoOp
+  case class NoOpComment(value: String) extends NoOp
+  object NoOp {
+    def parser: Parser[NoOp] = ???
+  }
+
+  sealed trait Rule extends Op
+  case class RuleFact(st: SimpleTerm) extends Rule
+  case class RuleComplex(from: List[ComplexTerm], to: SimpleTerm) extends Rule
+  object Rule {
+    def parser: Parser[Rule] = ???
+  }
+
+  case class Query(terms: List[ComplexTerm]) extends Op
+  object Query {
+    def parser: Parser[Query] = ???
+  }
+
+  implicit class ParserOps[A](pa: Parser[A]) {
+    def run(raw: String) = ParserImpl.run(pa)(raw)
+  }
 
 }
 
 class P11Spec extends AnyFunSuite with Matchers {
+
+  import Model._
+
+  test("name") {
+    Name.parser.run("a") shouldBe Name("a").asRight
+    Name.parser.run("a1") shouldBe Name("a1").asRight
+    Name.parser.run("a-b") shouldBe Name("a-b").asRight
+    Name.parser.run("a-b-c") shouldBe Name("a-b-c").asRight
+  }
 
   case class Assignment(variable: String, value: String)
   object Assignment {
