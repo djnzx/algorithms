@@ -1,7 +1,6 @@
 package djnz.hackerrank.fp.a6adhoc.p11
 
-import cats.data.NonEmptyList
-import cats.implicits.{catsSyntaxEitherId, catsSyntaxOptionId}
+import cats.implicits._
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
@@ -19,10 +18,20 @@ object Model {
   import Parsers.Parser
   import Parsers.ParserImpl
   import Parsers.ParserImpl._
+  import cats.data._
+
+  // Non-Empty List, comma-separated
+  def nelcs[A](pa: Parser[A]): Parser[List[A]] =
+    (pa ** (string(", ") *> pa).many.opt).map {
+      case (a, None)     => List(a)
+      case (a, Some(as)) => a :: as
+    }
 
   case class Name(value: String) extends AnyVal
   object Name {
-    val parser: Parser[Name] = regex("[a-z][a-zA-Z0-9\\-]*".r).map(Name.apply)
+    // [a-z][a-zA-Z0-9\\-]*
+    val parser: Parser[Name] =
+      regex("[a-z][a-zA-Z0-9\\-]*".r).map(Name.apply)
   }
 
   sealed trait ComplexTerm
@@ -31,8 +40,26 @@ object Model {
 
   sealed trait SimpleTerm extends ComplexTerm
   case class StName(name: Name) extends SimpleTerm
+  object StName {
+    def parser: Parser[StName] = Name.parser.map(StName.apply)
+  }
   case class StVariable(name: Name) extends SimpleTerm
+  object StVariable {
+    // <variable> ::= "#" <name>
+    def parser: Parser[StVariable] =
+      (char('#') *> Name.parser).map(StVariable.apply)
+  }
   case class StRelationTerm(name: Name, terms: NonEmptyList[SimpleTerm]) extends SimpleTerm
+  object StRelationTerm {
+    // <relational-term> ::= "[" <name> ": " <simple-term> <simple-terms> "]"
+    def parser: Parser[StRelationTerm] =
+      ((Name.parser <* string(": ")) ** nelcs(SimpleTerm.parser))
+        .surround(char('['), char(']'))
+        .map { case (name, sts) => StRelationTerm(name, NonEmptyList.fromListUnsafe(sts)) }
+  }
+  object SimpleTerm {
+    def parser: Parser[SimpleTerm] = StName.parser | StVariable.parser | StRelationTerm.parser
+  }
 
   sealed trait Op
   object Op {
@@ -68,8 +95,12 @@ object Model {
     def parser: Parser[Query] = ???
   }
 
-  implicit class ParserOps[A](pa: Parser[A]) {
+  implicit class ParserOps2[A](pa: Parser[A]) {
     def run(raw: String) = ParserImpl.run(pa)(raw)
+  }
+
+  implicit class IdentifierOps(s: String) {
+    def id = Name(s)
   }
 
 }
@@ -77,6 +108,9 @@ object Model {
 class P11Spec extends AnyFunSuite with Matchers {
 
   import Model._
+  import Parsers.Parser
+  import Parsers.ParserImpl
+  import Parsers.ParserImpl._
 
   test("name") {
     Name.parser.run("a") shouldBe Name("a").asRight
@@ -85,22 +119,40 @@ class P11Spec extends AnyFunSuite with Matchers {
     Name.parser.run("a-b-c") shouldBe Name("a-b-c").asRight
   }
 
-  case class Assignment(variable: String, value: String)
-  object Assignment {
-    def parse(raw: String): Option[Assignment] = {
-      import Parsers.ParserImpl
-      import Parsers.ParserImpl._
-
-      val parser = ((identifier <* char('=')) ** number)
-        .map { case (a, b) => Assignment(a, b.toString) }
-      ParserImpl.run(parser.opt)(raw).toOption.flatten
-    }
+  test("stName") {
+    StName.parser.run("a") shouldBe StName("a".id).asRight
+    StVariable.parser.run("#a") shouldBe StVariable("a".id).asRight
   }
 
-  test("1") {
-    Assignment.parse("a=1") shouldBe Assignment("a", "1").some
-    Assignment.parse("a_123b=345") shouldBe Assignment("a_123b", "345").some
-    Assignment.parse("a123=") shouldBe None
+  test("many") {
+    val p = ParserImpl.char('z').many
+    val p2 = p.run("zzz")
+    pprint.log(p2)
   }
+
+  test("nelcs") {
+    val p2 = nelcs(char('z')).run("z, z, z")
+    pprint.log(p2)
+    val p3 = nelcs(Name.parser).run("z")
+    pprint.log(p3)
+  }
+
+  test("SimpleTerm") {
+    Seq(
+      "a-b",
+      "#a",
+      "[a: b]",
+      "[a: #b]",
+      "[a: #b, c]",
+      "[a: #b, c, [d: e, #f]]",
+    )
+      .map(SimpleTerm.parser.run)
+      .foreach {
+        case Right(x) => pprint.log(x)
+        case Left(x)  => pprint.err.log(x)
+      }
+  }
+
+
 
 }

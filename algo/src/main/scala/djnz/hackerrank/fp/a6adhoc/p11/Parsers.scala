@@ -148,6 +148,7 @@ object Parsers {
       def <*(p2: => P[Any]): P[A] = self.skipR(p, p2)
       def opt: P[Option[A]] = self.opt(p)
       def nonOpt[AA](implicit ev: A <:< Option[AA]): P[AA] = self.nonOpt(p.map(ev))
+      def surround(start: P[Any], stop: P[Any]): P[A] = self.surround(start, stop)(p)
     }
   }
 
