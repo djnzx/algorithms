@@ -1,5 +1,6 @@
 package djnz.hackerrank.fp.a6adhoc.p11
 
+import cats.Functor
 import cats.implicits._
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
@@ -77,10 +78,20 @@ object Model {
   }
 
   sealed trait NoOp extends Op
-  case object NoOpEmptyLine extends NoOp
-  case class NoOpComment(value: String) extends NoOp
+
+  case object NoOpEmptyLine extends NoOp {
+    def parser: Parser[NoOpEmptyLine.type] =
+      char('\n').as(NoOpEmptyLine)
+  }
+
+  case class NoOpComment(value: String) extends NoOp {}
+  object NoOpComment {
+    def parser: Parser[NoOpComment] =
+      char('%') *> regex("[^\n]*".r).map(NoOpComment.apply)
+  }
   object NoOp {
-    def parser: Parser[NoOp] = ???
+    def parser: Parser[NoOp] =
+      NoOpEmptyLine.parser | NoOpComment.parser
   }
 
   sealed trait Rule extends Op
@@ -153,6 +164,26 @@ class P11Spec extends AnyFunSuite with Matchers {
       }
   }
 
+  test("noop-emptyline") {
+    val x = NoOpEmptyLine.parser.run("\n")
+    pprint.log(x)
+  }
 
+  test("noop-comment") {
+    val x = NoOpComment.parser.run("% todo")
+    pprint.log(x)
+  }
+
+  test("noop") {
+    Seq(
+      "\n",
+      "% blah"
+    )
+      .map(NoOp.parser.run)
+      .foreach {
+        case Right(x) => pprint.log(x)
+        case Left(x)  => pprint.err.log(x)
+      }
+  }
 
 }

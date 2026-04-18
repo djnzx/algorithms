@@ -138,6 +138,7 @@ object Parsers {
     case class ParserOps[A](p: P[A]) {
       def |[B >: A](p2: => P[B]): P[B] = self.or(p, p2)
       def map[B](f: A => B): P[B] = self.map(p)(f)
+      def as[B](b: B): P[B] = self.succeed(b)
       def many: P[List[A]] = self.many(p)
       def slice: P[String] = self.slice(p)
       def product[B](pb: => P[B]): P[(A, B)] = self.product(p, pb)
