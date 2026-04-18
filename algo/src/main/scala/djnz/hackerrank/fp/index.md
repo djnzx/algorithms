@@ -129,12 +129,12 @@ Some solutions to [HackerRank](https://www.hackerrank.com) problems in chapter [
 | 13 | [Puzzle and PC](https://www.hackerrank.com/challenges/puzzle-and-pc/problem)                                         | [code](a6adhoc/P.scala) |
 | 14 | [\[Approximate Challenge\] Convolutional Coding](https://www.hackerrank.com/challenges/convolutional-coding/problem) | [code](a6adhoc/P.scala) |
 
-### Parsers
+### 7. Parsers
 
-|   | Problem                                                                                                                |         Solution          |
-|:-:|:-----------------------------------------------------------------------------------------------------------------------|:-------------------------:|
-| 1 | [Expressions V2](https://www.hackerrank.com/challenges/expressions-v2/problem)                                         | [code](a7parsers/P.scala) |
-| 2 | [Simplify the Algebraic Expressions](https://www.hackerrank.com/challenges/simplify-the-algebraic-expressions/problem) | [code](a7parsers/P.scala) |
+|   | Problem                                                                                                                |          Solution          |
+|:-:|:-----------------------------------------------------------------------------------------------------------------------|:--------------------------:|
+| 1 | [Expressions V2](https://www.hackerrank.com/challenges/expressions-v2/problem)                                         | [code](a7parsers/P1.scala) |
+| 2 | [Simplify the Algebraic Expressions](https://www.hackerrank.com/challenges/simplify-the-algebraic-expressions/problem) | [code](a7parsers/P2.scala) |
 
 ### Interpreter and Compilers
 
