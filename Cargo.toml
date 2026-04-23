@@ -4,7 +4,15 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+anyhow = "1.0.100"
+base64 = "0.22.1"
 colored = "2.1.0"
 rand = "^0.8.5"
+reqwest = { version = "0.12.24", default-features = false, features = ["blocking", "json", "rustls-tls"] }
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0.145"
+sha2 = "0.10.9"
+url = "2.5.7"
+webbrowser = "1.0.6"
 time = "0.3.36"
 regex = "1.11.0"
