@@ -1,6 +1,7 @@
 package djnz.hackerrank.fp.a6adhoc.p11
 
-object Parsers {
+// not related to the task
+object ParsersCore {
 
   trait ParsersBase[P[+_]] {
     import scala.util.matching.Regex
@@ -30,6 +31,7 @@ object Parsers {
       else ""
 
     def columnCaret: String = (" " * (col - 1)) + "^"
+    override def toString: String = s"$line.$col"
   }
 
   case class ParseError(stack: List[(Location, String)]) {
@@ -38,7 +40,7 @@ object Parsers {
     def latestLoc: Option[Location] = latest map { case (l, _) => l }
     def latest: Option[(Location, String)] = stack.lastOption
 
-    override def toString =
+    override def toString: String =
       if (stack.isEmpty) "no errors"
       else {
         val collapsed = collapseStack(stack)
@@ -46,7 +48,9 @@ object Parsers {
           collapsed.lastOption.map("\n\n" + _._1.currentLine).getOrElse("") +
             collapsed.lastOption.map("\n" + _._1.columnCaret).getOrElse("")
 
-        collapsed.map { case (loc, msg) => loc.line.toString + "." + loc.col + " " + msg }.mkString("\n") +
+        collapsed
+          .map { case (loc, msg) => s"$loc $msg" }
+          .mkString("\n") +
           context
       }
 
@@ -57,7 +61,6 @@ object Parsers {
         .toList
         .sortBy(_._1.offset)
 
-    def formatLoc(l: Location): String = s"${l.line}.${l.col}"
   }
 
   sealed trait Result[+A] {
@@ -138,7 +141,7 @@ object Parsers {
     case class ParserOps[A](p: P[A]) {
       def |[B >: A](p2: => P[B]): P[B] = self.or(p, p2)
       def map[B](f: A => B): P[B] = self.map(p)(f)
-      def as[B](b: B): P[B] = self.succeed(b)
+      def as[B](b: B): P[B] = self.map(p)(_ => b)
       def many: P[List[A]] = self.many(p)
       def slice: P[String] = self.slice(p)
       def product[B](pb: => P[B]): P[(A, B)] = self.product(p, pb)
@@ -150,6 +153,7 @@ object Parsers {
       def opt: P[Option[A]] = self.opt(p)
       def nonOpt[AA](implicit ev: A <:< Option[AA]): P[AA] = self.nonOpt(p.map(ev))
       def surround(start: P[Any], stop: P[Any]): P[A] = self.surround(start, stop)(p)
+      def attempt: P[A] = self.attempt(p)
     }
   }
 
@@ -203,8 +207,6 @@ object Parsers {
         case Some(m) => Success(m, m.length)
         case None    => Failure(s.loc.toError(s"regex $r"), isCommitted = false)
       }
-
-    def scope[A](msg: String)(p: Parser[A]): Parser[A] = s => p(s).mapError(_.push(s.loc, msg))
 
     def label[A](msg: String)(p: Parser[A]): Parser[A] = s => p(s).mapError(_.label(msg))
 

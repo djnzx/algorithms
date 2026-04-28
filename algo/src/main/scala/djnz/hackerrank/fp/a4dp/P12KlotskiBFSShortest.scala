@@ -141,11 +141,11 @@ object P12KlotskiBFSShortest {
       }
     }
   }
-  var cnt =0
+  var cnt = 0
   def solve(board: Board, c: String, target: Loc): Option[List[Move]] = {
 
     def go(visited: Map[Board, Int], process: State): Option[List[Move]] = {
-      cnt+=1
+      cnt += 1
       process.minHead match {
         case None                                        => None
         case Some((b, path)) if b.hasFigureAt(c, target) => Some(path)

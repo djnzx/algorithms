@@ -15,10 +15,13 @@ object P6MissingNumbersV2 {
     val m1: Map[Int, Int] = toMap(a1)
     val m2: Map[Int, Int] = toMap(a2)
 
-    m2.flatMap(t => t match { case (n, c) =>
-        val delta = c-m1(n)
-        if (delta > 0) Some(n) else None
-    }).toVector.sorted.toList
+    m2.flatMap(t =>
+      t match {
+        case (n, c) =>
+          val delta = c - m1(n)
+          if (delta > 0) Some(n) else None
+      }
+    ).toVector.sorted.toList
   }
 
   def body(readLine: => String): Unit = {
@@ -31,19 +34,17 @@ object P6MissingNumbersV2 {
     println(r.mkString(" "))
   }
 
-  def main(p: Array[String]): Unit = {
+  def main(p: Array[String]): Unit =
     //  body { scala.io.StdIn.readLine }
     main_file(p)
-  }
 
   val fname = "src/main/scala/hackerrankfp/d200425_04/missing.txt"
-  def main_file(p: Array[String]): Unit = {
+  def main_file(p: Array[String]): Unit =
     scala.util.Using(
       scala.io.Source.fromFile(new java.io.File(fname))
     ) { src =>
       val it = src.getLines().map(_.trim)
-      body { it.next() }
+      body(it.next())
     }
-  }
 
 }
