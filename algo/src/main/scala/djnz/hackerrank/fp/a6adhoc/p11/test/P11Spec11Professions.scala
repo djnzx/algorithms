@@ -5,7 +5,7 @@ import djnz.hackerrank.fp.a6adhoc.p11.P11ElementaryWatson.QueryCompiler
 
 class P11Spec11Professions extends P11SpecSupport {
 
-  private val professionsProgram = ra.file("input11.txt")
+  private val professionsProgram = ra.file("in/input11.txt")
 
   private val professionsQuery =
     "(<#Smith /= smith>, <#Baker /= baker>, <#Carpenter /= carpenter>, <#Tailor /= tailor>, <#Smiths-Son /= smith>, <#Bakers-Son /= baker>, <#Carpenters-Son /= carpenter>, <#Tailors-Son /= tailor>, <#Smith /= #Smiths-Son>, <#Baker /= #Bakers-Son>, <#Carpenter /= #Carpenters-Son>, <#Tailor /= #Tailors-Son>, <#Baker = #Carpenters-Son>, <#Smiths-Son = baker>, [has: smith, [ps: #Smith, #Baker, #Carpenter, #Tailor]], [has: baker, [ps: #Smith, #Baker, #Carpenter, #Tailor]], [has: carpenter, [ps: #Smith, #Baker, #Carpenter, #Tailor]], [has: tailor, [ps: #Smith, #Baker, #Carpenter, #Tailor]], [has: smith, [ps: #Smiths-Son, #Bakers-Son, #Carpenters-Son, #Tailors-Son]], [has: baker, [ps: #Smiths-Son, #Bakers-Son, #Carpenters-Son, #Tailors-Son]], [has: carpenter, [ps: #Smiths-Son, #Bakers-Son, #Carpenters-Son, #Tailors-Son]], [has: tailor, [ps: #Smiths-Son, #Bakers-Son, #Carpenters-Son, #Tailors-Son]])?"

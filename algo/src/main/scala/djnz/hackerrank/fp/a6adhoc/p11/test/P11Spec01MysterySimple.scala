@@ -8,7 +8,7 @@ import djnz.hackerrank.fp.a6adhoc.p11.SolutionRepresentation._
 
 class P11Spec01MysterySimple extends P11SpecSupport {
 
-  private val mysteryProgram = ra.file("input01.txt")
+  private val mysteryProgram = ra.file("in/input01.txt")
 
   test("mystery simple suspect queries") {
     val knowledge = buildKnowledge(mysteryProgram)

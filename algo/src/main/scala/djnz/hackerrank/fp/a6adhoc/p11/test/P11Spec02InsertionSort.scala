@@ -11,7 +11,7 @@ class P11Spec02InsertionSort extends P11SpecSupport {
   private def cons(head: SimpleTerm, tail: SimpleTerm): StRelation =
     StRelation("cons".id, NonEmptyList.of(head, tail))
 
-  private val insertionSortProgram = ra.file("input02.txt")
+  private val insertionSortProgram = ra.file("in/input02.txt")
 
   test("insertion sort sample queries") {
     val knowledge = buildKnowledge(insertionSortProgram)
