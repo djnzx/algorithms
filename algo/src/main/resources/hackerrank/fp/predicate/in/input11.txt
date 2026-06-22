@@ -1,0 +1,11 @@
+% WatLog test case: Professions
+
+[ps: #a, #b, #c, #d].
+[has: #a, [ps: #a, #b, #c, #d]].
+[has: #b, [ps: #a, #b, #c, #d]].
+[has: #c, [ps: #a, #b, #c, #d]].
+[has: #d, [ps: #a, #b, #c, #d]].
+
+(<#Smith /= smith>, <#Baker /= baker>, <#Carpenter /= carpenter>, <#Tailor /= tailor>, <#Smiths-Son /= smith>, <#Bakers-Son /= baker>, <#Carpenters-Son /= carpenter>, <#Tailors-Son /= tailor>, <#Smith /= #Smiths-Son>, <#Baker /= #Bakers-Son>, <#Carpenter /= #Carpenters-Son>, <#Tailor /= #Tailors-Son>, <#Baker = #Carpenters-Son>, <#Smiths-Son = baker>, [has: smith, [ps: #Smith, #Baker, #Carpenter, #Tailor]], [has: baker, [ps: #Smith, #Baker, #Carpenter, #Tailor]], [has: carpenter, [ps: #Smith, #Baker, #Carpenter, #Tailor]], [has: tailor, [ps: #Smith, #Baker, #Carpenter, #Tailor]], [has: smith, [ps: #Smiths-Son, #Bakers-Son, #Carpenters-Son, #Tailors-Son]], [has: baker, [ps: #Smiths-Son, #Bakers-Son, #Carpenters-Son, #Tailors-Son]], [has: carpenter, [ps: #Smiths-Son, #Bakers-Son, #Carpenters-Son, #Tailors-Son]], [has: tailor, [ps: #Smiths-Son, #Bakers-Son, #Carpenters-Son, #Tailors-Son]])?
+
+quit!

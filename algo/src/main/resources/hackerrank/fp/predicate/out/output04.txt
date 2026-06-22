@@ -1,0 +1,16 @@
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+SAT:
+=====
+#X := [street: [h: norwegian, fox, kool, water, yellow], [h: ukrainian, horse, chesterfield, tea, blue], [h: english, snake, winston, milk, red], [h: japanese, zebra, kent, coffee, green], [h: spanish, dog, lucky, juice, white]]
+Ready.
+Bye.

@@ -1,0 +1,5 @@
+% WatLog test case: Vacuous Truth
+
+()?
+
+quit!

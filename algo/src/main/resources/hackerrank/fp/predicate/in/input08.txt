@@ -1,0 +1,8 @@
+% WatLog test case: Multiple Derivations
+
+[p: a].
+[p: b].
+[p: a].
+([p: #x])?
+
+quit!

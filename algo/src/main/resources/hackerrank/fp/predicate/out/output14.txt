@@ -1,0 +1,58 @@
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+SAT:
+=====
+#ans := [val: test]
+Ready.
+SAT:
+=====
+#ans := [val: I]
+Ready.
+SAT:
+=====
+#ans := [val: I]
+Ready.
+SAT:
+=====
+#ans := [val: K]
+Ready.
+SAT:
+=====
+#ans := [val: ZERO]
+Ready.
+SAT:
+=====
+#ans := [val: [SUCC: [val: ZERO]]]
+Ready.
+SAT:
+=====
+#ans := [val: [SUCC: [val: [SUCC: [val: [SUCC: [val: [SUCC: [val: [SUCC: [val: [SUCC: [val: ZERO]]]]]]]]]]]]]
+Ready.
+SAT:
+=====
+#ans := [val: [SUCC: [val: [SUCC: [val: [SUCC: [val: [SUCC: [val: [SUCC: [val: [SUCC: [val: [SUCC: [val: [SUCC: [val: [SUCC: [val: ZERO]]]]]]]]]]]]]]]]]]]
+Ready.
+SAT:
+=====
+#ans := [val: [SUCC: [val: ZERO]]]
+Ready.
+SAT:
+=====
+#ans := [val: [SUCC: [val: ZERO]]]
+Ready.
+SAT:
+=====
+#ans := [val: [subst-2: [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]], [app: [app: [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [app: [val: S], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]]], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [val: S], [app: [val: K], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]]]]]], [app: [val: K], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]]]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [app: [app: [val: K], [app: [app: [val: S], [val: I]], [val: I]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [app: [val: S], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]]], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [val: S], [app: [val: K], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]]]]]], [app: [val: K], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]]]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [app: [val: K], [val: I]]]]]]]]], [app: [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [val: I]], [val: I]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [app: [val: S], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]]], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [val: S], [app: [val: K], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]]]]]], [app: [val: K], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]]]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [app: [val: K], [val: I]]]]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]
+Ready.
+SAT:
+=====
+#ans := [val: [subst-2: [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]], [app: [app: [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [app: [val: S], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]]], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [val: S], [app: [val: K], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]]]]]], [app: [val: K], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]]]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [app: [app: [val: K], [app: [app: [val: S], [val: I]], [val: I]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [app: [val: S], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]]], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [val: S], [app: [val: K], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]]]]]], [app: [val: K], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]]]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [app: [val: K], [val: I]]]]]]]]], [app: [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [val: I]], [val: I]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [app: [val: S], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]]], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [val: S], [app: [val: K], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]]]]]], [app: [val: K], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]]]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [app: [val: K], [val: I]]]]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]]
+Ready.
+Bye.

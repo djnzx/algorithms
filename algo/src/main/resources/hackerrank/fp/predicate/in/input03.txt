@@ -1,0 +1,28 @@
+% WatLog test case: Ancestry
+
+[father-of: L, P].
+[mother-of: V, P].
+[father-of: A, L].
+[mother-of: E, L].
+[father-of: J, A].
+[father-of: N, V].
+[mother-of: I, V].
+[father-of: N, D].
+[mother-of: I, D].
+[father-of: A, K].
+[mother-of: E, K].
+[mother-of: K, M].
+
+{([father-of: #x, #y]) => [parent-of: #x, #y]}.
+{([mother-of: #x, #y]) => [parent-of: #x, #y]}.
+{([parent-of: #x, #y]) => [ancestor-of: #x, #y]}.
+{([parent-of: #x, #y], [ancestor-of: #y, #z]) => [ancestor-of: #x, #z]}.
+{([parent-of: #z, #x], [parent-of: #z, #y], <#x /= #y>) => [sibling-of: #x, #y]}.
+{([parent-of: #z, #x], [parent-of: #t, #y], [sibling-of: #z, #t]) => [cousin-of: #x, #y]}.
+
+([ancestor-of: #X, P])?
+([sibling-of: P, P])?
+([sibling-of: #A, #B])?
+([cousin-of: #A, #B])?
+
+quit!

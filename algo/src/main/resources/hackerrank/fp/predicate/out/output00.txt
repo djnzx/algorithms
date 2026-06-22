@@ -1,0 +1,31 @@
+Ok.
+Ok.
+SAT
+Ready.
+SAT:
+=====
+#a := [r: a]
+Ready.
+UNSAT
+Ready.
+SAT:
+=====
+#a := a
+Ready.
+SAT:
+=====
+#a := [r: a]
+#b := a
+Ready.
+UNSAT
+Ready.
+UNSAT
+Ready.
+SAT:
+=====
+#a := [r: a]
+#b := a
+Ready.
+UNSAT
+Ready.
+Bye.

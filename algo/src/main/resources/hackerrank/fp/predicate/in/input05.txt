@@ -1,0 +1,75 @@
+% WatLog test case: Cabbage, Goat & Wolf
+
+[append: nil, #z, #z].
+{([append: #t, #x, #z]) => [append: [cons: #h, #t], #x, [cons: #h, #z]]}.
+
+[concat: nil, nil].
+{([concat: #t, #x], [append: #h, #x, #z]) => [concat: [cons: #h, #t], #z]}.
+
+[reverse-acc: nil, #acc, #acc].
+{([reverse-acc: #t, [cons: #h, #acc], #z]) => [reverse-acc: [cons: #h, #t], #acc, #z]}.
+{([reverse-acc: #x, nil, #z]) => [reverse: #x, #z]}.
+
+[loc: src].
+[loc: tgt].
+
+[other: src, tgt].
+[other: tgt, src].
+
+{([loc: #man], [loc: #cabbage], [loc: #goat], [loc: #wolf]) => [state: #man, #cabbage, #goat, #wolf]}.
+
+[final: [state: tgt, tgt, tgt, tgt]].
+
+{(<#x /= tgt>) => [non-final: [state: #x, #y, #z, #t]]}.
+{(<#x = tgt>, <#y /= tgt>) => [non-final: [state: #x, #y, #z, #t]]}.
+{(<#x = tgt>, <#y = tgt>, <#z /= tgt>) => [non-final: [state: #x, #y, #z, #t]]}.
+{(<#x = tgt>, <#y = tgt>, <#z = tgt>, <#t /= tgt>) => [non-final: [state: #x, #y, #z, #t]]}.
+
+{(<#goat /= #man>, <#goat = #cabbage>) => [invalid: [state: #man, #cabbage, #goat, #wolf]]}.
+{(<#goat /= #man>, <#goat /= #cabbage>, <#goat = #wolf>) => [invalid: [state: #man, #cabbage, #goat, #wolf]]}.
+
+{(<#goat = #man>) => [valid: [state: #man, #cabbage, #goat, #wolf]]}.
+{(<#goat /= #man>, <#goat /= #cabbage>, <#goat /= #wolf>) => [valid: [state: #man, #cabbage, #goat, #wolf]]}.
+
+{([other: #man, #other], [valid: [state: #other, #cabbage, #goat, #wolf]]) => [move-man: [state: #man, #cabbage, #goat, #wolf], [cons: [state: #other, #cabbage, #goat, #wolf], nil]]}.
+{([other: #man, #other], [invalid: [state: #other, #cabbage, #goat, #wolf]]) => [move-man: [state: #man, #cabbage, #goat, #wolf], nil]}.
+
+{(<#man = #cabbage>, [other: #man, #other], [valid: [state: #other, #other, #goat, #wolf]]) => [move-cabbage: [state: #man, #cabbage, #goat, #wolf], [cons: [state: #other, #other, #goat, #wolf], nil]]}.
+{(<#man = #cabbage>, [other: #man, #other], [invalid: [state: #other, #other, #goat, #wolf]]) => [move-cabbage: [state: #man, #cabbage, #goat, #wolf], nil]}.
+{(<#man /= #cabbage>) => [move-cabbage: [state: #man, #cabbage, #goat, #wolf], nil]}.
+
+{(<#man = #goat>, [other: #man, #other], [valid: [state: #other, #cabbage, #other, #wolf]]) => [move-goat: [state: #man, #cabbage, #goat, #wolf], [cons: [state: #other, #cabbage, #other, #wolf], nil]]}.
+{(<#man = #goat>, [other: #man, #other], [invalid: [state: #other, #cabbage, #other, #wolf]]) => [move-goat: [state: #man, #cabbage, #goat, #wolf], nil]}.
+{(<#man /= #goat>) => [move-goat: [state: #man, #cabbage, #goat, #wolf], nil]}.
+
+{(<#man = #wolf>, [other: #man, #other], [valid: [state: #other, #cabbage, #goat, #other]]) => [move-wolf: [state: #man, #cabbage, #goat, #wolf], [cons: [state: #other, #cabbage, #goat, #other], nil]]}.
+{(<#man = #wolf>, [other: #man, #other], [invalid: [state: #other, #cabbage, #goat, #other]]) => [move-wolf: [state: #man, #cabbage, #goat, #wolf], nil]}.
+{(<#man /= #wolf>) => [move-wolf: [state: #man, #cabbage, #goat, #wolf], nil]}.
+
+{([move-man: #state, #mstate], [move-cabbage: #state, #cstate], [move-goat: #state, #gstate], [move-wolf: #state, #wstate], [concat: [cons: #mstate, [cons: #cstate, [cons: #gstate, [cons: #wstate, nil]]]], #z]) => [moves: #state, #z]}.
+
+[map-cons: nil, #x, nil].
+{([map-cons: #t, #x, #z]) => [map-cons: [cons: #h, #t], #x, [cons: [cons: #h, #x], #z]]}.
+
+[map-moves: nil, nil].
+{([map-moves: #t, #z], [moves: #state, #states], [map-cons: #states, [cons: #state, #hist], #x], [append: #x, #z, #res]) => [map-moves: [cons: [cons: #state, #hist], #t], #res]}.
+
+%{([map-moves: #s, #t], [concat: #t, #z]) => [flatmap-moves: #s, #z]}.
+
+{([final: #state]) => [find-final: [cons: [cons: #state, #hist], #t], [cons: #state, #hist]]}.
+{([non-final: #state], [find-final: #t, #z]) => [find-final: [cons: [cons: #state, #hist], #t], #z]}.
+
+[ensure-non-final: nil].
+{([non-final: #state], [ensure-non-final: #t]) => [ensure-non-final: [cons: [cons: #state, #hist], #t]]}.
+
+{([find-final: #states, #z]) => [find-sol: #states, #z]}.
+{([ensure-non-final: #states], [map-moves: #states, #new-states], [find-sol: #new-states, #z]) => [find-sol: #states, #z]}.
+
+{([find-sol: [cons: [cons: #state, nil], nil], #z], [reverse: #z, #sol]) => [find-solution: #state, #sol]}.
+
+([find-solution: [state: tgt, tgt, src, tgt], #Solution])?
+
+% Solving the full problem would take several seconds, as the graph search is very inefficient.
+% ([find-solution: [state: src, src, src, src], #Solution])?
+
+quit!

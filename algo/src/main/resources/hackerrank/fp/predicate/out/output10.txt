@@ -1,0 +1,10 @@
+Ok.
+Ok.
+SAT:
+=====
+#x := a
+#y := [r: a]
+Ready.
+UNSAT
+Ready.
+Bye.
