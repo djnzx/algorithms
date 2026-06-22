@@ -1,0 +1,59 @@
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+SAT:
+=====
+#x := [succ: [succ: [succ: [succ: [succ: zero]]]]]
+Ready.
+SAT:
+=====
+#x := [succ: [succ: [succ: [succ: [succ: zero]]]]]
+#z := [succ: [succ: zero]]
+Ready.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+SAT:
+=====
+#x := [cons: c, [cons: b, [cons: a, nil]]]
+Ready.
+SAT:
+=====
+#l := [cons: a, [cons: b, nil]]
+#r := [cons: c, nil]
+Ready.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+SAT:
+=====
+#x := nil
+Ready.
+SAT:
+=====
+#x := [cons: a, [cons: b, nil]]
+Ready.
+SAT:
+=====
+#z := [cons: a, [cons: b, [cons: b, [cons: c, [cons: d, [cons: e, nil]]]]]]
+Ready.
+Bye.

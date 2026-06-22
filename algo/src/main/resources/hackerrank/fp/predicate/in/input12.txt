@@ -1,0 +1,23 @@
+% WatLog test case: Ancestry (Simple)
+
+% facts
+[parent-of: j, a].
+[parent-of: a, l].
+
+% equivalent to [parent-of: l, v].
+{() => [parent-of: l, v]}.
+
+% transitive closure
+{([parent-of: #x, #y]) => [ancestor-of: #x, #y]}.
+{([parent-of: #x, #z], [ancestor-of: #z, #y]) => [ancestor-of: #x, #y]}.
+
+% queries
+([ancestor-of: l, v])?
+([ancestor-of: j, v])?
+([ancestor-of: v, l])?
+([ancestor-of: v, j])?
+([ancestor-of: #z, v])?
+([ancestor-of: #x, l])?
+([ancestor-of: #y, #x], <#x = v>, <a /= #y>)?
+
+quit!

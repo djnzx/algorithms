@@ -4,7 +4,7 @@ import cats.data.NonEmptyList
 import djnz.hackerrank.fp.a6adhoc.p11.InputSyntax._
 import djnz.hackerrank.fp.a6adhoc.p11.P11ElementaryWatson._
 
-class P11cResolveSpec extends P11zSpecSupport {
+class P11cResolveSpec extends P11SpecSupport {
 
   private def subst(pairs: (Id, SimpleTerm)*): Substitution =
     Substitution(Map(pairs: _*))

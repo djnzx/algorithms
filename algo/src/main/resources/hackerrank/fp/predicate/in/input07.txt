@@ -1,0 +1,52 @@
+% WatLog test case: Merge Sort
+
+% peano numbers
+[plus: #x, zero, #x].
+[plus: zero, #x, #x].
+{([plus: [succ: #x], #y, #z]) => [plus: #x, [succ: #y], #z]}.
+[div-2: zero, zero].
+[div-2: [succ: zero], zero].
+{([div-2: #x, #z]) => [div-2: [succ: [succ: #x]], [succ: #z]]}.
+
+% test
+([plus: [succ: [succ: zero]], [succ: [succ: [succ: zero]]], #x])?
+([plus: [succ: [succ: zero]], [succ: [succ: [succ: zero]]], #x], [div-2: #x, #z])?
+
+% cons lists
+[length: nil, zero].
+{([length: #t, #z]) => [length: [cons: #h, #t], [succ: #z]]}.
+[reverse-acc: nil, #acc, #acc].
+{([reverse-acc: #t, [cons: #h, #acc], #z]) => [reverse-acc: [cons: #h, #t], #acc, #z]}.
+{([reverse-acc: #x, nil, #z]) => [reverse: #x, #z]}.
+[span: #l, zero, nil, #l].
+{([span: #t, #rl, #z1, #z2]) => [span: [cons: #h, #t], [succ: #rl], [cons: #h, #z1], #z2]}.
+
+% test
+([reverse: [cons: a, [cons: b, [cons: c, nil]]], #x])?
+([span: [cons: a, [cons: b, [cons: c, nil]]], [succ: [succ: zero]], #l, #r])?
+
+% mergesort
+[merge-sort: nil, nil].
+[merge-sort: [cons: #h, nil], [cons: #h, nil]].
+{([length: #l, #len], <#len /= zero>, <#len /= [succ: zero]>, [div-2: #len, #midp], [span: #l, #midp, #a, #b], [merge-sort: #a, #as], [merge-sort: #b, #bs], [merge: #as, #bs, #z]) => [merge-sort: #l, #z]}.
+[merge: #x, nil, #x].
+[merge: nil, #x, #x].
+{([lt: #hl, #hr], [merge: #tl, [cons: #hr, #tr], #z]) => [merge: [cons: #hl, #tl], [cons: #hr, #tr], [cons: #hl, #z]]}.
+{([ge: #hl, #hr], [merge: [cons: #hl, #tl], #tr, #z]) => [merge: [cons: #hl, #tl], [cons: #hr, #tr], [cons: #hr, #z]]}.
+
+% less-than and greater-than-or-equals relations
+[lt-n: a, b].
+[lt-n: b, c].
+[lt-n: c, d].
+[lt-n: d, e].
+{([lt-n: #x, #y]) => [lt: #x, #y]}.
+{([lt-n: #x, #y], [lt: #y, #z]) => [lt: #x, #z]}.
+{([lt: #x, #y]) => [ge: #y, #x]}.
+{(<#x = #y>) => [ge: #x, #y]}.
+
+% final tests
+([merge-sort: nil, #x])?
+([merge-sort: [cons: a, [cons: b, nil]], #x])?
+([merge-sort: [cons: b, [cons: d, [cons: a, [cons: b, [cons: c, [cons: e, nil]]]]]], #z])?
+
+quit!

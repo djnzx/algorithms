@@ -1,0 +1,29 @@
+% WatLog test case: Insertion Sort
+
+[lt-n: a, b].
+[lt-n: b, c].
+[lt-n: c, d].
+[lt-n: d, e].
+
+% transitive closure on lt-n relation
+{([lt-n: #x, #y]) => [lt: #x, #y]}.
+{([lt-n: #x, #y], [lt: #y, #z]) => [lt: #x, #z]}.
+{([lt: #x, #y]) => [ge: #y, #x]}.
+{(<#x = #y>) => [ge: #x, #y]}.
+
+% test
+([lt: #x, #y])?
+
+% insertion sort
+[sorted: nil, nil].
+{([sorted: #t, #y], [insert: #h, #y, #z]) => [sorted: [cons: #h, #t], #z]}.
+[insert: #h, nil, [cons: #h, nil]].
+{([lt: #h, #h2]) => [insert: #h, [cons: #h2, #t], [cons: #h, [cons: #h2, #t]]]}.
+{([ge: #h, #h2], [insert: #h, #t, #z]) => [insert: #h, [cons: #h2, #t], [cons: #h2, #z]]}.
+
+% test
+([sorted: [cons: a, [cons: b, nil]], #z])?
+([sorted: [cons: b, [cons: d, [cons: a, [cons: b, [cons: c, [cons: e, nil]]]]]], #z])?
+
+% all done here.
+quit!

@@ -1,0 +1,17 @@
+% WatLog test case: The Zebra Puzzle (aka Einstein's Puzzle)
+% this particular solution is based on Logtalk version @ Rosetta Code
+
+[street: [h: #Nat-1, #Pet-1, #Cig-1, #Dnk-1, #Col-1], [h: #Nat-2, #Pet-2, #Cig-2, #Dnk-2, #Col-2], [h: #Nat-3, #Pet-3, #Cig-3, #Dnk-3, #Col-3], [h: #Nat-4, #Pet-4, #Cig-4, #Dnk-4, #Col-4], [h: #Nat-5, #Pet-5, #Cig-5, #Dnk-5, #Col-5]].
+{(<#Z = [street: #A, #B, #C, #D, #E]>) => [member-of: #A, #Z]}.
+{(<#Z = [street: #A, #B, #C, #D, #E]>) => [member-of: #B, #Z]}.
+{(<#Z = [street: #A, #B, #C, #D, #E]>) => [member-of: #C, #Z]}.
+{(<#Z = [street: #A, #B, #C, #D, #E]>) => [member-of: #D, #Z]}.
+{(<#Z = [street: #A, #B, #C, #D, #E]>) => [member-of: #E, #Z]}.
+{(<#Z = [street: #A, #B, #C, #D, #E]>) => [next-to: #A, #B, #Z]}.
+{(<#Z = [street: #A, #B, #C, #D, #E]>) => [next-to: #B, #C, #Z]}.
+{(<#Z = [street: #A, #B, #C, #D, #E]>) => [next-to: #C, #D, #Z]}.
+{(<#Z = [street: #A, #B, #C, #D, #E]>) => [next-to: #D, #E, #Z]}.
+{([member-of: [h: english, #t1, #t2, #t3, red], #Sol], [member-of: [h: spanish, dog, #t4, #t5, #t6], #Sol], [member-of: [h: #t7, #t8, #t9, coffee, green], #Sol], [member-of: [h: ukrainian, #t10, #t11, tea, #t12], #Sol], [next-to: [h: #t13, #t14, #t15, #t16, green], [h: #t17, #t18, #t19, #t20, white], #Sol], [member-of: [h: #t21, snake, winston, #t22, #t23], #Sol], [member-of: [h: #t24, #t25, kool, #t26, yellow], #Sol], <#Sol = [street: #t27, #t28, [h: #t29, #t30, #t31, milk, #t32], #t33, #t34]>, <#Sol = [street: [h: norwegian, #t35, #t36, #t37, #t38], #t39, #t40, #t41, #t42]>, [next-to: [h: #t43, fox, #t44, #t45, #t46], [h: #t47, #t48, chesterfield, #t49, #t50], #Sol], [next-to: [h: #t51, #t52, kool, #t53, #t54], [h: #t55, horse, #t56, #t57, #t58], #Sol], [member-of: [h: #t59, #t60, lucky, juice, #t61], #Sol], [member-of: [h: japanese, #t62, kent, #t63, #t64], #Sol], [next-to: [h: norwegian, #t65, #t66, #t67, #t68], [h: #t69, #t70, #t71, #t72, blue], #Sol], [member-of: [h: #t73, #t74, #t75, water, #t76], #Sol], [member-of: [h: #t77, zebra, #t78, #t79, #t80], #Sol]) => [solution: #Sol]}.
+([solution: #X])?
+
+quit!

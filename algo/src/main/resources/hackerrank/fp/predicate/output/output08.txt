@@ -1,0 +1,14 @@
+Ok.
+Ok.
+Ok.
+SAT:
+=====
+#x := a
+SAT:
+=====
+#x := b
+SAT:
+=====
+#x := a
+Ready.
+Bye.

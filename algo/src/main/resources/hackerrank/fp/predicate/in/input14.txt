@@ -1,0 +1,140 @@
+% WatLog test case: Turing completeness proof by implementation of call-by-name SKI-basis combinatory logic
+
+% Some useful expressions in lambda calculus and WatLog representation of SKI follow:
+%
+%true:
+%
+%(\\x. (\\y. x))
+%
+%[val: K]
+%
+%false:
+%
+%(\\x. (\\y. y))
+%
+%[app: [val: K], [val: I]]
+%
+%isZero:
+%
+%(\\n. n (\\x. f) t)
+%
+%[app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]
+%
+%succ:
+%
+%(\\n. (\\f. (\\x. f (n f x))))
+%
+%[app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]
+%
+%zero:
+%
+%(\\f. (\\x. x))
+%
+%[app: [val: K], [val: I]]
+%
+%one:
+%
+%(succ zero)
+%
+%[app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]
+%
+%mult:
+%
+%(\\m. (\\n. (\\f. m (n f))))
+%
+%[app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]
+%
+%plus:
+%
+%(\\m. (\\n. m s n))
+%
+%[app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]]
+%
+%pred:
+%
+%(\\n. n (\\g. (\\k. z (g w) k (a (g k) w))) (\\v. o) o)
+%
+%[app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [app: [val: S], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]]], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [val: S], [app: [val: K], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]]]]]], [app: [val: K], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]]]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [app: [val: K], [val: I]]]]
+%
+%fix:
+%
+%(\\g. (\\x. g (x x)) (\\x. g (x x)))
+%
+%[app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [val: I]], [val: I]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [val: I]], [val: I]]]]]
+%
+%f-fact:
+%
+%(\\f. (\\x. (z x) w (m x (f (p x)))))
+%
+%[app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [app: [val: S], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]]], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [val: S], [app: [val: K], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]]]]]], [app: [val: K], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]]]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [app: [val: K], [val: I]]]]]]]]
+%
+%fact:
+%
+%(fix f-fact)
+%
+%[app: [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [val: I]], [val: I]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [val: I]], [val: I]]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [app: [val: S], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]]], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [val: S], [app: [val: K], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]]]]]], [app: [val: K], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]]]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [app: [val: K], [val: I]]]]]]]]]
+%
+%three:
+%
+%(succ (succ (succ zero)))
+%
+%[app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]
+
+% Evaluation rules:
+{([eval: #a, #a-evl], [apply: #a-evl, #b, #z], [eval: #z, #z0]) => [eval: [app: #a, #b], #z0]}.
+[eval: [val: #expr], [val: #expr]].
+
+[apply: [val: I], #x, #x].
+[apply: [val: K], #x, [val: [const: #x]]].
+[apply: [val: [const: #x]], #y, #x].
+[apply: [val: S], #x, [val: [subst-1: #x]]].
+[apply: [val: [subst-1: #x]], #y, [val: [subst-2: #x, #y]]].
+{([eval: [app: [app: #x, #z], [app: #y, #z]], #t]) => [apply: [val: [subst-2: #x, #y]], #z, #t]}.
+
+% conversion to host Peano numbers
+{([eval: #x, #z]) => [apply: [val: succ-f], #x, [val: [SUCC: #z]]]}.
+
+% SKK
+% (equivalent to I)
+([eval: [app: [app: [app: [val: S], [val: K]], [val: K]], [val: test]], #ans])?
+
+% SKK(SKS)I
+% (equivalent to III)
+([eval: [app: [app: [app: [app: [val: S], [val: K]], [val: K]], [app: [app: [val: S], [val: K]], [val: S]]], [val: I]], #ans])?
+
+% isZero zero I K
+([eval: [app: [app: [app: [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]], [app: [val: K], [val: I]]], [val: I]], [val: K]], #ans])?
+
+% isZero one I K
+([eval: [app: [app: [app: [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]], [val: I]], [val: K]], #ans])?
+
+% zero succ-f ZERO
+([eval: [app: [app: [app: [val: K], [val: I]], [val: succ-f]], [val: ZERO]], #ans])?
+
+% one succ-f ZERO
+([eval: [app: [app: [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]], [val: succ-f]], [val: ZERO]], #ans])?
+
+% plus three three succ-f ZERO
+([eval: [app: [app: [app: [app: [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]], [val: succ-f]], [val: ZERO]], #ans])?
+
+% mult three three succ-f ZERO
+([eval: [app: [app: [app: [app: [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]], [val: succ-f]], [val: ZERO]], #ans])?
+
+% fact zero succ-f ZERO
+([eval: [app: [app: [app: [app: [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [val: I]], [val: I]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [val: I]], [val: I]]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [app: [val: S], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]]], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [val: S], [app: [val: K], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]]]]]], [app: [val: K], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]]]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [app: [val: K], [val: I]]]]]]]]], [app: [val: K], [val: I]]], [val: succ-f]], [val: ZERO]], #ans])?
+
+% fact one succ-f ZERO
+([eval: [app: [app: [app: [app: [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [val: I]], [val: I]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [val: I]], [val: I]]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [app: [val: S], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]]], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [val: S], [app: [val: K], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]]]]]], [app: [val: K], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]]]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [app: [val: K], [val: I]]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]], [val: succ-f]], [val: ZERO]], #ans])?
+
+% Unfortunately, it just doesn't seem feasible to compute something as huge as 2!
+% So we'll just thunk the result, that should be fast enough.
+
+% fact (succ one)
+%([eval: [app: [app: [app: [app: [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [val: I]], [val: I]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [val: I]], [val: I]]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [app: [val: S], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]]], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [val: S], [app: [val: K], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]]]]]], [app: [val: K], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]]]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [app: [val: K], [val: I]]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]], [val: succ-f]], [val: ZERO]], #ans])?
+([eval: [app: [app: [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [val: I]], [val: I]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [val: I]], [val: I]]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [app: [val: S], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]]], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [val: S], [app: [val: K], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]]]]]], [app: [val: K], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]]]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [app: [val: K], [val: I]]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]], #ans])?
+
+% fact three
+%([eval: [app: [app: [app: [app: [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [val: I]], [val: I]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [val: I]], [val: I]]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [app: [val: S], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]]], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [val: S], [app: [val: K], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]]]]]], [app: [val: K], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]]]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [app: [val: K], [val: I]]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]], [val: succ-f]], [val: ZERO]], #ans])?
+([eval: [app: [app: [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [val: I]], [val: I]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [val: I]], [val: I]]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [app: [val: S], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [val: K]]]]], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [app: [val: S], [app: [val: K], [app: [app: [val: S], [val: I]], [app: [val: K], [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]]]]]]]], [app: [val: K], [app: [val: K], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]]]]]], [app: [val: K], [app: [val: K], [app: [val: K], [val: I]]]]]], [app: [val: K], [app: [val: K], [val: I]]]]]]]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [app: [val: S], [app: [app: [val: S], [app: [val: K], [val: S]]], [val: K]]], [app: [val: K], [val: I]]]]]], #ans])?
+
+quit!

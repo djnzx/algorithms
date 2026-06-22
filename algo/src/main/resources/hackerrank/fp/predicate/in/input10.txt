@@ -1,0 +1,9 @@
+% WatLog test case: Occurs
+
+[p: a].
+{([p: #x], <[r: #x] = #y>) => [q: #x, #y]}.
+
+([q: #x, #y])?
+([q: #x, #x])?
+
+quit!

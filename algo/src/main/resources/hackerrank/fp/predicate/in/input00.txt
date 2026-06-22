@@ -1,0 +1,16 @@
+% WatLog test case: simple
+% verifies the basic reasoning
+
+[r: a].
+{([r: #z]) => [p: [r: #z], #z]}.
+([p: [r: a], a])?
+([p: #a, a])?
+([p: #a, b])?
+([p: [r: a], #a])?
+([p: #a, #b])?
+([p: #c, #c])?
+([p: #a, #b], <#a = #b>)?
+([p: #a, #b], <#a /= #b>)?
+([p: #a, #b], <a /= #b>)?
+
+quit!

@@ -1,0 +1,47 @@
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+SAT:
+=====
+#Baker := smith
+#Bakers-Son := tailor
+#Carpenter := tailor
+#Carpenters-Son := smith
+#Smith := carpenter
+#Smiths-Son := baker
+#Tailor := baker
+#Tailors-Son := carpenter
+SAT:
+=====
+#Baker := tailor
+#Bakers-Son := smith
+#Carpenter := smith
+#Carpenters-Son := tailor
+#Smith := carpenter
+#Smiths-Son := baker
+#Tailor := baker
+#Tailors-Son := carpenter
+SAT:
+=====
+#Baker := tailor
+#Bakers-Son := carpenter
+#Carpenter := smith
+#Carpenters-Son := tailor
+#Smith := carpenter
+#Smiths-Son := baker
+#Tailor := baker
+#Tailors-Son := smith
+SAT:
+=====
+#Baker := tailor
+#Bakers-Son := smith
+#Carpenter := baker
+#Carpenters-Son := tailor
+#Smith := carpenter
+#Smiths-Son := baker
+#Tailor := smith
+#Tailors-Son := carpenter
+Ready.
+Bye.

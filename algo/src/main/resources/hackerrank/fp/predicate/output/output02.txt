@@ -1,0 +1,63 @@
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+SAT:
+=====
+#x := a
+#y := b
+SAT:
+=====
+#x := b
+#y := c
+SAT:
+=====
+#x := c
+#y := d
+SAT:
+=====
+#x := d
+#y := e
+SAT:
+=====
+#x := a
+#y := c
+SAT:
+=====
+#x := a
+#y := d
+SAT:
+=====
+#x := a
+#y := e
+SAT:
+=====
+#x := b
+#y := d
+SAT:
+=====
+#x := b
+#y := e
+SAT:
+=====
+#x := c
+#y := e
+Ready.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+SAT:
+=====
+#z := [cons: a, [cons: b, nil]]
+Ready.
+SAT:
+=====
+#z := [cons: a, [cons: b, [cons: b, [cons: c, [cons: d, [cons: e, nil]]]]]]
+Ready.
+Bye.

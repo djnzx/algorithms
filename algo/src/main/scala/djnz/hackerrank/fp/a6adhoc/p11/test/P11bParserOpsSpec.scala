@@ -4,7 +4,7 @@ import cats.data.NonEmptyList
 import cats.implicits.catsSyntaxEitherId
 import djnz.hackerrank.fp.a6adhoc.p11.InputSyntax
 
-class P11bParserOpsSpec extends P11zSpecSupport {
+class P11bParserOpsSpec extends P11SpecSupport {
 
   import InputSyntax._
 

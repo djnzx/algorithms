@@ -1,0 +1,40 @@
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+SAT
+Ready.
+SAT
+Ready.
+UNSAT
+Ready.
+UNSAT
+Ready.
+SAT:
+=====
+#z := l
+SAT:
+=====
+#z := j
+SAT:
+=====
+#z := a
+Ready.
+SAT:
+=====
+#x := a
+SAT:
+=====
+#x := j
+Ready.
+SAT:
+=====
+#x := v
+#y := l
+SAT:
+=====
+#x := v
+#y := j
+Ready.
+Bye.

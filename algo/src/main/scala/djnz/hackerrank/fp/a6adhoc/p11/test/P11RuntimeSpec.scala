@@ -6,7 +6,7 @@ import djnz.hackerrank.fp.a6adhoc.p11.InputSyntax
 import djnz.hackerrank.fp.a6adhoc.p11.InputSyntax.Rule
 import djnz.hackerrank.fp.a6adhoc.p11.P11ElementaryWatson
 
-class P11RuntimeSpec extends P11zSpecSupport {
+class P11RuntimeSpec extends P11SpecSupport {
 
   import InputSyntax.{Rule => _, _}
   import P11ElementaryWatson._

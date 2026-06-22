@@ -1,0 +1,93 @@
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+Ok.
+SAT:
+=====
+#X := L
+SAT:
+=====
+#X := V
+SAT:
+=====
+#X := A
+SAT:
+=====
+#X := J
+SAT:
+=====
+#X := N
+SAT:
+=====
+#X := E
+SAT:
+=====
+#X := I
+Ready.
+UNSAT
+Ready.
+SAT:
+=====
+#A := L
+#B := K
+SAT:
+=====
+#A := V
+#B := D
+SAT:
+=====
+#A := D
+#B := V
+SAT:
+=====
+#A := K
+#B := L
+SAT:
+=====
+#A := L
+#B := K
+SAT:
+=====
+#A := V
+#B := D
+SAT:
+=====
+#A := D
+#B := V
+SAT:
+=====
+#A := K
+#B := L
+Ready.
+SAT:
+=====
+#A := P
+#B := M
+SAT:
+=====
+#A := P
+#B := M
+SAT:
+=====
+#A := M
+#B := P
+SAT:
+=====
+#A := M
+#B := P
+Ready.
+Bye.

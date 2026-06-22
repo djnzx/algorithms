@@ -1,0 +1,20 @@
+% WatLog test case: The Towers Of Hanoi
+
+[other: A, B, C].
+[other: A, C, B].
+[other: B, C, A].
+[other: B, A, C].
+[other: C, A, B].
+[other: C, B, A].
+
+[concat: #x, nil, #x].
+[concat: nil, #x, #x].
+{([concat: #t, #y, #z]) => [concat: [cons: #h, #t], #y, [cons: #h, #z]]}.
+
+[hanoi: #x, #y, zero, nil].
+{([other: #x, #y, #z], [hanoi: #x, #z, #n, #m1], [hanoi: #z, #y, #n, #m2], [concat: #m1, [cons: [move: #x, #y], #m2], #res]) => [hanoi: #x, #y, [succ: #n], #res]}.
+
+([hanoi: A, C, [succ: [succ: [succ: zero]]], #Sol])?
+([hanoi: A, C, [succ: [succ: [succ: [succ: [succ: [succ: [succ: [succ: zero]]]]]]]], #Sol])?
+
+quit!

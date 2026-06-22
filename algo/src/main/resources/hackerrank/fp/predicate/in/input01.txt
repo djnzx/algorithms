@@ -1,0 +1,87 @@
+% WatLog test case: Mystery (Simple)
+% Col. Travis was poisoned...
+
+{([means: #x], [motive: #x], [opportunity: #x]) => [suspect: #x]}.
+
+{([doctor: #x], [poisoned: #y]) => [means: #x]}.
+{([nurse: #x], [poisoned: #y]) => [means: #x]}.
+{([veterinarian: #x], [poisoned: #y]) => [means: #x]}.
+{([owns-firearm: #x], [shot: #y]) => [means: #x]}.
+{([strong: #x], [strangled: #y]) => [means: #x]}.
+
+{([jealous-of: #x, #y], [victim: #y]) => [motive: #x]}.
+{([inherits-from: #x, #y], [financial-trouble: #x], [victim: #y]) => [motive: #x]}.
+
+{([witnessed-by-at-on: #x, #z, #s, #t], [crime-scene: #s], [time-of-death: #t]) => [opportunity: #x]}.
+{([has-no-alibi-for: #x, #t], [time-of-death: #t]) => [opportunity: #x]}.
+
+{([poisoned: #x]) => [victim: #x]}.
+{([shot: #x]) => [victim: #x]}.
+{([strangled: #x]) => [victim: #x]}.
+
+{([loves: #x, #y], [loves: #z, #y]) => [jealous-of: #x, #z]}.
+
+{([son-of: #x, #y]) => [inherits-from: #x, #y]}.
+{([daughter-of: #x, #y]) => [inherits-from: #x, #y]}.
+{([spouse-of: #x, #y]) => [inherits-from: #x, #y]}.
+
+[crime-scene: CountryHouse].
+[time-of-death: Wednesday].
+%[time-of-death: Tuesday].
+[poisoned: ColTravis].
+%[shot: ColTravis].
+
+% What if the Colonel was poisoned on Tuesday?
+% What if he was shot rather than poisoned?
+
+ColTravis.
+[spouse-of: ColTravis, Martha].
+[loves: ColTravis, Martha].
+[soldier: ColTravis].
+[doctor: ColTravis].
+[owns-firearm: ColTravis].
+[strong: ColTravis].
+[witnessed-by-at-on: ColTravis, Martha, CountryHouse, Tuesday].
+[witnessed-by-at-on: ColTravis, Martha, CountryHouse, Wednesday].
+
+Martha.
+[spouse-of: Martha, ColTravis].
+[nurse: Martha].
+[has-no-alibi-for: Martha, Wednesday].
+
+Jeffrey.
+[son-of: Jeffrey, ColTravis].
+[son-of: Jeffrey, Martha].
+[golden-youth: Jeffrey].
+[owns-firearm: Jeffrey].
+[strong: Jeffrey].
+[financial-trouble: Jeffrey].
+[witnessed-by-at-on: Jeffrey, Mordred, CountryHouse, Wednesday].
+
+Susan.
+[daughter-of: Susan, ColTravis].
+[daughter-of: Susan, Martha].
+[doctor: Susan].
+[witnessed-by-at-on: Susan, Martha, CountryHouse, Tuesday].
+
+Mordred.
+[loves: Mordred, Martha].
+[veterinarian: Mordred].
+[witnessed-by-at-on: Mordred, Susan, CountryHouse, Tuesday].
+[has-no-alibi-for: Mordred, Wednesday].
+
+% Is Jeffrey a suspect?
+([suspect: Jeffrey])?
+
+% Is Susan a suspect?
+([suspect: Susan])?
+
+% List all known suspects.
+([suspect: #X])?
+
+% Curiously, Col. Travis is a suspect in his own murder...
+% While suicides certainly do happen, it doesn't seem plausible in this case.
+% What motive could Col. Travis possibly have to take his own life?
+% Perhaps, good old Watson didn't model the situation too well?
+
+quit!

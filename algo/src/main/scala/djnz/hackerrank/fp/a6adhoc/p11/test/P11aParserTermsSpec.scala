@@ -5,7 +5,7 @@ import cats.implicits.catsSyntaxEitherId
 import djnz.hackerrank.fp.a6adhoc.p11.InputSyntax
 import djnz.hackerrank.fp.a6adhoc.p11.ParsersCore
 
-class P11aParserTermsSpec extends P11zSpecSupport {
+class P11aParserTermsSpec extends P11SpecSupport {
 
   import InputSyntax._
   import ParsersCore.ParserImpl
