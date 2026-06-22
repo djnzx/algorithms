@@ -27,5 +27,6 @@ trait P11SpecSupport extends AnyFunSuite with Matchers with ResourceAccess {
   def buildKnowledge(lines: List[String]): Knowledge =
     Solution.handleBulk(Knowledge.initial, lines.iterator)._1
 
-  val ra = folder("hackerrank/fp/predicate/in")
+  val ra = folder("hackerrank/fp/predicate")
+
 }
