@@ -140,7 +140,7 @@ class P11RuntimeSpec extends P11SpecSupport {
       )
     )
 
-    val (freshRule, nextState) = Freshener.freshClause(rule, Freshener.N.initial)
+    val (freshRule, nextState) = Freshener.renumberClause(rule, Freshener.N.initial)
 
     freshRule shouldBe P11ElementaryWatson.Clause.Rule(
       Predicate(StRelation("p".id, NonEmptyList.of(StVariable("x__0".id)))),

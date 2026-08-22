@@ -258,6 +258,7 @@ object P11ElementaryWatson {
           .toOption // discard unification errors
           .map(subst => Resolution(subst, Nil))
       case neq: Neq =>
+//        Resolution(subst, Nil).some // don't handle NonEquality
         evalNeq(neq, subst) match {
           case Violated       => None
           case Satisfied      => Resolution(subst, Nil).some
@@ -278,7 +279,7 @@ object P11ElementaryWatson {
     import cats.data.State
     private type St[A] = State[(Map[Id, Id], N), A]
 
-    private def freshTerm(term: SimpleTerm): St[SimpleTerm] = term match {
+    private def renumberTerm(term: SimpleTerm): St[SimpleTerm] = term match {
       case n: StName => State.pure(n)
 
       case StVariable(name) =>
@@ -294,30 +295,30 @@ object P11ElementaryWatson {
 
       case r @ StRelation(_, terms) =>
         terms
-          .traverse(freshTerm)
+          .traverse(renumberTerm)
           .map(ts => r.copy(terms = ts))
     }
 
-    private def freshConstraint(c: Constraint): St[Constraint] = c match {
-      case Eq(l, r)  => (freshTerm(l), freshTerm(r)).mapN(Eq(_, _))
-      case Neq(l, r) => (freshTerm(l), freshTerm(r)).mapN(Neq(_, _))
+    private def renumberConstraint(c: Constraint): St[Constraint] = c match {
+      case Eq(l, r)  => (renumberTerm(l), renumberTerm(r)).mapN(Eq(_, _))
+      case Neq(l, r) => (renumberTerm(l), renumberTerm(r)).mapN(Neq(_, _))
     }
 
-    private def freshGoal(goal: Goal): St[Goal] = goal match {
-      case GoalPredicate(p)  => freshTerm(p.value).map(v => GoalPredicate(Predicate(v)))
-      case GoalConstraint(c) => freshConstraint(c).map(GoalConstraint(_))
+    private def renumberGoal(goal: Goal): St[Goal] = goal match {
+      case GoalPredicate(p)  => renumberTerm(p.value).map(v => GoalPredicate(Predicate(v)))
+      case GoalConstraint(c) => renumberConstraint(c).map(GoalConstraint(_))
     }
 
-    def freshClause(clause: Clause, n: N): (Clause, N) = {
+    def renumberClause(clause: Clause, n: N): (Clause, N) = {
       val action: St[Clause] = clause match {
         case Clause.Fact(p)       =>
-          freshTerm(p.value)
+          renumberTerm(p.value)
             .map(st => Predicate(st))
             .map(p => Clause.Fact(p))
         case Clause.Rule(p, body) =>
-          freshTerm(p.value)
+          renumberTerm(p.value)
             .map(st => Predicate(st))
-            .flatMap(p => body.traverse(freshGoal).map(b => Clause.Rule(p, b)))
+            .flatMap(p => body.traverse(renumberGoal).map(b => Clause.Rule(p, b)))
       }
 
       val ((_, next2), clause2) = action.run((Map.empty, n)).value
@@ -388,7 +389,8 @@ object P11ElementaryWatson {
           clausesFor(normPred)
             .foldLeft(Vector.empty[SolverState] -> state.freshening) {
               case ((states, n), clause) =>
-                val (clause2, n2) = Freshener.freshClause(clause, n)
+//                val (clause2, n2) = (clause, n) // if we don't want to handle renumbering
+                val (clause2, n2) = Freshener.renumberClause(clause, n)
                 val nextStates = reducePredicateGoal(normPred, tail, state.search.substitution, state.search.pendingNeqs, clause2)
                   .fold(states)(next => states :+ SolverState(next, n2))
                 nextStates -> n2
