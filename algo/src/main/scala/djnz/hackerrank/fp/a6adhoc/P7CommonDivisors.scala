@@ -6,8 +6,6 @@ object P7CommonDivisors {
   implicit class StringToOps(s: String) {
     def splitToInt: Array[Int] = s.split(" ").map(_.toInt)
     def toVectorInt: Vector[Int] = splitToInt.toVector
-    def toListInt: List[Int] = splitToInt.toList
-    def toTuple2Int: (Int, Int) = { val a = splitToInt; (a(0), a(1)) }
   }
 
   @scala.annotation.tailrec

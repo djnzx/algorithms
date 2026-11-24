@@ -4,8 +4,6 @@ object P6MissingNumbersV2 {
   implicit class StringToOps(s: String) {
     def splitToInt: Array[Int] = s.split(" ").map(_.toInt)
     def toVectorInt: Vector[Int] = splitToInt.toVector
-    def toListInt: List[Int] = splitToInt.toList
-    def toTuple2Int: (Int, Int) = { val a = splitToInt; (a(0), a(1)) }
   }
 
   def toMap(a: Array[Int]) =
